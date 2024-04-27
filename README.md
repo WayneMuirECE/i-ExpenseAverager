@@ -1,1 +1,1 @@
-# i-ExpenceAverager
+# i-ExpenseAverager
