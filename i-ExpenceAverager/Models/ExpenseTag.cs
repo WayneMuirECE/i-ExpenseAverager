@@ -7,27 +7,29 @@ using System.Xml.Linq;
 
 namespace i_ExpenceAverager.Models
 {
-    public class ExpenceTag
+    public class ExpenseTag
     {
         public static readonly string TagName = "expencetag";
 
-        public string ExpenceTagType { get; set; }
-        public int ExpenceTagID { get; set; }
-        public string ExpenceTagName { get; private set; } = string.Empty;
+        public string ExpenseTagType { get; set; }
+        public int ExpenseTagID { get; set; }
+        public string ExpenseTagName { get; private set; }
 
-        public ExpenceTag(string expenceTagName)
+        public ExpenseTag(string expenceTagName)
         {
             if (string.IsNullOrWhiteSpace(expenceTagName))
             {
                 throw new ArgumentNullException(nameof(expenceTagName));
             }
 
-            ExpenceTagName = expenceTagName;
+            
+
+            ExpenseTagName = expenceTagName;
         }
 
         public override string ToString()
         {
-            return ExpenceTagName;
+            return ExpenseTagName;
         }
     }
 }
