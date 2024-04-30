@@ -4,38 +4,38 @@ namespace i_ExpenseAverager.Models
 {
     public class ExpenseAverage2
     {
-        private int expenceAverageID;
-        private int expenceAverageTypeID;
-        private int expenceLocationID;
-        private int expenceOccasionID;
+        private int expenseAverageID;
+        private int expenseAverageTypeID;
+        private int expenseLocationID;
+        private int expenseOccasionID;
         private DateTime date;
-        private double expenceAverageAmount;
+        private double expenseAverageAmount;
         private string note;
 
-        public static readonly string TagName = "expenceaverage";
+        public static readonly string TagName = "expenseaverage";
 
-        public int ExpenceAverageID
+        public int ExpenseAverageID
         {
-            get { return expenceAverageID; }
-            set { expenceAverageID = value; }
+            get { return expenseAverageID; }
+            set { expenseAverageID = value; }
         }
 
-        public int ExpenceAverageTypeID
+        public int ExpenseAverageTypeID
         {
-            get { return expenceAverageTypeID; }
-            set { expenceAverageTypeID = value; }
+            get { return expenseAverageTypeID; }
+            set { expenseAverageTypeID = value; }
         }
 
-        public int ExpenceLocationID
+        public int ExpenseLocationID
         {
-            get { return expenceLocationID; }
-            set { expenceLocationID = value; }
+            get { return expenseLocationID; }
+            set { expenseLocationID = value; }
         }
 
-        public int ExpenceOccasionID
+        public int ExpenseOccasionID
         {
-            get { return expenceOccasionID; }
-            set { expenceOccasionID = value; }
+            get { return expenseOccasionID; }
+            set { expenseOccasionID = value; }
         }
 
         public DateTime Date
@@ -44,10 +44,10 @@ namespace i_ExpenseAverager.Models
             set { this.date = value; }
         }
 
-        public double ExpenceAverageAmount
+        public double ExpenseAverageAmount
         {
-            get { return this.expenceAverageAmount; }
-            set { this.expenceAverageAmount = value; }
+            get { return this.expenseAverageAmount; }
+            set { this.expenseAverageAmount = value; }
         }
 
         public string Note
@@ -56,59 +56,59 @@ namespace i_ExpenseAverager.Models
             set { this.note = value; }
         }
 
-        public ExpenseAverage2(int expenceAverageID, int expenceAverageTypeID, int expenceLocationID, int expenceOccasionID, DateTime date, double expenceAverageAmount, string note)
+        public ExpenseAverage2(int expenseAverageID, int expenseAverageTypeID, int expenseLocationID, int expenseOccasionID, DateTime date, double expenseAverageAmount, string note)
         {
-            this.expenceAverageID = expenceAverageID;
-            this.expenceAverageTypeID = expenceAverageTypeID;
-            this.expenceLocationID = expenceLocationID;
-            this.expenceOccasionID = expenceOccasionID;
+            this.expenseAverageID = expenseAverageID;
+            this.expenseAverageTypeID = expenseAverageTypeID;
+            this.expenseLocationID = expenseLocationID;
+            this.expenseOccasionID = expenseOccasionID;
             this.date = date;
-            this.expenceAverageAmount = expenceAverageAmount;
+            this.expenseAverageAmount = expenseAverageAmount;
             this.note = note;
         }
         /// <summary>
-        /// Converts a expenceAverage2 XElement into a ExpenceAverage2 object.
+        /// Converts a expenseAverage2 XElement into a expenseAverage2 object.
         /// </summary>
         /// <param name="xml"></param>
         public ExpenseAverage2(XElement xml)
         {
-            expenceAverageID = int.Parse(xml.Attribute("id").Value);
-            expenceAverageTypeID = int.Parse(xml.Attribute("uid").Value);
-            expenceLocationID = int.Parse(xml.Attribute("locid").Value);
-            expenceOccasionID = int.Parse(xml.Attribute("occid").Value);
+            expenseAverageID = int.Parse(xml.Attribute("id").Value);
+            expenseAverageTypeID = int.Parse(xml.Attribute("uid").Value);
+            expenseLocationID = int.Parse(xml.Attribute("locid").Value);
+            expenseOccasionID = int.Parse(xml.Attribute("occid").Value);
             date = DateTime.Parse(xml.Attribute("date").Value);
-            expenceAverageAmount = double.Parse(xml.Attribute("am").Value);
+            expenseAverageAmount = double.Parse(xml.Attribute("am").Value);
             note = xml.Attribute("note").Value;
         }
 
         public XElement AsXML()
         {
-            XElement self = new XElement(ExpenseAverage2.TagName, new XAttribute("id", expenceAverageID.ToString()),
-                new XAttribute("uid", expenceAverageTypeID.ToString()), new XAttribute("locid", expenceLocationID.ToString()),
-                new XAttribute("occid", expenceOccasionID.ToString()), new XAttribute("date", date.ToShortDateString()),
-                new XAttribute("am", expenceAverageAmount), new XAttribute("note", note));
+            XElement self = new XElement(ExpenseAverage2.TagName, new XAttribute("id", expenseAverageID.ToString()),
+                new XAttribute("uid", expenseAverageTypeID.ToString()), new XAttribute("locid", expenseLocationID.ToString()),
+                new XAttribute("occid", expenseOccasionID.ToString()), new XAttribute("date", date.ToShortDateString()),
+                new XAttribute("am", expenseAverageAmount), new XAttribute("note", note));
 
             return self;
         }
     }
 
-    public class ExpenceAverages2
+    public class expenseAverages2
     {
         private List<ExpenseAverage2> list = new List<ExpenseAverage2>();
 
-        public void Add(ExpenseAverage2 expenceAverage)
+        public void Add(ExpenseAverage2 expenseAverage)
         {
-            list.Add(expenceAverage);
+            list.Add(expenseAverage);
         }
-        public void Remove(ExpenseAverage2 expenceAverage)
+        public void Remove(ExpenseAverage2 expenseAverage)
         {
-            list.Remove(expenceAverage);
+            list.Remove(expenseAverage);
         }
 
-        public void Remove(int expenceAverageID)
+        public void Remove(int expenseAverageID)
         {
-            ExpenseAverage2 expenceAverage = list.Where(o => o.ExpenceAverageID.Equals(expenceAverageID)).FirstOrDefault();
-            list.Remove(expenceAverage);
+            ExpenseAverage2 expenseAverage = list.Where(o => o.ExpenseAverageID.Equals(expenseAverageID)).FirstOrDefault();
+            list.Remove(expenseAverage);
         }
 
         public IEnumerable<ExpenseAverage2> Where(Func<ExpenseAverage2, bool> predicate)
@@ -147,7 +147,7 @@ namespace i_ExpenseAverager.Models
             List<ExpenseAverage2> items2 = new List<ExpenseAverage2>();
             foreach (ExpenseTag tag in tagList)
             {
-                items2.AddRange(items.Where(o => o.ExpenceAverageTypeID == tag.ExpenceTagID).ToList());
+                items2.AddRange(items.Where(o => o.ExpenseAverageTypeID == tag.ExpenseTagID).ToList());
             }
             items = items2.Distinct().ToList();
             return items;

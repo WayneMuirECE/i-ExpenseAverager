@@ -4,12 +4,12 @@ namespace i_ExpenseAverager.ViewModelLibrary
 {
     public class ExpenseAverageDay
     {
-        private List<ExpenseAverage2> daysExpences;
+        private List<ExpenseAverage2> daysexpenses;
 
-        public List<ExpenseAverage2> DaysExpences
+        public List<ExpenseAverage2> Daysexpenses
         {
-            get { return daysExpences; }
-            set { daysExpences = value; }
+            get { return daysexpenses; }
+            set { daysexpenses = value; }
         }
         private DateTime date;
 
@@ -24,25 +24,25 @@ namespace i_ExpenseAverager.ViewModelLibrary
         public ExpenseAverageDay(DateTime date)
         {
             this.date = date;
-            this.daysExpences = new List<ExpenseAverage2>();
+            this.daysexpenses = new List<ExpenseAverage2>();
         }
 
         public double DaysTotal
         {
             get
             {
-                if (daysExpences == null)
+                if (daysexpenses == null)
                 {
                     return 0.00;
                 }
-                if (daysExpences.Count == 0)
+                if (daysexpenses.Count == 0)
                 {
                     return 0.00;
                 }
                 double total = 0.00;
-                foreach (ExpenseAverage2 item in daysExpences)
+                foreach (ExpenseAverage2 item in daysexpenses)
                 {
-                    total += item.ExpenceAverageAmount;
+                    total += item.ExpenseAverageAmount;
                 }
                 return total;
             }
@@ -51,17 +51,17 @@ namespace i_ExpenseAverager.ViewModelLibrary
         public List<int> DaysTypes()
         {
             List<int> list = new List<int>();
-            if (daysExpences == null)
+            if (daysexpenses == null)
             {
                 return list;
             }
-            if (daysExpences.Count == 0)
+            if (daysexpenses.Count == 0)
             {
                 return list;
             }
-            foreach (ExpenseAverage2 item in daysExpences)
+            foreach (ExpenseAverage2 item in daysexpenses)
             {
-                list.Add(item.ExpenceAverageTypeID);
+                list.Add(item.ExpenseAverageTypeID);
             }
             return list;
         }

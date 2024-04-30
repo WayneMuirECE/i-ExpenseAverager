@@ -22,7 +22,7 @@ namespace i_ExpenseAverager.Forms
             if (expenseAverageType != null)
             {
                 expenseAverageTypeBox.Text = expenseAverageType.ExpenseAverageTypeName;
-                ExpenceAverageDateTimePicker.Value = expenseAverageType.StartDate;
+                expenseAverageDateTimePicker.Value = expenseAverageType.StartDate;
             }
         }
     }

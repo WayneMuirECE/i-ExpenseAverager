@@ -4,24 +4,24 @@ namespace i_ExpenseAverager.Models
 {
     public class ExpenseAverageType
     {
-        private int expenceAverageTypeID = 0;
-        private string expenceAverageTypeName;
+        private int expenseAverageTypeID = 0;
+        private string expenseAverageTypeName;
         private DateTime startDate;
-        private bool currentExpenceAverageType = false;
+        private bool currentexpenseAverageType = false;
 
-        public static readonly string TagName = "expenceaveragetype";
+        public static readonly string TagName = "expenseaveragetype";
 
-        public int ExpenceAverageTypeID
+        public int ExpenseAverageTypeID
         {
             get
             {
-                return expenceAverageTypeID;
+                return expenseAverageTypeID;
             }
             set
             {
-                if (expenceAverageTypeID == 0)
+                if (expenseAverageTypeID == 0)
                 {
-                    expenceAverageTypeID = value;
+                    expenseAverageTypeID = value;
                 }
             }
         }
@@ -30,7 +30,7 @@ namespace i_ExpenseAverager.Models
         {
             get
             {
-                return string.Copy(expenceAverageTypeName);
+                return string.Copy(expenseAverageTypeName);
             }
         }
 
@@ -46,40 +46,40 @@ namespace i_ExpenseAverager.Models
             }
         }
 
-        public bool CurrentExpenceAverageType
+        public bool CurrentexpenseAverageType
         {
             get
             {
-                return currentExpenceAverageType;
+                return currentexpenseAverageType;
             }
             set
             {
-                this.currentExpenceAverageType = value;
+                this.currentexpenseAverageType = value;
             }
         }
 
-        public ExpenseAverageType(string expenceAverageTypeName, DateTime startDate)
+        public ExpenseAverageType(string expenseAverageTypeName, DateTime startDate)
         {
-            this.expenceAverageTypeName = string.Copy(expenceAverageTypeName);
+            this.expenseAverageTypeName = string.Copy(expenseAverageTypeName);
             this.startDate = startDate;
         }
         /// <summary>
-        /// Converts a expenceAverageType XElement into a ExpenceAverageType object.
+        /// Converts a expenseAverageType XElement into a expenseAverageType object.
         /// </summary>
         /// <param name="xml"></param>
         public ExpenseAverageType(XElement xml)
         {
-            expenceAverageTypeID = int.Parse(xml.Attribute("id").Value);
-            currentExpenceAverageType = bool.Parse(xml.Attribute("current").Value);
-            expenceAverageTypeName = xml.Attribute("name").Value;
+            expenseAverageTypeID = int.Parse(xml.Attribute("id").Value);
+            currentexpenseAverageType = bool.Parse(xml.Attribute("current").Value);
+            expenseAverageTypeName = xml.Attribute("name").Value;
             startDate = DateTime.Parse(xml.Attribute("date").Value);
         }
 
         public XElement AsXML()
         {
-            XElement self = new XElement(ExpenseAverageType.TagName, new XAttribute("id", expenceAverageTypeID.ToString()),
-                new XAttribute("name", expenceAverageTypeName), new XAttribute("date", startDate.ToShortDateString()),
-                new XAttribute("current", currentExpenceAverageType.ToString()));
+            XElement self = new XElement(ExpenseAverageType.TagName, new XAttribute("id", expenseAverageTypeID.ToString()),
+                new XAttribute("name", expenseAverageTypeName), new XAttribute("date", startDate.ToShortDateString()),
+                new XAttribute("current", currentexpenseAverageType.ToString()));
             return self;
         }
     }

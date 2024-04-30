@@ -10,26 +10,26 @@ namespace i_ExpenseAverager.Models
 {
     public class ExpenseTag
     {
-        public static readonly string TagName = "expencetag";
+        public static readonly string TagName = "expensetag";
 
         public string ExpenseTagType { get; set; }
         public int ExpenseTagID { get; set; }
         public string ExpenseTagName { get; private set; }
 
-        public ExpenseTag(string expenceTagName)
+        public ExpenseTag(string expenseTagName)
         {
-            if (string.IsNullOrWhiteSpace(expenceTagName))
+            if (string.IsNullOrWhiteSpace(expenseTagName))
             {
-                throw new ArgumentNullException(nameof(expenceTagName));
+                throw new ArgumentNullException(nameof(expenseTagName));
             }
 
             
 
-            ExpenseTagName = expenceTagName;
+            ExpenseTagName = expenseTagName;
         }
 
         /// <summary>
-		/// Converts a expencetag XElement into a ExpenceTag object.
+		/// Converts a expensetag XElement into a expenseTag object.
 		/// </summary>
 		/// <param name="xml"></param>
 		public ExpenseTag(XElement xml)

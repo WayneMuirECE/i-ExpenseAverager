@@ -19,7 +19,7 @@ namespace i_ExpenseAverager.Forms
 
         private void RefreshRecordsDisplay(ExpenseAverageCategory category)
         {
-            expenceAverageRecordDataGridView.Rows.Clear();
+            expenseAverageRecordDataGridView.Rows.Clear();
             DataGridViewRow gridRow;
 
             ChainClass year = ViewXDB.RefreshDisplay(category);
@@ -35,7 +35,7 @@ namespace i_ExpenseAverager.Forms
 
             foreach (ExpenseAverageDay item in year.ChainHead.GetNodes())
             {
-                gridRow = (DataGridViewRow)expenceAverageRecordDataGridView.Rows[0].Clone();
+                gridRow = (DataGridViewRow)expenseAverageRecordDataGridView.Rows[0].Clone();
                 gridRow.Height = 15;
                 gridRow.Cells[DayColumn.Index].Value = item.Date.DayOfWeek;
                 rows.Add(gridRow);
@@ -71,29 +71,29 @@ namespace i_ExpenseAverager.Forms
                 }
 
                 string types = "";
-                foreach (ExpenseAverage2 expence in item.DaysExpences)
+                foreach (ExpenseAverage2 expense in item.Daysexpenses)
                 {
-                    types += XDB.expenceTypes.ItemById(expence.ExpenceAverageTypeID).ExpenseTagName + ", ";
+                    types += XDB.expenseTypes.ItemById(expense.ExpenseAverageTypeID).ExpenseTagName + ", ";
                 }
 
-                gridRow.Cells[ExpenceTypeColumn.Index].Value = types;
+                gridRow.Cells[expenseTypeColumn.Index].Value = types;
 
                 types = "";
 
-                foreach (ExpenseAverage2 expence in item.DaysExpences)
+                foreach (ExpenseAverage2 expense in item.Daysexpenses)
                 {
-                    types += XDB.expenceLocations.ItemById(expence.ExpenceLocationID).ExpenseTagName + ", ";
+                    types += XDB.expenseLocations.ItemById(expense.ExpenseLocationID).ExpenseTagName + ", ";
                 }
 
                 gridRow.Cells[LocationColumn.Index].Value = types;
 
                 types = "";
 
-                foreach (ExpenseAverage2 expence in item.DaysExpences)
+                foreach (ExpenseAverage2 expense in item.Daysexpenses)
                 {
-                    if (!string.IsNullOrWhiteSpace(expence.Note))
+                    if (!string.IsNullOrWhiteSpace(expense.Note))
                     {
-                        types += expence.Note + ", ";
+                        types += expense.Note + ", ";
                     }
                 }
 
@@ -103,7 +103,7 @@ namespace i_ExpenseAverager.Forms
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
-                    gridRow.Cells[ExpenceTypeColumn.Index].Style.BackColor = Color.LightGray;
+                    gridRow.Cells[expenseTypeColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[LocationColumn.Index].Style.BackColor = Color.LightGray;
 
                     if (gridRow.Cells[NoteColumn.Index].Value.ToString() == "")
@@ -115,7 +115,7 @@ namespace i_ExpenseAverager.Forms
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
-                    gridRow.Cells[ExpenceTypeColumn.Index].Style.BackColor = Color.LightGray;
+                    gridRow.Cells[expenseTypeColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[LocationColumn.Index].Style.BackColor = Color.LightGray;
 
                     if (gridRow.Cells[NoteColumn.Index].Value.ToString() == "")
@@ -127,7 +127,7 @@ namespace i_ExpenseAverager.Forms
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
-                    gridRow.Cells[ExpenceTypeColumn.Index].Style.BackColor = Color.LightGray;
+                    gridRow.Cells[expenseTypeColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[LocationColumn.Index].Style.BackColor = Color.LightGray;
 
                     if (gridRow.Cells[NoteColumn.Index].Value.ToString() == "")
@@ -139,13 +139,13 @@ namespace i_ExpenseAverager.Forms
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.White;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.White;
-                    gridRow.Cells[ExpenceTypeColumn.Index].Style.BackColor = Color.White;
+                    gridRow.Cells[expenseTypeColumn.Index].Style.BackColor = Color.White;
                     gridRow.Cells[LocationColumn.Index].Style.BackColor = Color.White;
                 }
             }
 
-            expenceAverageRecordDataGridView.Rows.AddRange(rows.ToArray());
-            expenceAverageRecordDataGridView.FirstDisplayedScrollingRowIndex = expenceAverageRecordDataGridView.RowCount - 1;
+            expenseAverageRecordDataGridView.Rows.AddRange(rows.ToArray());
+            expenseAverageRecordDataGridView.FirstDisplayedScrollingRowIndex = expenseAverageRecordDataGridView.RowCount - 1;
             RefreshCategories();
         }
 
@@ -162,18 +162,18 @@ namespace i_ExpenseAverager.Forms
             categoriesComboBox.SelectedIndex = selectedIndex;
             categoriesComboBox.Refresh();
 
-            expenceTypeListBox.Items.Clear();
+            expenseTypeListBox.Items.Clear();
 
-            foreach (ExpenseTag item in XDB.expenceTypes.ToList())
+            foreach (ExpenseTag item in XDB.expenseTypes.ToList())
             {
-                expenceTypeListBox.Items.Add(item);
+                expenseTypeListBox.Items.Add(item);
             }
 
             listBox1.Items.Clear();
             categoryNewTextBox.Text = "";
         }
 
-        private void expenceSettingsButton_Click(object sender, EventArgs e)
+        private void expenseSettingsButton_Click(object sender, EventArgs e)
         {
             LedgerForm form = new LedgerForm(XDB);
             form.ShowDialog();

@@ -31,7 +31,7 @@
             cancelButton = new Button();
             saveButton = new Button();
             label2 = new Label();
-            ExpenceAverageDateTimePicker = new DateTimePicker();
+            expenseAverageDateTimePicker = new DateTimePicker();
             label1 = new Label();
             expenseAverageTypeBox = new ComboBox();
             SuspendLayout();
@@ -66,13 +66,13 @@
             label2.TabIndex = 23;
             label2.Text = "Record Start Date";
             // 
-            // ExpenceAverageDateTimePicker
+            // expenseAverageDateTimePicker
             // 
-            ExpenceAverageDateTimePicker.Location = new Point(13, 74);
-            ExpenceAverageDateTimePicker.Margin = new Padding(4, 3, 4, 3);
-            ExpenceAverageDateTimePicker.Name = "ExpenceAverageDateTimePicker";
-            ExpenceAverageDateTimePicker.Size = new Size(233, 23);
-            ExpenceAverageDateTimePicker.TabIndex = 22;
+            expenseAverageDateTimePicker.Location = new Point(13, 74);
+            expenseAverageDateTimePicker.Margin = new Padding(4, 3, 4, 3);
+            expenseAverageDateTimePicker.Name = "expenseAverageDateTimePicker";
+            expenseAverageDateTimePicker.Size = new Size(233, 23);
+            expenseAverageDateTimePicker.TabIndex = 22;
             // 
             // label1
             // 
@@ -82,14 +82,14 @@
             label1.Name = "label1";
             label1.Size = new Size(78, 15);
             label1.TabIndex = 21;
-            label1.Text = "Expence Type";
+            label1.Text = "expense Type";
             // 
-            // expenceAverageTypeBox
+            // expenseAverageTypeBox
             // 
             expenseAverageTypeBox.FormattingEnabled = true;
             expenseAverageTypeBox.Location = new Point(13, 28);
             expenseAverageTypeBox.Margin = new Padding(4, 3, 4, 3);
-            expenseAverageTypeBox.Name = "expenceAverageTypeBox";
+            expenseAverageTypeBox.Name = "expenseAverageTypeBox";
             expenseAverageTypeBox.Size = new Size(233, 23);
             expenseAverageTypeBox.TabIndex = 20;
             // 
@@ -97,15 +97,15 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(262, 155);
             Controls.Add(cancelButton);
             Controls.Add(saveButton);
             Controls.Add(label2);
-            Controls.Add(ExpenceAverageDateTimePicker);
+            Controls.Add(expenseAverageDateTimePicker);
             Controls.Add(label1);
             Controls.Add(expenseAverageTypeBox);
             Name = "ExpenseTypeForm";
-            Text = "ExpenceAverageTypeForm";
+            Text = "expenseAverageTypeForm";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -115,7 +115,7 @@
         private Button cancelButton;
         private Button saveButton;
         private Label label2;
-        private DateTimePicker ExpenceAverageDateTimePicker;
+        private DateTimePicker expenseAverageDateTimePicker;
         private Label label1;
         private ComboBox expenseAverageTypeBox;
     }

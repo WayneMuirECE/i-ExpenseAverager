@@ -4,45 +4,45 @@ namespace i_ExpenseAverager.Repositories
 {
     public class ExpenseAverageTypes
     {
-        private List<ExpenseAverageType> expenceAverageTypes = new List<ExpenseAverageType>();
+        private List<ExpenseAverageType> expenseAverageTypes = new List<ExpenseAverageType>();
 
-        public void Add(ExpenseAverageType expenceAverageType)
+        public void Add(ExpenseAverageType expenseAverageType)
         {
-            ExpenseAverageType expenceAverageType1 = FirstOrDefault(o => o.ExpenseAverageTypeName.Equals(expenceAverageType.ExpenseAverageTypeName));
-            if (expenceAverageType1 == null)
+            ExpenseAverageType expenseAverageType1 = FirstOrDefault(o => o.ExpenseAverageTypeName.Equals(expenseAverageType.ExpenseAverageTypeName));
+            if (expenseAverageType1 == null)
             {
-                expenceAverageTypes.Add(expenceAverageType);
+                expenseAverageTypes.Add(expenseAverageType);
             }
-            if (expenceAverageType.ExpenceAverageTypeID == 0)
+            if (expenseAverageType.ExpenseAverageTypeID == 0)
             {
-                expenceAverageType.ExpenceAverageTypeID = expenceAverageTypes.Count();
+                expenseAverageType.ExpenseAverageTypeID = expenseAverageTypes.Count();
             }
         }
 
-        public void Remove(ExpenseAverageType expenceAverageType)
+        public void Remove(ExpenseAverageType expenseAverageType)
         {
-            expenceAverageTypes.Remove(expenceAverageType);
+            expenseAverageTypes.Remove(expenseAverageType);
         }
 
-        public void Remove(int expenceAverageTypeID)
+        public void Remove(int expenseAverageTypeID)
         {
-            ExpenseAverageType expenceAverageType = expenceAverageTypes.Where(o => o.ExpenceAverageTypeID.Equals(expenceAverageTypeID)).FirstOrDefault();
-            expenceAverageTypes.Remove(expenceAverageType);
+            ExpenseAverageType expenseAverageType = expenseAverageTypes.Where(o => o.ExpenseAverageTypeID.Equals(expenseAverageTypeID)).FirstOrDefault();
+            expenseAverageTypes.Remove(expenseAverageType);
         }
 
         public IEnumerable<ExpenseAverageType> Where(Func<ExpenseAverageType, bool> predicate)
         {
-            return (IEnumerable<ExpenseAverageType>)expenceAverageTypes.Where(predicate);
+            return (IEnumerable<ExpenseAverageType>)expenseAverageTypes.Where(predicate);
         }
 
         public ExpenseAverageType FirstOrDefault(Func<ExpenseAverageType, bool> predicate)
         {
-            return expenceAverageTypes.FirstOrDefault(predicate);
+            return expenseAverageTypes.FirstOrDefault(predicate);
         }
 
         public List<ExpenseAverageType> ToList()
         {
-            return expenceAverageTypes;
+            return expenseAverageTypes;
         }
 
     }

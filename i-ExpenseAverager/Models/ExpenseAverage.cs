@@ -4,27 +4,27 @@ namespace i_ExpenseAverager.Models
 {
     public class ExpenseAverage
     {
-        private int expenceAverageID;
-        private int expenceAverageTypeID;
+        private int expenseAverageID;
+        private int expenseAverageTypeID;
         private DateTime date;
-        private double expenceAverageAmount;
+        private double expenseAverageAmount;
         private string note;
 
-        public static readonly string TagName = "expenceaverage";
+        public static readonly string TagName = "expenseaverage";
 
-        public int ExpenceAverageID
+        public int ExpenseAverageID
         {
             get
             {
-                return expenceAverageID;
+                return expenseAverageID;
             }
         }
 
-        public int ExpenceAverageTypeID
+        public int ExpenseAverageTypeID
         {
             get
             {
-                return expenceAverageTypeID;
+                return expenseAverageTypeID;
             }
         }
 
@@ -40,15 +40,15 @@ namespace i_ExpenseAverager.Models
             }
         }
 
-        public double ExpenceAverageAmount
+        public double ExpenseAverageAmount
         {
             get
             {
-                return this.expenceAverageAmount;
+                return this.expenseAverageAmount;
             }
             set
             {
-                this.expenceAverageAmount = value;
+                this.expenseAverageAmount = value;
             }
         }
 
@@ -64,31 +64,31 @@ namespace i_ExpenseAverager.Models
             }
         }
 
-        public ExpenseAverage(int expenceAverageID, int expenceAverageTypeID, DateTime date, double expenceAverageAmount, string note)
+        public ExpenseAverage(int expenseAverageID, int expenseAverageTypeID, DateTime date, double expenseAverageAmount, string note)
         {
-            this.expenceAverageID = expenceAverageID;
-            this.expenceAverageTypeID = expenceAverageTypeID;
+            this.expenseAverageID = expenseAverageID;
+            this.expenseAverageTypeID = expenseAverageTypeID;
             this.date = date;
-            this.expenceAverageAmount = expenceAverageAmount;
+            this.expenseAverageAmount = expenseAverageAmount;
             this.note = note;
         }
         /// <summary>
-        /// Converts a expenceAverage XElement into a ExpenceAverage object.
+        /// Converts a expenseAverage XElement into a expenseAverage object.
         /// </summary>
         /// <param name="xml"></param>
         public ExpenseAverage(XElement xml)
         {
-            expenceAverageID = int.Parse(xml.Attribute("id").Value);
-            expenceAverageTypeID = int.Parse(xml.Attribute("uid").Value);
+            expenseAverageID = int.Parse(xml.Attribute("id").Value);
+            expenseAverageTypeID = int.Parse(xml.Attribute("uid").Value);
             date = DateTime.Parse(xml.Attribute("date").Value);
-            expenceAverageAmount = double.Parse(xml.Attribute("am").Value);
+            expenseAverageAmount = double.Parse(xml.Attribute("am").Value);
             note = xml.Attribute("note").Value;
         }
 
         public XElement AsXML()
         {
-            XElement self = new XElement(ExpenseAverage.TagName, new XAttribute("id", expenceAverageID.ToString()), new XAttribute("uid", expenceAverageTypeID.ToString()),
-                new XAttribute("date", date.ToShortDateString()), new XAttribute("am", expenceAverageAmount), new XAttribute("note", note));
+            XElement self = new XElement(ExpenseAverage.TagName, new XAttribute("id", expenseAverageID.ToString()), new XAttribute("uid", expenseAverageTypeID.ToString()),
+                new XAttribute("date", date.ToShortDateString()), new XAttribute("am", expenseAverageAmount), new XAttribute("note", note));
 
             return self;
         }

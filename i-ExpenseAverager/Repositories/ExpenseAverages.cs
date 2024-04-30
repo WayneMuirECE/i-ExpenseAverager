@@ -4,36 +4,36 @@ namespace i_ExpenseAverager.Repositories
 {
     public class ExpenseAverages
     {
-        private List<ExpenseAverage> expenceAverages = new List<ExpenseAverage>();
+        private List<ExpenseAverage> expenseAverages = new List<ExpenseAverage>();
 
-        public void Add(ExpenseAverage expenceAverage)
+        public void Add(ExpenseAverage expenseAverage)
         {
-            expenceAverages.Add(expenceAverage);
+            expenseAverages.Add(expenseAverage);
         }
-        public void Remove(ExpenseAverage expenceAverage)
+        public void Remove(ExpenseAverage expenseAverage)
         {
-            expenceAverages.Remove(expenceAverage);
+            expenseAverages.Remove(expenseAverage);
         }
 
-        public void Remove(int expenceAverageID)
+        public void Remove(int expenseAverageID)
         {
-            ExpenseAverage expenceAverage = expenceAverages.Where(o => o.ExpenceAverageID.Equals(expenceAverageID)).FirstOrDefault();
-            expenceAverages.Remove(expenceAverage);
+            ExpenseAverage expenseAverage = expenseAverages.Where(o => o.ExpenseAverageID.Equals(expenseAverageID)).FirstOrDefault();
+            expenseAverages.Remove(expenseAverage);
         }
 
         public IEnumerable<ExpenseAverage> Where(Func<ExpenseAverage, bool> predicate)
         {
-            return (IEnumerable<ExpenseAverage>)expenceAverages.Where(predicate);
+            return (IEnumerable<ExpenseAverage>)expenseAverages.Where(predicate);
         }
 
         public ExpenseAverage FirstOrDefault(Func<ExpenseAverage, bool> predicate)
         {
-            return expenceAverages.FirstOrDefault(predicate);
+            return expenseAverages.FirstOrDefault(predicate);
         }
 
         public List<ExpenseAverage> ToList()
         {
-            return expenceAverages;
+            return expenseAverages;
         }
     }
 }

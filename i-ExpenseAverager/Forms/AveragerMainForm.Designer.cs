@@ -28,12 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            expenceAverageRecordDataGridView = new DataGridView();
+            expenseAverageRecordDataGridView = new DataGridView();
             ObjectColumn = new DataGridViewTextBoxColumn();
             DayColumn = new DataGridViewTextBoxColumn();
             DateColumn = new DataGridViewTextBoxColumn();
             AmountColumn = new DataGridViewTextBoxColumn();
-            ExpenceTypeColumn = new DataGridViewTextBoxColumn();
+            expenseTypeColumn = new DataGridViewTextBoxColumn();
             LocationColumn = new DataGridViewTextBoxColumn();
             NoteColumn = new DataGridViewTextBoxColumn();
             groupBox1 = new GroupBox();
@@ -52,13 +52,13 @@
             groupBox2 = new GroupBox();
             label2 = new Label();
             accountNameTextBox = new TextBox();
-            expenceSettingsButton = new Button();
+            expenseSettingsButton = new Button();
             saveAccountNameButton = new Button();
             accountStartDateTimePicker = new DateTimePicker();
             label1 = new Label();
             saveStartDateButton = new Button();
             groupBox3 = new GroupBox();
-            expenceTypeListBox = new ListBox();
+            expenseTypeListBox = new ListBox();
             clearButton = new Button();
             categoryNewTextBox = new TextBox();
             categoriesComboBox = new ComboBox();
@@ -67,25 +67,25 @@
             addButton = new Button();
             listBox1 = new ListBox();
             label9 = new Label();
-            ((System.ComponentModel.ISupportInitialize)expenceAverageRecordDataGridView).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)expenseAverageRecordDataGridView).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             SuspendLayout();
             // 
-            // expenceAverageRecordDataGridView
+            // expenseAverageRecordDataGridView
             // 
-            expenceAverageRecordDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            expenceAverageRecordDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            expenceAverageRecordDataGridView.Columns.AddRange(new DataGridViewColumn[] { ObjectColumn, DayColumn, DateColumn, AmountColumn, ExpenceTypeColumn, LocationColumn, NoteColumn });
-            expenceAverageRecordDataGridView.Location = new Point(13, 12);
-            expenceAverageRecordDataGridView.Margin = new Padding(4, 3, 4, 3);
-            expenceAverageRecordDataGridView.Name = "expenceAverageRecordDataGridView";
-            expenceAverageRecordDataGridView.ReadOnly = true;
-            expenceAverageRecordDataGridView.RowTemplate.Height = 17;
-            expenceAverageRecordDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            expenceAverageRecordDataGridView.Size = new Size(728, 507);
-            expenceAverageRecordDataGridView.TabIndex = 27;
+            expenseAverageRecordDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            expenseAverageRecordDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            expenseAverageRecordDataGridView.Columns.AddRange(new DataGridViewColumn[] { ObjectColumn, DayColumn, DateColumn, AmountColumn, expenseTypeColumn, LocationColumn, NoteColumn });
+            expenseAverageRecordDataGridView.Location = new Point(13, 12);
+            expenseAverageRecordDataGridView.Margin = new Padding(4, 3, 4, 3);
+            expenseAverageRecordDataGridView.Name = "expenseAverageRecordDataGridView";
+            expenseAverageRecordDataGridView.ReadOnly = true;
+            expenseAverageRecordDataGridView.RowTemplate.Height = 17;
+            expenseAverageRecordDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            expenseAverageRecordDataGridView.Size = new Size(728, 507);
+            expenseAverageRecordDataGridView.TabIndex = 27;
             // 
             // ObjectColumn
             // 
@@ -115,12 +115,12 @@
             AmountColumn.ReadOnly = true;
             AmountColumn.Width = 50;
             // 
-            // ExpenceTypeColumn
+            // expenseTypeColumn
             // 
-            ExpenceTypeColumn.HeaderText = "Expence Type";
-            ExpenceTypeColumn.Name = "ExpenceTypeColumn";
-            ExpenceTypeColumn.ReadOnly = true;
-            ExpenceTypeColumn.Width = 155;
+            expenseTypeColumn.HeaderText = "expense Type";
+            expenseTypeColumn.Name = "expenseTypeColumn";
+            expenseTypeColumn.ReadOnly = true;
+            expenseTypeColumn.Width = 155;
             // 
             // LocationColumn
             // 
@@ -278,7 +278,7 @@
             groupBox2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupBox2.Controls.Add(label2);
             groupBox2.Controls.Add(accountNameTextBox);
-            groupBox2.Controls.Add(expenceSettingsButton);
+            groupBox2.Controls.Add(expenseSettingsButton);
             groupBox2.Controls.Add(saveAccountNameButton);
             groupBox2.Controls.Add(accountStartDateTimePicker);
             groupBox2.Controls.Add(label1);
@@ -310,16 +310,16 @@
             accountNameTextBox.Size = new Size(116, 23);
             accountNameTextBox.TabIndex = 43;
             // 
-            // expenceSettingsButton
+            // expenseSettingsButton
             // 
-            expenceSettingsButton.Location = new Point(10, 80);
-            expenceSettingsButton.Margin = new Padding(4, 3, 4, 3);
-            expenceSettingsButton.Name = "expenceSettingsButton";
-            expenceSettingsButton.Size = new Size(122, 27);
-            expenceSettingsButton.TabIndex = 34;
-            expenceSettingsButton.Text = "Expence Ledger";
-            expenceSettingsButton.UseVisualStyleBackColor = true;
-            expenceSettingsButton.Click += expenceSettingsButton_Click;
+            expenseSettingsButton.Location = new Point(10, 80);
+            expenseSettingsButton.Margin = new Padding(4, 3, 4, 3);
+            expenseSettingsButton.Name = "expenseSettingsButton";
+            expenseSettingsButton.Size = new Size(122, 27);
+            expenseSettingsButton.TabIndex = 34;
+            expenseSettingsButton.Text = "expense Ledger";
+            expenseSettingsButton.UseVisualStyleBackColor = true;
+            expenseSettingsButton.Click += expenseSettingsButton_Click;
             // 
             // saveAccountNameButton
             // 
@@ -363,7 +363,7 @@
             // groupBox3
             // 
             groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            groupBox3.Controls.Add(expenceTypeListBox);
+            groupBox3.Controls.Add(expenseTypeListBox);
             groupBox3.Controls.Add(clearButton);
             groupBox3.Controls.Add(categoryNewTextBox);
             groupBox3.Controls.Add(categoriesComboBox);
@@ -381,16 +381,16 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Groups";
             // 
-            // expenceTypeListBox
+            // expenseTypeListBox
             // 
-            expenceTypeListBox.FormattingEnabled = true;
-            expenceTypeListBox.ItemHeight = 15;
-            expenceTypeListBox.Location = new Point(7, 140);
-            expenceTypeListBox.Margin = new Padding(4, 3, 4, 3);
-            expenceTypeListBox.Name = "expenceTypeListBox";
-            expenceTypeListBox.SelectionMode = SelectionMode.MultiSimple;
-            expenceTypeListBox.Size = new Size(201, 139);
-            expenceTypeListBox.TabIndex = 40;
+            expenseTypeListBox.FormattingEnabled = true;
+            expenseTypeListBox.ItemHeight = 15;
+            expenseTypeListBox.Location = new Point(7, 140);
+            expenseTypeListBox.Margin = new Padding(4, 3, 4, 3);
+            expenseTypeListBox.Name = "expenseTypeListBox";
+            expenseTypeListBox.SelectionMode = SelectionMode.MultiSimple;
+            expenseTypeListBox.Size = new Size(201, 139);
+            expenseTypeListBox.TabIndex = 40;
             // 
             // clearButton
             // 
@@ -467,7 +467,7 @@
             label9.Name = "label9";
             label9.Size = new Size(78, 15);
             label9.TabIndex = 29;
-            label9.Text = "Expence Type";
+            label9.Text = "expense Type";
             // 
             // AveragerDisplay
             // 
@@ -477,10 +477,10 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
-            Controls.Add(expenceAverageRecordDataGridView);
+            Controls.Add(expenseAverageRecordDataGridView);
             Name = "AveragerDisplay";
-            Text = "i-Expence Averager";
-            ((System.ComponentModel.ISupportInitialize)expenceAverageRecordDataGridView).EndInit();
+            Text = "i-expense Averager";
+            ((System.ComponentModel.ISupportInitialize)expenseAverageRecordDataGridView).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox2.ResumeLayout(false);
@@ -492,12 +492,12 @@
 
         #endregion
 
-        private DataGridView expenceAverageRecordDataGridView;
+        private DataGridView expenseAverageRecordDataGridView;
         private DataGridViewTextBoxColumn ObjectColumn;
         private DataGridViewTextBoxColumn DayColumn;
         private DataGridViewTextBoxColumn DateColumn;
         private DataGridViewTextBoxColumn AmountColumn;
-        private DataGridViewTextBoxColumn ExpenceTypeColumn;
+        private DataGridViewTextBoxColumn expenseTypeColumn;
         private DataGridViewTextBoxColumn LocationColumn;
         private DataGridViewTextBoxColumn NoteColumn;
         private GroupBox groupBox1;
@@ -516,13 +516,13 @@
         private GroupBox groupBox2;
         private Label label2;
         private TextBox accountNameTextBox;
-        private Button expenceSettingsButton;
+        private Button expenseSettingsButton;
         private Button saveAccountNameButton;
         private DateTimePicker accountStartDateTimePicker;
         private Label label1;
         private Button saveStartDateButton;
         private GroupBox groupBox3;
-        private ListBox expenceTypeListBox;
+        private ListBox expenseTypeListBox;
         private Button clearButton;
         private TextBox categoryNewTextBox;
         private ComboBox categoriesComboBox;
