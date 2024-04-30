@@ -1,4 +1,4 @@
-﻿namespace i_ExpenceAverager.Models
+﻿namespace i_ExpenseAverager.Models
 {
     public class ExpenseAverageCategory
     {

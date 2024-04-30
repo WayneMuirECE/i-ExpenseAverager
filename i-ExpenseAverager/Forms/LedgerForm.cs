@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace i_ExpenceAverager.Forms
+namespace i_ExpenseAverager.Forms
 {
     public partial class LedgerForm : Form
     {

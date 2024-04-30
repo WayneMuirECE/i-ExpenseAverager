@@ -1,8 +1,8 @@
-using i_ExpenceAverager.Models;
-using i_ExpenceAverager.Repositories;
-using i_ExpenceAverager.ViewModelLibrary;
+using i_ExpenseAverager.Models;
+using i_ExpenseAverager.Repositories;
+using i_ExpenseAverager.ViewModelLibrary;
 
-namespace i_ExpenceAverager.Forms
+namespace i_ExpenseAverager.Forms
 {
     public partial class AveragerMainForm : Form
     {

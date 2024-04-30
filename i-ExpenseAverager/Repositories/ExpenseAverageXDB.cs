@@ -1,8 +1,8 @@
-﻿using i_ExpenceAverager.Forms;
-using i_ExpenceAverager.Models;
+﻿using i_ExpenseAverager.Forms;
+using i_ExpenseAverager.Models;
 using System.Xml.Linq;
 
-namespace i_ExpenceAverager.Repositories
+namespace i_ExpenseAverager.Repositories
 {
     public class ExpenseAverageXDB
     {
@@ -29,7 +29,7 @@ namespace i_ExpenceAverager.Repositories
                 while (expenceAverageTypes.ToList().Count == 0)
                 {
                     MessageBox.Show("Please Input a new expence average type.");
-                    ExpenseAverageTypeForm expenceAverageTypeForm = new ExpenseAverageTypeForm(this);
+                    ExpenseTypeForm expenceAverageTypeForm = new ExpenseTypeForm(this);
                     expenceAverageTypeForm.ShowDialog();
                 }
                 SubmitChanges();
@@ -61,7 +61,7 @@ namespace i_ExpenceAverager.Repositories
 
         public ExpenseAverage GetCurrentExpenceAverageTypeLastExpenceAverage()
         {
-            ExpenseAverageType expenceAverageType = GetCurrentExpenceAverageType();
+            ExpenseAverageType expenceAverageType = GetCurrentExpenseAverageType();
             List<ExpenseAverage> expenceAverages = GetExpenceAverageForExpenceAverageType(expenceAverageType.ExpenceAverageTypeID);
             expenceAverages = expenceAverages.OrderBy(o => o.Date).ToList();
             ExpenseAverage last = null;
@@ -97,14 +97,14 @@ namespace i_ExpenceAverager.Repositories
 
         public void SelectExpenceAverageType()
         {
-            ExpenseAverageTypeForm expenceAverageTypeForm = new ExpenseAverageTypeForm(this);
+            ExpenseTypeForm expenceAverageTypeForm = new ExpenseTypeForm(this);
             expenceAverageTypeForm.ShowDialog();
         }
 
         public void SaveCurrentExpenceAverageType(string expenceAverageTypeName, DateTime startDate)
         {
             expenceAverageTypeName = expenceAverageTypeName.Trim();
-            ExpenseAverageType expenceAverageType = expenceAverageTypes.FirstOrDefault(o => o.ExpenceAverageTypeName.Equals(expenceAverageTypeName));
+            ExpenseAverageType expenceAverageType = expenceAverageTypes.FirstOrDefault(o => o.ExpenseAverageTypeName.Equals(expenceAverageTypeName));
             if (expenceAverageType == null)
             {
                 expenceAverageType = new ExpenseAverageType(expenceAverageTypeName, startDate);
@@ -127,13 +127,13 @@ namespace i_ExpenceAverager.Repositories
             SubmitChanges();
         }
 
-        public ExpenseAverageType GetCurrentExpenceAverageType()
+        public ExpenseAverageType GetCurrentExpenseAverageType()
         {
             ExpenseAverageType expenceAverageType = expenceAverageTypes.FirstOrDefault(o => o.CurrentExpenceAverageType);
             return expenceAverageType;
         }
 
-        public List<ExpenseAverageType> GetExpenceAverageTypes()
+        public List<ExpenseAverageType> GetExpenseAverageTypes()
         {
             return expenceAverageTypes.ToList();
         }
@@ -162,7 +162,7 @@ namespace i_ExpenceAverager.Repositories
 
         public bool SaveExpenceAverage(double amount, DateTime forDate, string note)
         {
-            ExpenseAverageType expenceAverageType = GetCurrentExpenceAverageType();
+            ExpenseAverageType expenceAverageType = GetCurrentExpenseAverageType();
             List<ExpenseAverage> expenceAveragesList = expenceAverages.ToList();
             ExpenseAverage expenceAverage = new ExpenseAverage(expenceAveragesList.Count + 1, expenceAverageType.ExpenceAverageTypeID, forDate, amount, note);
             expenceAverages.Add(expenceAverage);

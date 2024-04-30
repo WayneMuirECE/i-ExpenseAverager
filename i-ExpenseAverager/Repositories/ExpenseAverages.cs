@@ -1,6 +1,6 @@
-﻿using i_ExpenceAverager.Models;
+﻿using i_ExpenseAverager.Models;
 
-namespace i_ExpenceAverager.Repositories
+namespace i_ExpenseAverager.Repositories
 {
     public class ExpenseAverages
     {

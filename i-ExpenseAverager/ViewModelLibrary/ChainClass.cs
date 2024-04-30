@@ -1,4 +1,4 @@
-﻿namespace i_ExpenceAverager.ViewModelLibrary
+﻿namespace i_ExpenseAverager.ViewModelLibrary
 {
     public class ChainClass
     {

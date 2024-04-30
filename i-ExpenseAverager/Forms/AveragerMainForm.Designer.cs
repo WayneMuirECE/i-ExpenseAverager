@@ -1,4 +1,4 @@
-﻿namespace i_ExpenceAverager.Forms
+﻿namespace i_ExpenseAverager.Forms
 {
     partial class AveragerMainForm
     {

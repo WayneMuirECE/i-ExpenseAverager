@@ -1,6 +1,6 @@
-﻿using i_ExpenceAverager.Models;
+﻿using i_ExpenseAverager.Models;
 
-namespace i_ExpenceAverager.Repositories
+namespace i_ExpenseAverager.Repositories
 {
     public class ExpenseAverageTypes
     {
@@ -8,7 +8,7 @@ namespace i_ExpenceAverager.Repositories
 
         public void Add(ExpenseAverageType expenceAverageType)
         {
-            ExpenseAverageType expenceAverageType1 = FirstOrDefault(o => o.ExpenceAverageTypeName.Equals(expenceAverageType.ExpenceAverageTypeName));
+            ExpenseAverageType expenceAverageType1 = FirstOrDefault(o => o.ExpenseAverageTypeName.Equals(expenceAverageType.ExpenseAverageTypeName));
             if (expenceAverageType1 == null)
             {
                 expenceAverageTypes.Add(expenceAverageType);

@@ -1,7 +1,7 @@
-﻿using i_ExpenceAverager.Models;
+﻿using i_ExpenseAverager.Models;
 using System.Xml.Linq;
 
-namespace i_ExpenceAverager.Repositories
+namespace i_ExpenseAverager.Repositories
 {
     public class ExpenseAverage2XDB
     {

@@ -1,4 +1,4 @@
-namespace i_ExpenceAverager
+namespace i_ExpenseAverager
 {
     internal static class Program
     {

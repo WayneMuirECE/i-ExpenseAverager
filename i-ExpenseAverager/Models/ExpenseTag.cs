@@ -1,4 +1,4 @@
-﻿using i_ExpenceAverager.Repositories;
+﻿using i_ExpenseAverager.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace i_ExpenceAverager.Models
+namespace i_ExpenseAverager.Models
 {
     public class ExpenseTag
     {

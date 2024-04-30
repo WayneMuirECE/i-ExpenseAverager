@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace i_ExpenceAverager.Models
+namespace i_ExpenseAverager.Models
 {
     public class ExpenseAverageType
     {
@@ -26,7 +26,7 @@ namespace i_ExpenceAverager.Models
             }
         }
 
-        public string ExpenceAverageTypeName
+        public string ExpenseAverageTypeName
         {
             get
             {

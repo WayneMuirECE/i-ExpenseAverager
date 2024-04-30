@@ -1,6 +1,6 @@
-﻿using i_ExpenceAverager.Models;
+﻿using i_ExpenseAverager.Models;
 
-namespace i_ExpenceAverager.ViewModelLibrary
+namespace i_ExpenseAverager.ViewModelLibrary
 {
     public class ExpenseAverageDay
     {

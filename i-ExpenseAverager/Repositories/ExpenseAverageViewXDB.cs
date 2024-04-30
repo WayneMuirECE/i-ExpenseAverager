@@ -1,7 +1,7 @@
-﻿using i_ExpenceAverager.Models;
-using i_ExpenceAverager.ViewModelLibrary;
+﻿using i_ExpenseAverager.Models;
+using i_ExpenseAverager.ViewModelLibrary;
 
-namespace i_ExpenceAverager.Repositories
+namespace i_ExpenseAverager.Repositories
 {
     public class ExpenseAverageViewXDB
     {

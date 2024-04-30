@@ -1,6 +1,6 @@
 ﻿using System.Xml.Linq;
 
-namespace i_ExpenceAverager.Models
+namespace i_ExpenseAverager.Models
 {
     public class ExpenseAverage2
     {
