@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace i_ExpenceAverager.Forms
 {
-    public partial class frmLedger : Form
+    public partial class LedgerForm : Form
     {
-        public frmLedger()
+        public LedgerForm()
         {
             InitializeComponent();
         }

@@ -1,6 +1,6 @@
 ﻿namespace i_ExpenceAverager.Forms
 {
-    partial class frmLedger
+    partial class ExpenseAverageTypeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "frmLedger";
+            this.Text = "ExpenceAverageTypeForm";
         }
 
         #endregion

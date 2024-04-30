@@ -1,4 +1,5 @@
-﻿using System;
+﻿using i_ExpenceAverager.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,24 @@ namespace i_ExpenceAverager.Models
             
 
             ExpenseTagName = expenceTagName;
+        }
+
+        /// <summary>
+		/// Converts a expencetag XElement into a ExpenceTag object.
+		/// </summary>
+		/// <param name="xml"></param>
+		public ExpenseTag(XElement xml)
+        {
+            ExpenseTagType = xml.Attribute("type").Value;
+            ExpenseTagID = int.Parse(xml.Attribute("id").Value);
+            ExpenseTagName = xml.Attribute("name").Value;
+        }
+
+        public XElement AsXML()
+        {
+            XElement self = new XElement(ExpenseTag.TagName, new XAttribute("type", ExpenseTagType),
+                new XAttribute("id", ExpenseTagID.ToString()), new XAttribute("name", ExpenseTagName));
+            return self;
         }
 
         public override string ToString()

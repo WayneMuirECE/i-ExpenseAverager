@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace i_ExpenceAverager.Models
+﻿namespace i_ExpenceAverager.Models
 {
-    public class ExpenseCategory
+    public class ExpenseAverageCategory
     {
         public string Name { get; set; }
         public List<ExpenseTag> Tags { get; } = new List<ExpenseTag>();
@@ -17,7 +11,7 @@ namespace i_ExpenceAverager.Models
         public string DailyAvg { get; set; }
         public string TotalAvg { get; set; }
 
-        public ExpenseCategory(string name)
+        public ExpenseAverageCategory(string name)
         {
             Name = name;
         }
@@ -27,5 +21,4 @@ namespace i_ExpenceAverager.Models
             return Name;
         }
     }
-
 }

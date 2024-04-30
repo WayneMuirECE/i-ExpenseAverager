@@ -1,6 +1,6 @@
 ﻿namespace i_ExpenceAverager.Forms
 {
-    partial class AveragerDisplay
+    partial class AveragerMainForm
     {
         /// <summary>
         ///  Required designer variable.
@@ -319,6 +319,7 @@
             expenceSettingsButton.TabIndex = 34;
             expenceSettingsButton.Text = "Expence Ledger";
             expenceSettingsButton.UseVisualStyleBackColor = true;
+            expenceSettingsButton.Click += expenceSettingsButton_Click;
             // 
             // saveAccountNameButton
             // 
