@@ -45,6 +45,7 @@
             cancelButton.TabIndex = 25;
             cancelButton.Text = "Cancel";
             cancelButton.UseVisualStyleBackColor = true;
+            cancelButton.Click += cancelButton_Click;
             // 
             // saveButton
             // 
@@ -55,6 +56,7 @@
             saveButton.TabIndex = 24;
             saveButton.Text = "Save";
             saveButton.UseVisualStyleBackColor = true;
+            saveButton.Click += saveButton_Click;
             // 
             // label2
             // 
@@ -80,7 +82,7 @@
             label1.Location = new Point(13, 9);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(78, 15);
+            label1.Size = new Size(77, 15);
             label1.TabIndex = 21;
             label1.Text = "expense Type";
             // 

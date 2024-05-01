@@ -93,6 +93,7 @@
             deleteButton.TabIndex = 36;
             deleteButton.Text = "Delete";
             deleteButton.UseVisualStyleBackColor = true;
+            deleteButton.Click += deleteButton_Click;
             // 
             // modifyButton
             // 
@@ -103,6 +104,7 @@
             modifyButton.TabIndex = 35;
             modifyButton.Text = "Edit";
             modifyButton.UseVisualStyleBackColor = true;
+            modifyButton.Click += modifyButton_Click;
             // 
             // recordSubmitDateTimePicker
             // 
@@ -170,6 +172,7 @@
             addButton.TabIndex = 4;
             addButton.Text = "Add";
             addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // recordSubmitExpenceLocationComboBox
             // 

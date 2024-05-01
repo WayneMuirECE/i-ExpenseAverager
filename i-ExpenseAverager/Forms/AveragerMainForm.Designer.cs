@@ -115,10 +115,10 @@
             AmountColumn.ReadOnly = true;
             AmountColumn.Width = 50;
             // 
-            // expenseTypeColumn
+            // ExpenseTypeColumn
             // 
             ExpenseTypeColumn.HeaderText = "expense Type";
-            ExpenseTypeColumn.Name = "expenseTypeColumn";
+            ExpenseTypeColumn.Name = "ExpenseTypeColumn";
             ExpenseTypeColumn.ReadOnly = true;
             ExpenseTypeColumn.Width = 155;
             // 
@@ -317,7 +317,7 @@
             expenseSettingsButton.Name = "expenseSettingsButton";
             expenseSettingsButton.Size = new Size(122, 27);
             expenseSettingsButton.TabIndex = 34;
-            expenseSettingsButton.Text = "expense Ledger";
+            expenseSettingsButton.Text = "Expense Ledger";
             expenseSettingsButton.UseVisualStyleBackColor = true;
             expenseSettingsButton.Click += expenseSettingsButton_Click;
             // 
@@ -330,6 +330,7 @@
             saveAccountNameButton.TabIndex = 42;
             saveAccountNameButton.Text = "Save Name";
             saveAccountNameButton.UseVisualStyleBackColor = true;
+            saveAccountNameButton.Click += saveAccountNameButton_Click;
             // 
             // accountStartDateTimePicker
             // 
@@ -359,6 +360,7 @@
             saveStartDateButton.TabIndex = 39;
             saveStartDateButton.Text = "Save Date";
             saveStartDateButton.UseVisualStyleBackColor = true;
+            saveStartDateButton.Click += saveStartDateButton_Click;
             // 
             // groupBox3
             // 
@@ -401,6 +403,7 @@
             clearButton.TabIndex = 39;
             clearButton.Text = "Clear";
             clearButton.UseVisualStyleBackColor = true;
+            clearButton.Click += clearButton_Click;
             // 
             // categoryNewTextBox
             // 
@@ -428,6 +431,7 @@
             viewCategoryButton.TabIndex = 36;
             viewCategoryButton.Text = "View Category";
             viewCategoryButton.UseVisualStyleBackColor = true;
+            viewCategoryButton.Click += viewCategoryButton_Click;
             // 
             // saveNewCategoryButton
             // 
@@ -438,6 +442,7 @@
             saveNewCategoryButton.TabIndex = 35;
             saveNewCategoryButton.Text = "Save";
             saveNewCategoryButton.UseVisualStyleBackColor = true;
+            saveNewCategoryButton.Click += saveNewCategoryButton_Click;
             // 
             // addButton
             // 
@@ -448,6 +453,7 @@
             addButton.TabIndex = 34;
             addButton.Text = "Add ->";
             addButton.UseVisualStyleBackColor = true;
+            addButton.Click += addButton_Click;
             // 
             // listBox1
             // 
@@ -465,11 +471,11 @@
             label9.Location = new Point(8, 112);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(78, 15);
+            label9.Size = new Size(77, 15);
             label9.TabIndex = 29;
             label9.Text = "expense Type";
             // 
-            // AveragerDisplay
+            // AveragerMainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -478,7 +484,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(expenseAverageRecordDataGridView);
-            Name = "AveragerDisplay";
+            Name = "AveragerMainForm";
             Text = "i-expense Averager";
             ((System.ComponentModel.ISupportInitialize)expenseAverageRecordDataGridView).EndInit();
             groupBox1.ResumeLayout(false);
