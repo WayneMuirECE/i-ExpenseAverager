@@ -103,19 +103,19 @@ namespace i_ExpenseAverager.Forms
             this.addButton.Text = "Add";
 
             recordSubmitExpenceTypeComboBox.Items.Clear();
-            foreach (ExpenseTag item in XDB.expenseTypes.ToList())
+            foreach (ExpenseTag item in XDB.ExpenseTypes.ToList())
             {
                 recordSubmitExpenceTypeComboBox.Items.Add(item.ExpenseTagName);
             }
 
             recordSubmitExpenceLocationComboBox.Items.Clear();
-            foreach (ExpenseTag item in XDB.expenseLocations.ToList())
+            foreach (ExpenseTag item in XDB.ExpenseLocations.ToList())
             {
                 recordSubmitExpenceLocationComboBox.Items.Add(item.ExpenseTagName);
             }
 
             recordSubmitOccasionComboBox.Items.Clear();
-            foreach (ExpenseTag item in XDB.expenseOccasions.ToList())
+            foreach (ExpenseTag item in XDB.ExpenseOccasions.ToList())
             {
                 recordSubmitOccasionComboBox.Items.Add(item.ExpenseTagName);
             }
@@ -125,7 +125,7 @@ namespace i_ExpenseAverager.Forms
         {
             expenceAverageRecordDataGridView.Rows.Clear();
             DataGridViewRow gridRow;
-            List<ExpenseAverage2> records = XDB.expenseAverages.ToListByDate();
+            List<ExpenseAverage2> records = XDB.ExpenseAverages.ToListByDate();
 
             int daysFor1Month = 31;
             int daysFor3Month = 92;

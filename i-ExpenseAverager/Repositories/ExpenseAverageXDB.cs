@@ -46,29 +46,31 @@ namespace i_ExpenseAverager.Repositories
             }
         }
 
-        public ExpenseAverageType GetexpenseAverageType(int expenseAverageTypeID)
+        public ExpenseAverageType GetExpenseAverageType(int expenseAverageTypeID)
         {
             ExpenseAverageType expenseAverageType = expenseAverageTypes.Where(o => o.ExpenseAverageTypeID == expenseAverageTypeID).FirstOrDefault();
             return expenseAverageType;
         }
 
-        public List<ExpenseAverage> GetexpenseAverageForexpenseAverageType(int expenseAverageTypeID)
+        public List<ExpenseAverage> GetExpenseAverageForExpenseAverageType(int expenseAverageTypeID)
         {
             List<ExpenseAverage> expenseAverage = expenseAverages.Where(o => o.ExpenseAverageTypeID.Equals(expenseAverageTypeID)).ToList();
             expenseAverage = expenseAverage.OrderBy(o => o.Date).ToList();
             return expenseAverage;
         }
 
-        public ExpenseAverage GetCurrentexpenseAverageTypeLastexpenseAverage()
+        public ExpenseAverage GetCurrentExpenseAverageTypeLastExpenseAverage()
         {
             ExpenseAverageType expenseAverageType = GetCurrentExpenseAverageType();
-            List<ExpenseAverage> expenseAverages = GetexpenseAverageForexpenseAverageType(expenseAverageType.ExpenseAverageTypeID);
+            List<ExpenseAverage> expenseAverages = GetExpenseAverageForExpenseAverageType(expenseAverageType.ExpenseAverageTypeID);
             expenseAverages = expenseAverages.OrderBy(o => o.Date).ToList();
             ExpenseAverage last = null;
+
             if (expenseAverages.Count > 0)
             {
                 last = expenseAverages[expenseAverages.Count - 1];
             }
+
             return last;
         }
 
@@ -79,7 +81,7 @@ namespace i_ExpenseAverager.Repositories
         {
             bool ret = false;
             ExpenseAverageType expenseAverageType = null;
-            expenseAverageType = expenseAverageTypes.FirstOrDefault(o => o.CurrentexpenseAverageType);
+            expenseAverageType = expenseAverageTypes.FirstOrDefault(o => o.CurrentExpenseAverageType);
             if (expenseAverageType == null)
             {
                 MessageBox.Show("No current expense average type was found in the batabase." + Environment.NewLine + "Please input a new expense average type.", "No expense Average Type Found", MessageBoxButtons.OK);
@@ -87,7 +89,7 @@ namespace i_ExpenseAverager.Repositories
             }
             if (expenseAverageType != null)
             {
-                if (expenseAverageType.CurrentexpenseAverageType == true)
+                if (expenseAverageType.CurrentExpenseAverageType == true)
                 {
                     ret = true;
                 }
@@ -95,7 +97,7 @@ namespace i_ExpenseAverager.Repositories
             return ret;
         }
 
-        public void SelectexpenseAverageType()
+        public void SelectExpenseAverageType()
         {
             ExpenseTypeForm expenseAverageTypeForm = new ExpenseTypeForm(this);
             expenseAverageTypeForm.ShowDialog();
@@ -105,31 +107,35 @@ namespace i_ExpenseAverager.Repositories
         {
             expenseAverageTypeName = expenseAverageTypeName.Trim();
             ExpenseAverageType expenseAverageType = expenseAverageTypes.FirstOrDefault(o => o.ExpenseAverageTypeName.Equals(expenseAverageTypeName));
+
             if (expenseAverageType == null)
             {
                 expenseAverageType = new ExpenseAverageType(expenseAverageTypeName, startDate);
                 expenseAverageType.ExpenseAverageTypeID = expenseAverageTypes.ToList().Count + 1;
-                expenseAverageType.CurrentexpenseAverageType = true;
+                expenseAverageType.CurrentExpenseAverageType = true;
                 expenseAverageTypes.Add(expenseAverageType);
             }
             else
             {
                 expenseAverageType.StartDate = startDate;
             }
+
             List<ExpenseAverageType> expenseAverageTypesList = expenseAverageTypes.ToList();
             ExpenseAverageType item;
+
             for (int i = 0; i < expenseAverageTypesList.Count; i++)
             {
                 item = expenseAverageTypesList.ElementAt(i);
-                item.CurrentexpenseAverageType = false;
+                item.CurrentExpenseAverageType = false;
             }
-            expenseAverageType.CurrentexpenseAverageType = true;
+
+            expenseAverageType.CurrentExpenseAverageType = true;
             SubmitChanges();
         }
 
         public ExpenseAverageType GetCurrentExpenseAverageType()
         {
-            ExpenseAverageType expenseAverageType = expenseAverageTypes.FirstOrDefault(o => o.CurrentexpenseAverageType);
+            ExpenseAverageType expenseAverageType = expenseAverageTypes.FirstOrDefault(o => o.CurrentExpenseAverageType);
             return expenseAverageType;
         }
 
@@ -142,25 +148,31 @@ namespace i_ExpenseAverager.Repositories
         {
             XElement doc = new XElement("expenseaveragedb");
             List<ExpenseAverageType> expenseAverageTypesList = expenseAverageTypes.ToList();
+
             foreach (ExpenseAverageType item in expenseAverageTypesList)
             {
                 doc.Add(item.AsXML());
             }
+
             List<ExpenseAverage> expenseAveragesList = expenseAverages.ToList();
+
             foreach (ExpenseAverage item in expenseAveragesList)
             {
                 doc.Add(item.AsXML());
             }
+
             string tmpPath = Path.Combine(this.dbDir, "temp.slpx");
             doc.Save(tmpPath);
+
             if (File.Exists(dbPath))
             {
                 File.Delete(dbPath);
             }
+
             File.Move(tmpPath, dbPath);
         }
 
-        public bool SaveexpenseAverage(double amount, DateTime forDate, string note)
+        public bool SaveExpenseAverage(double amount, DateTime forDate, string note)
         {
             ExpenseAverageType expenseAverageType = GetCurrentExpenseAverageType();
             List<ExpenseAverage> expenseAveragesList = expenseAverages.ToList();

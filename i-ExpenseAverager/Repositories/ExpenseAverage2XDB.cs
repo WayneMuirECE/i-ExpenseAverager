@@ -31,10 +31,10 @@ namespace i_ExpenseAverager.Repositories
             }
         }
 
-        public ExpenseTags expenseTypes = new ExpenseTags("type");
-        public ExpenseTags expenseLocations = new ExpenseTags("loc");
-        public ExpenseTags expenseOccasions = new ExpenseTags("occ");
-        public expenseAverages2 expenseAverages = new expenseAverages2();
+        public ExpenseTags ExpenseTypes = new ExpenseTags("type");
+        public ExpenseTags ExpenseLocations = new ExpenseTags("loc");
+        public ExpenseTags ExpenseOccasions = new ExpenseTags("occ");
+        public expenseAverages2 ExpenseAverages = new expenseAverages2();
 
         private ExpenseTag currentexpenseAverageType;
 
@@ -75,66 +75,66 @@ namespace i_ExpenseAverager.Repositories
                 tag = new ExpenseTag(item);
                 if (tag.ExpenseTagType.Equals("type"))
                 {
-                    expenseTypes.Add(tag);
+                    ExpenseTypes.Add(tag);
                 }
                 else if (tag.ExpenseTagType.Equals("loc"))
                 {
-                    expenseLocations.Add(tag);
+                    ExpenseLocations.Add(tag);
                 }
                 else if (tag.ExpenseTagType.Equals("occ"))
                 {
-                    expenseOccasions.Add(tag);
+                    ExpenseOccasions.Add(tag);
                 }
             }
             foreach (XElement item in doc.Descendants(ExpenseAverage2.TagName))
             {
-                expenseAverages.Add(new ExpenseAverage2(item));
+                ExpenseAverages.Add(new ExpenseAverage2(item));
             }
         }
 
         public ExpenseTag GetExpenseAverageType(int expenseAverageTypeID)
         {
-            ExpenseTag value = expenseTypes.ItemById(expenseAverageTypeID);
+            ExpenseTag value = ExpenseTypes.ItemById(expenseAverageTypeID);
             return value;
         }
 
         public ExpenseTag GetExpenseAverageType(string expenseAverageType)
         {
-            ExpenseTag value = expenseTypes.ItemByName(expenseAverageType);
+            ExpenseTag value = ExpenseTypes.ItemByName(expenseAverageType);
             return value;
         }
 
         public ExpenseTag GetExpenseLocation(int expenseLocationID)
         {
-            ExpenseTag value = expenseLocations.ItemById(expenseLocationID);
+            ExpenseTag value = ExpenseLocations.ItemById(expenseLocationID);
             return value;
         }
 
         public ExpenseTag GetExpenseLocation(string expenseLocation)
         {
-            ExpenseTag value = expenseLocations.ItemByName(expenseLocation);
+            ExpenseTag value = ExpenseLocations.ItemByName(expenseLocation);
             return value;
         }
 
         public ExpenseTag GetExpenseOccasion(int expenseOccasionID)
         {
-            ExpenseTag value = expenseOccasions.ItemById(expenseOccasionID);
+            ExpenseTag value = ExpenseOccasions.ItemById(expenseOccasionID);
             return value;
         }
 
         public ExpenseTag GetExpenseOccasion(string expenseOccasion)
         {
-            ExpenseTag value = expenseOccasions.ItemByName(expenseOccasion);
+            ExpenseTag value = ExpenseOccasions.ItemByName(expenseOccasion);
             return value;
         }
 
         public void SaveExpenseAverageType(string expenseAverageTypeName)
         {
             expenseAverageTypeName = expenseAverageTypeName.Trim();
-            ExpenseTag value = expenseTypes.ItemByName(expenseAverageTypeName);
+            ExpenseTag value = ExpenseTypes.ItemByName(expenseAverageTypeName);
             if (value == null)
             {
-                expenseTypes.Add(expenseAverageTypeName);
+                ExpenseTypes.Add(expenseAverageTypeName);
             }
 
             SubmitChanges();
@@ -142,10 +142,10 @@ namespace i_ExpenseAverager.Repositories
         public void SaveExpenseLocation(string expenseLocationName)
         {
             expenseLocationName = expenseLocationName.Trim();
-            ExpenseTag value = expenseLocations.ItemByName(expenseLocationName);
+            ExpenseTag value = ExpenseLocations.ItemByName(expenseLocationName);
             if (value == null)
             {
-                expenseLocations.Add(expenseLocationName);
+                ExpenseLocations.Add(expenseLocationName);
             }
 
             SubmitChanges();
@@ -154,10 +154,10 @@ namespace i_ExpenseAverager.Repositories
         public void SaveExpenseOccasion(string expenseOccasionName)
         {
             expenseOccasionName = expenseOccasionName.Trim();
-            ExpenseTag value = expenseOccasions.ItemByName(expenseOccasionName);
+            ExpenseTag value = ExpenseOccasions.ItemByName(expenseOccasionName);
             if (value == null)
             {
-                expenseOccasions.Add(expenseOccasionName);
+                ExpenseOccasions.Add(expenseOccasionName);
             }
 
             SubmitChanges();
@@ -168,16 +168,16 @@ namespace i_ExpenseAverager.Repositories
             ExpenseTag expenseType = GetExpenseAverageType(type);
             ExpenseTag expenseLocation = GetExpenseLocation(location);
             ExpenseTag expenseOccasion = GetExpenseOccasion(occasion);
-            List<ExpenseAverage2> expenseAveragesList = expenseAverages.ToList();
+            List<ExpenseAverage2> expenseAveragesList = ExpenseAverages.ToList();
             ExpenseAverage2 expenseAverage = new ExpenseAverage2(expenseAveragesList.Count + 1, expenseType.ExpenseTagID, expenseLocation.ExpenseTagID, expenseOccasion.ExpenseTagID, forDate, amount, note);
-            expenseAverages.Add(expenseAverage);
+            ExpenseAverages.Add(expenseAverage);
             SubmitChanges();
             return true;
         }
 
         public bool DeleteExpenseAverage(ExpenseAverage2 expense)
         {
-            expenseAverages.Remove(expense);
+            ExpenseAverages.Remove(expense);
             return true;
         }
 
@@ -190,7 +190,7 @@ namespace i_ExpenseAverager.Repositories
 
         public List<ExpenseAverage2> GetExpenseAverageForexpenseAverageType(int expenseAverageTypeID)
         {
-            List<ExpenseAverage2> expenseAverage = expenseAverages.Where(o => o.ExpenseAverageTypeID.Equals(expenseAverageTypeID)).ToList();
+            List<ExpenseAverage2> expenseAverage = ExpenseAverages.Where(o => o.ExpenseAverageTypeID.Equals(expenseAverageTypeID)).ToList();
             expenseAverage = expenseAverage.OrderBy(o => o.Date).ToList();
             return expenseAverage;
         }
@@ -237,12 +237,12 @@ namespace i_ExpenseAverager.Repositories
         public void SaveCurrentExpenseAverageType(string expenseAverageTypeName)
         {
             expenseAverageTypeName = expenseAverageTypeName.Trim();
-            ExpenseTag expenseAverageType = expenseTypes.FirstOrDefault(o => o.ExpenseTagName.Equals(expenseAverageTypeName));
+            ExpenseTag expenseAverageType = ExpenseTypes.FirstOrDefault(o => o.ExpenseTagName.Equals(expenseAverageTypeName));
             if (expenseAverageType == null)
             {
                 //expenseAverageType = new expenseLocation(expenseAverageTypeName, startDate);
-                expenseAverageType.ExpenseTagID = expenseTypes.ToList().Count + 1;
-                expenseTypes.Add(expenseAverageType);
+                expenseAverageType.ExpenseTagID = ExpenseTypes.ToList().Count + 1;
+                ExpenseTypes.Add(expenseAverageType);
             }
             else
             {
@@ -260,7 +260,7 @@ namespace i_ExpenseAverager.Repositories
 
         public List<ExpenseTag> GetExpenseAverageTypes()
         {
-            return expenseTypes.ToList();
+            return ExpenseTypes.ToList();
         }
 
         public void SubmitChanges()
@@ -270,25 +270,25 @@ namespace i_ExpenseAverager.Repositories
             doc.Add(new XElement("accountname", this.accountName));
             doc.Add(new XElement("startdate", this.startDate.ToShortDateString()));
 
-            List<ExpenseTag> expenseAverageTypesList = expenseTypes.ToList();
+            List<ExpenseTag> expenseAverageTypesList = ExpenseTypes.ToList();
             foreach (ExpenseTag item in expenseAverageTypesList)
             {
                 doc.Add(item.AsXML());
             }
 
-            List<ExpenseTag> expenseLocationsList = expenseLocations.ToList();
+            List<ExpenseTag> expenseLocationsList = ExpenseLocations.ToList();
             foreach (ExpenseTag item in expenseLocationsList)
             {
                 doc.Add(item.AsXML());
             }
 
-            List<ExpenseTag> expenseOccasionsList = expenseOccasions.ToList();
+            List<ExpenseTag> expenseOccasionsList = ExpenseOccasions.ToList();
             foreach (ExpenseTag item in expenseOccasionsList)
             {
                 doc.Add(item.AsXML());
             }
 
-            List<ExpenseAverage2> expenseAveragesList = expenseAverages.ToListByDate();
+            List<ExpenseAverage2> expenseAveragesList = ExpenseAverages.ToListByDate();
             int i = 0;
             foreach (ExpenseAverage2 item in expenseAveragesList)
             {

@@ -25,7 +25,7 @@ namespace i_ExpenseAverager.Repositories
         {
             this.XDB = XDB;
             this.all = new ExpenseAverageCategory("All");
-            foreach (ExpenseTag item in this.XDB.expenseTypes.ToList())
+            foreach (ExpenseTag item in this.XDB.ExpenseTypes.ToList())
             {
                 all.Tags.Add(item);
             }
@@ -54,9 +54,9 @@ namespace i_ExpenseAverager.Repositories
             ExpenseAverageDay expenseDay;
             while (varDate < tomorrow)
             {
-                daysexpenses = XDB.expenseAverages.ToListForDate(varDate, category.Tags);
+                daysexpenses = XDB.ExpenseAverages.ToListForDate(varDate, category.Tags);
                 expenseDay = new ExpenseAverageDay(varDate);
-                expenseDay.Daysexpenses = daysexpenses;
+                expenseDay.DaysExpenses = daysexpenses;
                 year.ChainHead.AddNode(expenseDay);
                 varDate = varDate.AddDays(1);
             }

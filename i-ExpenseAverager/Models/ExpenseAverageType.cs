@@ -7,7 +7,7 @@ namespace i_ExpenseAverager.Models
         private int expenseAverageTypeID = 0;
         private string expenseAverageTypeName;
         private DateTime startDate;
-        private bool currentexpenseAverageType = false;
+        private bool currentExpenseAverageType = false;
 
         public static readonly string TagName = "expenseaveragetype";
 
@@ -46,15 +46,15 @@ namespace i_ExpenseAverager.Models
             }
         }
 
-        public bool CurrentexpenseAverageType
+        public bool CurrentExpenseAverageType
         {
             get
             {
-                return currentexpenseAverageType;
+                return currentExpenseAverageType;
             }
             set
             {
-                this.currentexpenseAverageType = value;
+                this.currentExpenseAverageType = value;
             }
         }
 
@@ -70,7 +70,7 @@ namespace i_ExpenseAverager.Models
         public ExpenseAverageType(XElement xml)
         {
             expenseAverageTypeID = int.Parse(xml.Attribute("id").Value);
-            currentexpenseAverageType = bool.Parse(xml.Attribute("current").Value);
+            currentExpenseAverageType = bool.Parse(xml.Attribute("current").Value);
             expenseAverageTypeName = xml.Attribute("name").Value;
             startDate = DateTime.Parse(xml.Attribute("date").Value);
         }
@@ -79,7 +79,7 @@ namespace i_ExpenseAverager.Models
         {
             XElement self = new XElement(ExpenseAverageType.TagName, new XAttribute("id", expenseAverageTypeID.ToString()),
                 new XAttribute("name", expenseAverageTypeName), new XAttribute("date", startDate.ToShortDateString()),
-                new XAttribute("current", currentexpenseAverageType.ToString()));
+                new XAttribute("current", currentExpenseAverageType.ToString()));
             return self;
         }
     }

@@ -33,7 +33,7 @@
             DayColumn = new DataGridViewTextBoxColumn();
             DateColumn = new DataGridViewTextBoxColumn();
             AmountColumn = new DataGridViewTextBoxColumn();
-            expenseTypeColumn = new DataGridViewTextBoxColumn();
+            ExpenseTypeColumn = new DataGridViewTextBoxColumn();
             LocationColumn = new DataGridViewTextBoxColumn();
             NoteColumn = new DataGridViewTextBoxColumn();
             groupBox1 = new GroupBox();
@@ -77,7 +77,7 @@
             // 
             expenseAverageRecordDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             expenseAverageRecordDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            expenseAverageRecordDataGridView.Columns.AddRange(new DataGridViewColumn[] { ObjectColumn, DayColumn, DateColumn, AmountColumn, expenseTypeColumn, LocationColumn, NoteColumn });
+            expenseAverageRecordDataGridView.Columns.AddRange(new DataGridViewColumn[] { ObjectColumn, DayColumn, DateColumn, AmountColumn, ExpenseTypeColumn, LocationColumn, NoteColumn });
             expenseAverageRecordDataGridView.Location = new Point(13, 12);
             expenseAverageRecordDataGridView.Margin = new Padding(4, 3, 4, 3);
             expenseAverageRecordDataGridView.Name = "expenseAverageRecordDataGridView";
@@ -117,10 +117,10 @@
             // 
             // expenseTypeColumn
             // 
-            expenseTypeColumn.HeaderText = "expense Type";
-            expenseTypeColumn.Name = "expenseTypeColumn";
-            expenseTypeColumn.ReadOnly = true;
-            expenseTypeColumn.Width = 155;
+            ExpenseTypeColumn.HeaderText = "expense Type";
+            ExpenseTypeColumn.Name = "expenseTypeColumn";
+            ExpenseTypeColumn.ReadOnly = true;
+            ExpenseTypeColumn.Width = 155;
             // 
             // LocationColumn
             // 
@@ -497,7 +497,7 @@
         private DataGridViewTextBoxColumn DayColumn;
         private DataGridViewTextBoxColumn DateColumn;
         private DataGridViewTextBoxColumn AmountColumn;
-        private DataGridViewTextBoxColumn expenseTypeColumn;
+        private DataGridViewTextBoxColumn ExpenseTypeColumn;
         private DataGridViewTextBoxColumn LocationColumn;
         private DataGridViewTextBoxColumn NoteColumn;
         private GroupBox groupBox1;

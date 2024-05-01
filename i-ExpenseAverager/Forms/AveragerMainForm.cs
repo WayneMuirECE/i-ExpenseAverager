@@ -22,7 +22,8 @@ namespace i_ExpenseAverager.Forms
             this.accountNameTextBox.Text = XDB.AccountName;
             this.accountStartDateTimePicker.Text = XDB.StartDate.ToShortDateString();
             ExpenseAverageCategory newCategory;
-            foreach (ExpenseTag item in XDB.expenseTypes.ToList())
+
+            foreach (ExpenseTag item in XDB.ExpenseTypes.ToList())
             {
                 newCategory = new ExpenseAverageCategory(item.ExpenseTagName);
                 newCategory.Tags.Add(item);
@@ -90,25 +91,25 @@ namespace i_ExpenseAverager.Forms
                 }
 
                 string types = "";
-                foreach (ExpenseAverage2 expense in item.Daysexpenses)
+                foreach (ExpenseAverage2 expense in item.DaysExpenses)
                 {
-                    types += XDB.expenseTypes.ItemById(expense.ExpenseAverageTypeID).ExpenseTagName + ", ";
+                    types += XDB.ExpenseTypes.ItemById(expense.ExpenseAverageTypeID).ExpenseTagName + ", ";
                 }
 
-                gridRow.Cells[expenseTypeColumn.Index].Value = types;
+                gridRow.Cells[ExpenseTypeColumn.Index].Value = types;
 
                 types = "";
 
-                foreach (ExpenseAverage2 expense in item.Daysexpenses)
+                foreach (ExpenseAverage2 expense in item.DaysExpenses)
                 {
-                    types += XDB.expenseLocations.ItemById(expense.ExpenseLocationID).ExpenseTagName + ", ";
+                    types += XDB.ExpenseLocations.ItemById(expense.ExpenseLocationID).ExpenseTagName + ", ";
                 }
 
                 gridRow.Cells[LocationColumn.Index].Value = types;
 
                 types = "";
 
-                foreach (ExpenseAverage2 expense in item.Daysexpenses)
+                foreach (ExpenseAverage2 expense in item.DaysExpenses)
                 {
                     if (!string.IsNullOrWhiteSpace(expense.Note))
                     {
@@ -122,7 +123,7 @@ namespace i_ExpenseAverager.Forms
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
-                    gridRow.Cells[expenseTypeColumn.Index].Style.BackColor = Color.LightGray;
+                    gridRow.Cells[ExpenseTypeColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[LocationColumn.Index].Style.BackColor = Color.LightGray;
 
                     if (gridRow.Cells[NoteColumn.Index].Value.ToString() == "")
@@ -134,7 +135,7 @@ namespace i_ExpenseAverager.Forms
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
-                    gridRow.Cells[expenseTypeColumn.Index].Style.BackColor = Color.LightGray;
+                    gridRow.Cells[ExpenseTypeColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[LocationColumn.Index].Style.BackColor = Color.LightGray;
 
                     if (gridRow.Cells[NoteColumn.Index].Value.ToString() == "")
@@ -146,7 +147,7 @@ namespace i_ExpenseAverager.Forms
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
-                    gridRow.Cells[expenseTypeColumn.Index].Style.BackColor = Color.LightGray;
+                    gridRow.Cells[ExpenseTypeColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[LocationColumn.Index].Style.BackColor = Color.LightGray;
 
                     if (gridRow.Cells[NoteColumn.Index].Value.ToString() == "")
@@ -158,7 +159,7 @@ namespace i_ExpenseAverager.Forms
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.White;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.White;
-                    gridRow.Cells[expenseTypeColumn.Index].Style.BackColor = Color.White;
+                    gridRow.Cells[ExpenseTypeColumn.Index].Style.BackColor = Color.White;
                     gridRow.Cells[LocationColumn.Index].Style.BackColor = Color.White;
                 }
             }
@@ -183,7 +184,7 @@ namespace i_ExpenseAverager.Forms
 
             expenseTypeListBox.Items.Clear();
 
-            foreach (ExpenseTag item in XDB.expenseTypes.ToList())
+            foreach (ExpenseTag item in XDB.ExpenseTypes.ToList())
             {
                 expenseTypeListBox.Items.Add(item);
             }
@@ -221,12 +222,15 @@ namespace i_ExpenseAverager.Forms
             {
                 return;
             }
+
             string name = categoryNewTextBox.Text;
             ExpenseAverageCategory newCategory = new ExpenseAverageCategory(name);
+
             foreach (object item in listBox1.Items)
             {
                 newCategory.Tags.Add((ExpenseTag)item);
             }
+
             ViewXDB.categoryList.Add(newCategory);
 
             RefreshCategories();
@@ -236,11 +240,13 @@ namespace i_ExpenseAverager.Forms
         {
             System.Windows.Forms.ListBox.SelectedObjectCollection collection = expenseTypeListBox.SelectedItems;
             ExpenseTag selected;
+
             foreach (object item in collection)
             {
                 selected = (ExpenseTag)item;
                 listBox1.Items.Add(selected);
             }
+
             expenseTypeListBox.Refresh();
             listBox1.Refresh();
         }
