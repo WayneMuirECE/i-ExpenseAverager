@@ -75,7 +75,7 @@ namespace i_ExpenseAverager.Repositories
 
 
 
-        public bool CurrentexpenseAverageTypeSelected()
+        public bool CurrentExpenseAverageTypeSelected()
         {
             bool ret = false;
             ExpenseAverageType expenseAverageType = null;
@@ -101,7 +101,7 @@ namespace i_ExpenseAverager.Repositories
             expenseAverageTypeForm.ShowDialog();
         }
 
-        public void SaveCurrentexpenseAverageType(string expenseAverageTypeName, DateTime startDate)
+        public void SaveCurrentExpenseAverageType(string expenseAverageTypeName, DateTime startDate)
         {
             expenseAverageTypeName = expenseAverageTypeName.Trim();
             ExpenseAverageType expenseAverageType = expenseAverageTypes.FirstOrDefault(o => o.ExpenseAverageTypeName.Equals(expenseAverageTypeName));

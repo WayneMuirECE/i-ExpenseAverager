@@ -25,5 +25,26 @@ namespace i_ExpenseAverager.Forms
                 expenseAverageDateTimePicker.Value = expenseAverageType.StartDate;
             }
         }
+
+        private void saveButton_Click(object sender, EventArgs e)
+        {
+            string expenceAverageTypeName = this.expenseAverageTypeBox.Text.Trim();
+            if (string.IsNullOrWhiteSpace(expenceAverageTypeName))
+            {
+                MessageBox.Show(this, "No expence average type was selected." + Environment.NewLine + "Please input a expence average type.", "No Expence Average Type Found", MessageBoxButtons.OK);
+                return;
+            }
+            DateTime date = this.expenseAverageDateTimePicker.Value;
+            control.SaveCurrentExpenseAverageType(expenceAverageTypeName, date);
+            cancelButton_Click(sender, e);
+        }
+
+        private void cancelButton_Click(object sender, EventArgs e)
+        {
+            if (control.CurrentExpenseAverageTypeSelected())
+            {
+                this.Close();
+            }
+        }
     }
 }

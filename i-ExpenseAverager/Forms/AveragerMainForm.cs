@@ -17,6 +17,25 @@ namespace i_ExpenseAverager.Forms
             ViewXDB = new ExpenseAverageViewXDB(XDB);
         }
 
+        private void ExpenseAverager2Form_Load(object sender, EventArgs e)
+        {
+            this.accountNameTextBox.Text = XDB.AccountName;
+            this.accountStartDateTimePicker.Text = XDB.StartDate.ToShortDateString();
+            ExpenseAverageCategory newCategory;
+            foreach (ExpenseTag item in XDB.expenseTypes.ToList())
+            {
+                newCategory = new ExpenseAverageCategory(item.ExpenseTagName);
+                newCategory.Tags.Add(item);
+                ViewXDB.categoryList.Add(newCategory);
+            }
+            foreach (ExpenseAverageCategory item in ViewXDB.categoryList)
+            {
+                categoriesComboBox.Items.Add(item);
+            }
+            categoriesComboBox.SelectedIndex = 0;
+            RefreshRecordsDisplay(ViewXDB.CategoryAll);
+        }
+
         private void RefreshRecordsDisplay(ExpenseAverageCategory category)
         {
             expenseAverageRecordDataGridView.Rows.Clear();
@@ -178,6 +197,57 @@ namespace i_ExpenseAverager.Forms
             LedgerForm form = new LedgerForm(XDB);
             form.ShowDialog();
             RefreshRecordsDisplay(ViewXDB.CategoryAll);
+        }
+
+        private void saveAccountNameButton_Click(object sender, EventArgs e)
+        {
+            this.XDB.AccountName = accountNameTextBox.Text;
+        }
+
+        private void saveStartDateButton_Click(object sender, EventArgs e)
+        {
+            this.XDB.StartDate = DateTime.Parse(accountStartDateTimePicker.Text);
+            RefreshRecordsDisplay(ViewXDB.CategoryAll);
+        }
+
+        private void viewCategoryButton_Click(object sender, EventArgs e)
+        {
+            RefreshRecordsDisplay((ExpenseAverageCategory)categoriesComboBox.SelectedItem);
+        }
+
+        private void saveNewCategoryButton_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(categoryNewTextBox.Text))
+            {
+                return;
+            }
+            string name = categoryNewTextBox.Text;
+            ExpenseAverageCategory newCategory = new ExpenseAverageCategory(name);
+            foreach (object item in listBox1.Items)
+            {
+                newCategory.Tags.Add((ExpenseTag)item);
+            }
+            ViewXDB.categoryList.Add(newCategory);
+
+            RefreshCategories();
+        }
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            System.Windows.Forms.ListBox.SelectedObjectCollection collection = expenseTypeListBox.SelectedItems;
+            ExpenseTag selected;
+            foreach (object item in collection)
+            {
+                selected = (ExpenseTag)item;
+                listBox1.Items.Add(selected);
+            }
+            expenseTypeListBox.Refresh();
+            listBox1.Refresh();
+        }
+
+        private void clearButton_Click(object sender, EventArgs e)
+        {
+            listBox1.Items.Clear();
         }
     }
 }

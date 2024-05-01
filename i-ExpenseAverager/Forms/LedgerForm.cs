@@ -5,11 +5,6 @@ namespace i_ExpenseAverager.Forms
 {
     public partial class LedgerForm : Form
     {
-        public LedgerForm()
-        {
-            InitializeComponent();
-        }
-
         ExpenseAverage2XDB XDB;
 
         ExpenseAverage2 selectedExpence;
