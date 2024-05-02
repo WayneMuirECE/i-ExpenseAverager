@@ -12,6 +12,7 @@ namespace i_ExpenseAverager.Repositories
             {
                 _expenseAverageTypes.Add(expenseAverageType);
             }
+
             if (expenseAverageType.ExpenseAverageTypeID == 0)
             {
                 expenseAverageType.ExpenseAverageTypeID = _expenseAverageTypes.Count;

@@ -18,7 +18,7 @@ namespace i_ExpenseAverager.Repositories
         public ExpenseAverageViewXDB(ExpenseAverage2XDB XDB)
         {
             _XDB = XDB;
-            
+
             RefreshCategoriesFromDB();
         }
 
@@ -45,8 +45,6 @@ namespace i_ExpenseAverager.Repositories
 
         public ChainClass RefreshDisplay(ExpenseAverageCategory category)
         {
-            double total = 0.0;
-
             ChainClass year = new ChainClass(1, daysFor12Month);
             ChainClass sixMonth = new ChainClass(1, daysFor6Month);
             ChainClass threeMonth = new ChainClass(1, daysFor3Month);
@@ -72,47 +70,20 @@ namespace i_ExpenseAverager.Repositories
                 varDate = varDate.AddDays(1);
             }
 
-            total = 0.0;
-
-            foreach (ExpenseAverageDay item in year.ChainHead.GetNodes())
-            {
-                sixMonth.ChainHead.AddNode(item);
-                total += item.DaysTotal;
-            }
-
-            double average = (total / (double)year.ChainHead.GetNodes().Count()) * 7;
+            double average = CalculateAverage(year, sixMonth);
             double dailyAverage = average;
             category.YearAvg = "$" + average.ToString("0.00");
-            total = 0.0;
 
-            foreach (ExpenseAverageDay item in sixMonth.ChainHead.GetNodes())
-            {
-                threeMonth.ChainHead.AddNode(item);
-                total += item.DaysTotal;
-            }
+            average = CalculateAverage(sixMonth, threeMonth);
 
-            average = (total / (double)sixMonth.ChainHead.GetNodes().Count()) * 7;
             dailyAverage += average;
             category.SixMonthAvg = "$" + average.ToString("0.00");
-            total = 0.0;
 
-            foreach (ExpenseAverageDay item in threeMonth.ChainHead.GetNodes())
-            {
-                oneMonth.ChainHead.AddNode(item);
-                total += item.DaysTotal;
-            }
-
-            average = (total / (double)threeMonth.ChainHead.GetNodes().Count()) * 7;
+            average = CalculateAverage(threeMonth, oneMonth);
             dailyAverage += average;
             category.ThreeMonthAvg = "$" + average.ToString("0.00");
-            total = 0.0;
 
-            foreach (ExpenseAverageDay item in oneMonth.ChainHead.GetNodes())
-            {
-                total += item.DaysTotal;
-            }
-
-            average = (total / (double)oneMonth.ChainHead.GetNodes().Count()) * 7;
+            average = CalculateAverage(oneMonth);
             dailyAverage += average;
             category.MonthAvg = "$" + average.ToString("0.00");
 
@@ -122,6 +93,23 @@ namespace i_ExpenseAverager.Repositories
             category.DailyAvg = "$" + dailyAverage.ToString("0.00");
 
             return year;
+        }
+
+        private double CalculateAverage(ChainClass from, ChainClass to = null)
+        {
+            double total = 0.0;
+
+            foreach (ExpenseAverageDay item in from.ChainHead.GetNodes())
+            {
+                if (to != null)
+                {
+                    to.ChainHead.AddNode(item);
+                }
+
+                total += item.DaysTotal;
+            }
+
+            return (total / from.ChainHead.GetNodes().Count()) * 7;
         }
     }
 }

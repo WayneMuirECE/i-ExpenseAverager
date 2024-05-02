@@ -5,28 +5,30 @@ namespace i_ExpenseAverager.Repositories
 {
     public class ExpenseAverage2XDB
     {
-        private string dbPath;
-        private string dbDir;
+        private string _DBPath;
+        private string _DBDir;
+        private ExpenseTag _CurrentExpenseAverageType;
 
-        private string accountName;
+        private string _AccountName;
 
         public string AccountName
         {
-            get { return accountName; }
+            get { return _AccountName; }
             set
             {
-                accountName = value;
+                _AccountName = value;
                 SubmitChanges();
             }
         }
-        private DateTime startDate;
+
+        private DateTime _StartDate;
 
         public DateTime StartDate
         {
-            get { return startDate; }
+            get { return _StartDate; }
             set
             {
-                startDate = value;
+                _StartDate = value;
                 SubmitChanges();
             }
         }
@@ -36,38 +38,44 @@ namespace i_ExpenseAverager.Repositories
         public ExpenseTags ExpenseOccasions = new ExpenseTags("occ");
         public ExpenseAverages2 ExpenseAverages = new ExpenseAverages2();
 
-        private ExpenseTag currentexpenseAverageType;
+
 
         public ExpenseAverage2XDB()
         {
             // defaults for name and time
-            this.accountName = "";
-            this.startDate = DateTime.Parse("1/1/" + DateTime.Now.Year);
+            _AccountName = "";
+            _StartDate = DateTime.Parse("1/1/" + DateTime.Now.Year);
 
             string dir = Directory.GetCurrentDirectory();
             dir = Path.Combine(dir, "AppData");
+
             if (!Directory.Exists(dir))
             {
                 Directory.CreateDirectory(dir);
             }
-            this.dbDir = string.Copy(dir);
+
+            _DBDir = string.Copy(dir);
             string filePath = Path.Combine(dir, "expenseAverage2DB.xdb");
-            this.dbPath = string.Copy(filePath);
+            _DBPath = string.Copy(filePath);
             bool exists = File.Exists(filePath);
+
             if (!File.Exists(filePath))
             {
                 SubmitChanges();
             }
-            // TODO: load file if it exists and load the data while checking for errors.
-            XElement doc = XElement.Load(this.dbPath);
 
-            this.accountName = doc.Descendants("accountname").FirstOrDefault().Value;
-            this.startDate = DateTime.Parse(doc.Descendants("startdate").FirstOrDefault().Value);
+            // TODO: load file if it exists and load the data while checking for errors.
+            XElement doc = XElement.Load(_DBPath);
+
+            _AccountName = doc.Descendants("accountname").FirstOrDefault().Value;
+            _StartDate = DateTime.Parse(doc.Descendants("startdate").FirstOrDefault().Value);
 
             ExpenseTag tag;
+
             foreach (XElement item in doc.Descendants(ExpenseTag.TagName))
             {
                 tag = new ExpenseTag(item);
+
                 if (tag.ExpenseTagType.Equals("type"))
                 {
                     ExpenseTypes.Add(tag);
@@ -81,6 +89,7 @@ namespace i_ExpenseAverager.Repositories
                     ExpenseOccasions.Add(tag);
                 }
             }
+
             foreach (XElement item in doc.Descendants(ExpenseAverage2.TagName))
             {
                 ExpenseAverages.Add(new ExpenseAverage2(item));
@@ -89,45 +98,39 @@ namespace i_ExpenseAverager.Repositories
 
         public ExpenseTag GetExpenseAverageType(int expenseAverageTypeID)
         {
-            ExpenseTag value = ExpenseTypes.ItemById(expenseAverageTypeID);
-            return value;
+            return ExpenseTypes.ItemById(expenseAverageTypeID);
         }
 
         public ExpenseTag GetExpenseAverageType(string expenseAverageType)
         {
-            ExpenseTag value = ExpenseTypes.ItemByName(expenseAverageType);
-            return value;
+            return ExpenseTypes.ItemByName(expenseAverageType);
         }
 
         public ExpenseTag GetExpenseLocation(int expenseLocationID)
         {
-            ExpenseTag value = ExpenseLocations.ItemById(expenseLocationID);
-            return value;
+            return ExpenseLocations.ItemById(expenseLocationID);
         }
 
         public ExpenseTag GetExpenseLocation(string expenseLocation)
         {
-            ExpenseTag value = ExpenseLocations.ItemByName(expenseLocation);
-            return value;
+            return ExpenseLocations.ItemByName(expenseLocation);
         }
 
         public ExpenseTag GetExpenseOccasion(int expenseOccasionID)
         {
-            ExpenseTag value = ExpenseOccasions.ItemById(expenseOccasionID);
-            return value;
+            return ExpenseOccasions.ItemById(expenseOccasionID);
         }
 
         public ExpenseTag GetExpenseOccasion(string expenseOccasion)
         {
-            ExpenseTag value = ExpenseOccasions.ItemByName(expenseOccasion);
-            return value;
+            return ExpenseOccasions.ItemByName(expenseOccasion);
         }
 
         public void SaveExpenseAverageType(string expenseAverageTypeName)
         {
             expenseAverageTypeName = expenseAverageTypeName.Trim();
-            ExpenseTag value = ExpenseTypes.ItemByName(expenseAverageTypeName);
-            if (value == null)
+
+            if (ExpenseTypes.ItemByName(expenseAverageTypeName) == null)
             {
                 ExpenseTypes.Add(expenseAverageTypeName);
             }
@@ -137,8 +140,8 @@ namespace i_ExpenseAverager.Repositories
         public void SaveExpenseLocation(string expenseLocationName)
         {
             expenseLocationName = expenseLocationName.Trim();
-            ExpenseTag value = ExpenseLocations.ItemByName(expenseLocationName);
-            if (value == null)
+
+            if (ExpenseLocations.ItemByName(expenseLocationName) == null)
             {
                 ExpenseLocations.Add(expenseLocationName);
             }
@@ -149,8 +152,8 @@ namespace i_ExpenseAverager.Repositories
         public void SaveExpenseOccasion(string expenseOccasionName)
         {
             expenseOccasionName = expenseOccasionName.Trim();
-            ExpenseTag value = ExpenseOccasions.ItemByName(expenseOccasionName);
-            if (value == null)
+
+            if (ExpenseOccasions.ItemByName(expenseOccasionName) == null)
             {
                 ExpenseOccasions.Add(expenseOccasionName);
             }
@@ -167,90 +170,78 @@ namespace i_ExpenseAverager.Repositories
             ExpenseAverage2 expenseAverage = new ExpenseAverage2(expenseAveragesList.Count + 1, expenseType.ExpenseTagID, expenseLocation.ExpenseTagID, expenseOccasion.ExpenseTagID, forDate, amount, note);
             ExpenseAverages.Add(expenseAverage);
             SubmitChanges();
+
             return true;
         }
 
         public bool DeleteExpenseAverage(ExpenseAverage2 expense)
         {
             ExpenseAverages.Remove(expense);
+
             return true;
         }
-
-
-
-
-
-
-
 
         public List<ExpenseAverage2> GetExpenseAverageForExpenseAverageType(int expenseAverageTypeID)
         {
             List<ExpenseAverage2> expenseAverage = ExpenseAverages.Where(o => o.ExpenseAverageTypeID.Equals(expenseAverageTypeID)).ToList();
             expenseAverage = expenseAverage.OrderBy(o => o.Date).ToList();
+
             return expenseAverage;
         }
 
-        public ExpenseAverage2 GetCurrentExpenseAverageTypeLastexpenseAverage()
+        public ExpenseAverage2 GetCurrentExpenseAverageTypeLastExpenseAverage()
         {
             ExpenseTag expenseAverageType = GetCurrentExpenseAverageType();
             List<ExpenseAverage2> expenseAverages = GetExpenseAverageForExpenseAverageType(expenseAverageType.ExpenseTagID);
             expenseAverages = expenseAverages.OrderBy(o => o.Date).ToList();
             ExpenseAverage2 last = null;
+
             if (expenseAverages.Count > 0)
             {
                 last = expenseAverages[expenseAverages.Count - 1];
             }
+
             return last;
         }
-
-
-
 
         public bool CurrentExpenseAverageTypeSelected()
         {
             bool ret = false;
             ExpenseTag expenseAverageType = null;
-            expenseAverageType = this.currentexpenseAverageType;
+            expenseAverageType = _CurrentExpenseAverageType;
+
             if (expenseAverageType == null)
             {
                 MessageBox.Show("No current expense average type was found in the batabase." + Environment.NewLine + "Please input a new expense average type.", "No expense Average Type Found", MessageBoxButtons.OK);
                 ret = false;
             }
+
             if (expenseAverageType != null)
             {
                 ret = true;
             }
-            return ret;
-        }
 
-        public void SelectExpenseAverageType()
-        {
-            //expenseAverageTypeForm expenseAverageTypeForm = new expenseAverageTypeForm(this);
-            //expenseAverageTypeForm.ShowDialog();
+            return ret;
         }
 
         public void SaveCurrentExpenseAverageType(string expenseAverageTypeName)
         {
             expenseAverageTypeName = expenseAverageTypeName.Trim();
             ExpenseTag expenseAverageType = ExpenseTypes.FirstOrDefault(o => o.ExpenseTagName.Equals(expenseAverageTypeName));
+
             if (expenseAverageType == null)
             {
-                //expenseAverageType = new expenseLocation(expenseAverageTypeName, startDate);
                 expenseAverageType.ExpenseTagID = ExpenseTypes.ToList().Count + 1;
                 ExpenseTypes.Add(expenseAverageType);
             }
-            else
-            {
-                //expenseAverageType.StartDate = startDate;
-            }
-            this.currentexpenseAverageType = expenseAverageType;
+
+            _CurrentExpenseAverageType = expenseAverageType;
             SubmitChanges();
         }
 
         public ExpenseTag GetCurrentExpenseAverageType()
         {
-            ExpenseTag expenseAverageType = this.currentexpenseAverageType;
-            return expenseAverageType;
+            return _CurrentExpenseAverageType;
         }
 
         public List<ExpenseTag> GetExpenseAverageTypes()
@@ -260,46 +251,31 @@ namespace i_ExpenseAverager.Repositories
 
         public void SubmitChanges()
         {
-            XElement doc = new XElement("expenseaveragedb");
+            var doc = new XElement("expenseaveragedb");
+            doc.Add(new XElement("accountname", _AccountName));
+            doc.Add(new XElement("startdate", _StartDate.ToShortDateString()));
 
-            doc.Add(new XElement("accountname", this.accountName));
-            doc.Add(new XElement("startdate", this.startDate.ToShortDateString()));
-
-            List<ExpenseTag> expenseAverageTypesList = ExpenseTypes.ToList();
-            foreach (ExpenseTag item in expenseAverageTypesList)
+            foreach (var item in ExpenseTypes.ToList().Concat(ExpenseLocations.ToList()).Concat(ExpenseOccasions.ToList()))
             {
                 doc.Add(item.AsXML());
             }
 
-            List<ExpenseTag> expenseLocationsList = ExpenseLocations.ToList();
-            foreach (ExpenseTag item in expenseLocationsList)
+            var expenseAveragesList = ExpenseAverages.ToListByDate();
+            for (int i = 0; i < expenseAveragesList.Count; i++)
             {
-                doc.Add(item.AsXML());
+                expenseAveragesList[i].ExpenseAverageID = i + 1;
+                doc.Add(expenseAveragesList[i].AsXML());
             }
 
-            List<ExpenseTag> expenseOccasionsList = ExpenseOccasions.ToList();
-            foreach (ExpenseTag item in expenseOccasionsList)
-            {
-                doc.Add(item.AsXML());
-            }
-
-            List<ExpenseAverage2> expenseAveragesList = ExpenseAverages.ToListByDate();
-            int i = 0;
-            foreach (ExpenseAverage2 item in expenseAveragesList)
-            {
-                i++;
-                item.ExpenseAverageID = i;
-                doc.Add(item.AsXML());
-            }
-            string tmpPath = Path.Combine(this.dbDir, "temp.xdb");
+            var tmpPath = Path.Combine(_DBDir, "temp.xdb");
             doc.Save(tmpPath);
-            if (File.Exists(dbPath))
+
+            if (File.Exists(_DBPath))
             {
-                File.Delete(dbPath);
+                File.Delete(_DBPath);
             }
-            File.Move(tmpPath, dbPath);
+
+            File.Move(tmpPath, _DBPath);
         }
-
-
     }
 }

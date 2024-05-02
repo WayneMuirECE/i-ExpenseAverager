@@ -21,6 +21,7 @@
                 object pass = nodes.Dequeue();
                 LinkDown?.AddNode(pass);
             }
+
             nodes.Enqueue(nodeToAdd);
         }
 

@@ -155,7 +155,7 @@
             groupBox1.Size = new Size(422, 91);
             groupBox1.TabIndex = 33;
             groupBox1.TabStop = false;
-            groupBox1.Text = "Averages";
+            groupBox1.Text = "Weekly Averages";
             // 
             // label7
             // 
