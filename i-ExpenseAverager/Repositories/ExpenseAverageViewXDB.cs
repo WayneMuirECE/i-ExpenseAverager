@@ -5,26 +5,43 @@ namespace i_ExpenseAverager.Repositories
 {
     public class ExpenseAverageViewXDB
     {
-        private ExpenseAverage2XDB XDB;
         public readonly int daysFor12Month = 367;
         public readonly int daysFor6Month = 183;
         public readonly int daysFor3Month = 92;
         public readonly int daysFor1Month = 31;
 
+        private ExpenseAverage2XDB _XDB;
+
         public ExpenseAverageCategory CategoryAll { get; private set; }
-        public List<ExpenseAverageCategory> CategoryList { get; }
+        public List<ExpenseAverageCategory> CategoryList { get; private set; }
 
         public ExpenseAverageViewXDB(ExpenseAverage2XDB XDB)
         {
-            this.XDB = XDB;
+            _XDB = XDB;
+            
+            RefreshCategoriesFromDB();
+        }
+
+        public void RefreshCategoriesFromDB()
+        {
             CategoryAll = new ExpenseAverageCategory("All");
-            foreach (ExpenseTag item in XDB.ExpenseTypes.ToList())
+
+            foreach (ExpenseTag item in _XDB.ExpenseTypes.ToList())
             {
                 CategoryAll.Tags.Add(item);
             }
-            CategoryList = new List<ExpenseAverageCategory> { CategoryAll };
-        }
 
+            CategoryList = new List<ExpenseAverageCategory> { CategoryAll };
+
+            ExpenseAverageCategory newCategory;
+
+            foreach (ExpenseTag item in _XDB.ExpenseTypes.ToList())
+            {
+                newCategory = new ExpenseAverageCategory(item.ExpenseTagName);
+                newCategory.Tags.Add(item);
+                CategoryList.Add(newCategory);
+            }
+        }
 
         public ChainClass RefreshDisplay(ExpenseAverageCategory category)
         {
@@ -37,9 +54,9 @@ namespace i_ExpenseAverager.Repositories
 
             DateTime varDate = DateTime.Today.AddDays(-daysFor12Month);
 
-            if (varDate < XDB.StartDate)
+            if (varDate < _XDB.StartDate)
             {
-                varDate = XDB.StartDate;
+                varDate = _XDB.StartDate;
             }
 
             DateTime tomorrow = DateTime.Today.AddDays(1);
@@ -48,7 +65,7 @@ namespace i_ExpenseAverager.Repositories
 
             while (varDate < tomorrow)
             {
-                daysexpenses = XDB.ExpenseAverages.ToListForDate(varDate, category.Tags);
+                daysexpenses = _XDB.ExpenseAverages.ToListForDate(varDate, category.Tags);
                 expenseDay = new ExpenseAverageDay(varDate);
                 expenseDay.DaysExpenses = daysexpenses;
                 year.ChainHead.AddNode(expenseDay);

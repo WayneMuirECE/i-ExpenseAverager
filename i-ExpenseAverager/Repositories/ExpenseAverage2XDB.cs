@@ -56,11 +56,6 @@ namespace i_ExpenseAverager.Repositories
             bool exists = File.Exists(filePath);
             if (!File.Exists(filePath))
             {
-                //while (expenseTypes.ToList().Count == 0) {
-                //	MessageBox.Show("Please Input a new expense average type.");
-                //	//expenseAverageTypeForm expenseAverageTypeForm = new expenseAverageTypeForm(this);
-                //	//expenseAverageTypeForm.ShowDialog();
-                //}
                 SubmitChanges();
             }
             // TODO: load file if it exists and load the data while checking for errors.
@@ -188,7 +183,7 @@ namespace i_ExpenseAverager.Repositories
 
 
 
-        public List<ExpenseAverage2> GetExpenseAverageForexpenseAverageType(int expenseAverageTypeID)
+        public List<ExpenseAverage2> GetExpenseAverageForExpenseAverageType(int expenseAverageTypeID)
         {
             List<ExpenseAverage2> expenseAverage = ExpenseAverages.Where(o => o.ExpenseAverageTypeID.Equals(expenseAverageTypeID)).ToList();
             expenseAverage = expenseAverage.OrderBy(o => o.Date).ToList();
@@ -198,7 +193,7 @@ namespace i_ExpenseAverager.Repositories
         public ExpenseAverage2 GetCurrentExpenseAverageTypeLastexpenseAverage()
         {
             ExpenseTag expenseAverageType = GetCurrentExpenseAverageType();
-            List<ExpenseAverage2> expenseAverages = GetExpenseAverageForexpenseAverageType(expenseAverageType.ExpenseTagID);
+            List<ExpenseAverage2> expenseAverages = GetExpenseAverageForExpenseAverageType(expenseAverageType.ExpenseTagID);
             expenseAverages = expenseAverages.OrderBy(o => o.Date).ToList();
             ExpenseAverage2 last = null;
             if (expenseAverages.Count > 0)

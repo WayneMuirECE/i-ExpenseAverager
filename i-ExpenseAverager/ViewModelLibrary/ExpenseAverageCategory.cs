@@ -1,4 +1,6 @@
-﻿namespace i_ExpenseAverager.Models
+﻿using i_ExpenseAverager.Models;
+
+namespace i_ExpenseAverager.ViewModelLibrary
 {
     public class ExpenseAverageCategory
     {

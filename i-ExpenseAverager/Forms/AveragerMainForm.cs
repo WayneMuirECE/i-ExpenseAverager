@@ -6,35 +6,29 @@ namespace i_ExpenseAverager.Forms
 {
     public partial class AveragerMainForm : Form
     {
-        private ExpenseAverage2XDB XDB;
-        private ExpenseAverageViewXDB ViewXDB;
+        private ExpenseAverage2XDB _XDB;
+        private ExpenseAverageViewXDB _ViewXDB;
 
         public AveragerMainForm()
         {
             InitializeComponent();
 
-            XDB = new ExpenseAverage2XDB();
-            ViewXDB = new ExpenseAverageViewXDB(XDB);
+            _XDB = new ExpenseAverage2XDB();
+            _ViewXDB = new ExpenseAverageViewXDB(_XDB);
         }
 
-        private void ExpenseAverager2Form_Load(object sender, EventArgs e)
+        private void AveragerMainForm_Load(object sender, EventArgs e)
         {
-            this.accountNameTextBox.Text = XDB.AccountName;
-            this.accountStartDateTimePicker.Text = XDB.StartDate.ToShortDateString();
-            ExpenseAverageCategory newCategory;
+            accountNameTextBox.Text = _XDB.AccountName;
+            accountStartDateTimePicker.Text = _XDB.StartDate.ToShortDateString();
 
-            foreach (ExpenseTag item in XDB.ExpenseTypes.ToList())
-            {
-                newCategory = new ExpenseAverageCategory(item.ExpenseTagName);
-                newCategory.Tags.Add(item);
-                ViewXDB.CategoryList.Add(newCategory);
-            }
-            foreach (ExpenseAverageCategory item in ViewXDB.CategoryList)
+            foreach (ExpenseAverageCategory item in _ViewXDB.CategoryList)
             {
                 categoriesComboBox.Items.Add(item);
             }
+
             categoriesComboBox.SelectedIndex = 0;
-            RefreshRecordsDisplay(ViewXDB.CategoryAll);
+            RefreshRecordsDisplay(_ViewXDB.CategoryAll);
         }
 
         private void RefreshRecordsDisplay(ExpenseAverageCategory category)
@@ -42,7 +36,7 @@ namespace i_ExpenseAverager.Forms
             expenseAverageRecordDataGridView.Rows.Clear();
             DataGridViewRow gridRow;
 
-            ChainClass year = ViewXDB.RefreshDisplay(category);
+            ChainClass year = _ViewXDB.RefreshDisplay(category);
 
             yearAvgBox.Text = category.YearAvg;
             sixMonthAvgBox.Text = category.SixMonthAvg;
@@ -63,7 +57,7 @@ namespace i_ExpenseAverager.Forms
 
                 if (item.DaysTotal > 0)
                 {
-                    gridRow.Cells[AmountColumn.Index].Value = "$" + item.DaysTotal;
+                    gridRow.Cells[AmountColumn.Index].Value = "$" + item.DaysTotal.ToString("0.00");
                 }
 
                 gridRow.Cells[NoteColumn.Index].Value = "";
@@ -93,7 +87,7 @@ namespace i_ExpenseAverager.Forms
                 string types = "";
                 foreach (ExpenseAverage2 expense in item.DaysExpenses)
                 {
-                    types += XDB.ExpenseTypes.ItemById(expense.ExpenseAverageTypeID).ExpenseTagName + ", ";
+                    types += _XDB.ExpenseTypes.ItemById(expense.ExpenseAverageTypeID).ExpenseTagName + ", ";
                 }
 
                 gridRow.Cells[ExpenseTypeColumn.Index].Value = types;
@@ -102,7 +96,7 @@ namespace i_ExpenseAverager.Forms
 
                 foreach (ExpenseAverage2 expense in item.DaysExpenses)
                 {
-                    types += XDB.ExpenseLocations.ItemById(expense.ExpenseLocationID).ExpenseTagName + ", ";
+                    types += _XDB.ExpenseLocations.ItemById(expense.ExpenseLocationID).ExpenseTagName + ", ";
                 }
 
                 gridRow.Cells[LocationColumn.Index].Value = types;
@@ -119,7 +113,7 @@ namespace i_ExpenseAverager.Forms
 
                 gridRow.Cells[NoteColumn.Index].Value = types;
 
-                if (item.Date == DateTime.Today.AddDays(-(ViewXDB.daysFor1Month - 1)))
+                if (item.Date == DateTime.Today.AddDays(-(_ViewXDB.daysFor1Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
@@ -131,7 +125,7 @@ namespace i_ExpenseAverager.Forms
                         gridRow.Cells[NoteColumn.Index].Value = "1 Month";
                     }
                 }
-                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(ViewXDB.daysFor3Month - 1)))
+                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_ViewXDB.daysFor3Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
@@ -143,7 +137,7 @@ namespace i_ExpenseAverager.Forms
                         gridRow.Cells[NoteColumn.Index].Value = "3 Months";
                     }
                 }
-                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(ViewXDB.daysFor6Month - 1)))
+                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_ViewXDB.daysFor6Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
@@ -174,7 +168,7 @@ namespace i_ExpenseAverager.Forms
             int selectedIndex = categoriesComboBox.SelectedIndex;
             categoriesComboBox.Items.Clear();
 
-            foreach (ExpenseAverageCategory item in ViewXDB.CategoryList)
+            foreach (ExpenseAverageCategory item in _ViewXDB.CategoryList)
             {
                 categoriesComboBox.Items.Add(item);
             }
@@ -184,31 +178,31 @@ namespace i_ExpenseAverager.Forms
 
             expenseTypeListBox.Items.Clear();
 
-            foreach (ExpenseTag item in XDB.ExpenseTypes.ToList())
+            foreach (ExpenseTag item in _XDB.ExpenseTypes.ToList())
             {
                 expenseTypeListBox.Items.Add(item);
             }
 
             listBox1.Items.Clear();
-            categoryNewTextBox.Text = "";
         }
 
         private void expenseSettingsButton_Click(object sender, EventArgs e)
         {
-            LedgerForm form = new LedgerForm(XDB);
+            LedgerForm form = new LedgerForm(_XDB);
             form.ShowDialog();
-            RefreshRecordsDisplay(ViewXDB.CategoryAll);
+            _ViewXDB.RefreshCategoriesFromDB();
+            RefreshRecordsDisplay(_ViewXDB.CategoryAll);
         }
 
         private void saveAccountNameButton_Click(object sender, EventArgs e)
         {
-            this.XDB.AccountName = accountNameTextBox.Text;
+            _XDB.AccountName = accountNameTextBox.Text;
         }
 
         private void saveStartDateButton_Click(object sender, EventArgs e)
         {
-            this.XDB.StartDate = DateTime.Parse(accountStartDateTimePicker.Text);
-            RefreshRecordsDisplay(ViewXDB.CategoryAll);
+            _XDB.StartDate = DateTime.Parse(accountStartDateTimePicker.Text);
+            RefreshRecordsDisplay(_ViewXDB.CategoryAll);
         }
 
         private void viewCategoryButton_Click(object sender, EventArgs e)
@@ -216,29 +210,9 @@ namespace i_ExpenseAverager.Forms
             RefreshRecordsDisplay((ExpenseAverageCategory)categoriesComboBox.SelectedItem);
         }
 
-        private void saveNewCategoryButton_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(categoryNewTextBox.Text))
-            {
-                return;
-            }
-
-            string name = categoryNewTextBox.Text;
-            ExpenseAverageCategory newCategory = new ExpenseAverageCategory(name);
-
-            foreach (object item in listBox1.Items)
-            {
-                newCategory.Tags.Add((ExpenseTag)item);
-            }
-
-            ViewXDB.CategoryList.Add(newCategory);
-
-            RefreshCategories();
-        }
-
         private void addButton_Click(object sender, EventArgs e)
         {
-            System.Windows.Forms.ListBox.SelectedObjectCollection collection = expenseTypeListBox.SelectedItems;
+            ListBox.SelectedObjectCollection collection = expenseTypeListBox.SelectedItems;
             ExpenseTag selected;
 
             foreach (object item in collection)

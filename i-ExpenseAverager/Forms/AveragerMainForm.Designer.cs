@@ -60,10 +60,8 @@
             groupBox3 = new GroupBox();
             expenseTypeListBox = new ListBox();
             clearButton = new Button();
-            categoryNewTextBox = new TextBox();
             categoriesComboBox = new ComboBox();
             viewCategoryButton = new Button();
-            saveNewCategoryButton = new Button();
             addButton = new Button();
             listBox1 = new ListBox();
             label9 = new Label();
@@ -367,10 +365,8 @@
             groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupBox3.Controls.Add(expenseTypeListBox);
             groupBox3.Controls.Add(clearButton);
-            groupBox3.Controls.Add(categoryNewTextBox);
             groupBox3.Controls.Add(categoriesComboBox);
             groupBox3.Controls.Add(viewCategoryButton);
-            groupBox3.Controls.Add(saveNewCategoryButton);
             groupBox3.Controls.Add(addButton);
             groupBox3.Controls.Add(listBox1);
             groupBox3.Controls.Add(label9);
@@ -405,14 +401,6 @@
             clearButton.UseVisualStyleBackColor = true;
             clearButton.Click += clearButton_Click;
             // 
-            // categoryNewTextBox
-            // 
-            categoryNewTextBox.Location = new Point(10, 67);
-            categoryNewTextBox.Margin = new Padding(4, 3, 4, 3);
-            categoryNewTextBox.Name = "categoryNewTextBox";
-            categoryNewTextBox.Size = new Size(261, 23);
-            categoryNewTextBox.TabIndex = 38;
-            // 
             // categoriesComboBox
             // 
             categoriesComboBox.FormattingEnabled = true;
@@ -432,17 +420,6 @@
             viewCategoryButton.Text = "View Category";
             viewCategoryButton.UseVisualStyleBackColor = true;
             viewCategoryButton.Click += viewCategoryButton_Click;
-            // 
-            // saveNewCategoryButton
-            // 
-            saveNewCategoryButton.Location = new Point(279, 65);
-            saveNewCategoryButton.Margin = new Padding(4, 3, 4, 3);
-            saveNewCategoryButton.Name = "saveNewCategoryButton";
-            saveNewCategoryButton.Size = new Size(88, 27);
-            saveNewCategoryButton.TabIndex = 35;
-            saveNewCategoryButton.Text = "Save";
-            saveNewCategoryButton.UseVisualStyleBackColor = true;
-            saveNewCategoryButton.Click += saveNewCategoryButton_Click;
             // 
             // addButton
             // 
@@ -473,7 +450,7 @@
             label9.Name = "label9";
             label9.Size = new Size(77, 15);
             label9.TabIndex = 29;
-            label9.Text = "expense Type";
+            label9.Text = "Expense Type";
             // 
             // AveragerMainForm
             // 
@@ -486,6 +463,7 @@
             Controls.Add(expenseAverageRecordDataGridView);
             Name = "AveragerMainForm";
             Text = "i-Expense Averager";
+            Load += AveragerMainForm_Load;
             ((System.ComponentModel.ISupportInitialize)expenseAverageRecordDataGridView).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
@@ -530,10 +508,8 @@
         private GroupBox groupBox3;
         private ListBox expenseTypeListBox;
         private Button clearButton;
-        private TextBox categoryNewTextBox;
         private ComboBox categoriesComboBox;
         private Button viewCategoryButton;
-        private Button saveNewCategoryButton;
         private Button addButton;
         private ListBox listBox1;
         private Label label9;
