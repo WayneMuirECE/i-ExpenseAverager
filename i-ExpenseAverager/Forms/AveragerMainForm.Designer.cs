@@ -485,7 +485,7 @@
             Controls.Add(groupBox1);
             Controls.Add(expenseAverageRecordDataGridView);
             Name = "AveragerMainForm";
-            Text = "i-expense Averager";
+            Text = "i-Expense Averager";
             ((System.ComponentModel.ISupportInitialize)expenseAverageRecordDataGridView).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

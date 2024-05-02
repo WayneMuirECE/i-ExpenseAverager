@@ -1,3 +1,5 @@
+using i_ExpenseAverager.Forms;
+
 namespace i_ExpenseAverager
 {
     internal static class Program
@@ -11,7 +13,7 @@ namespace i_ExpenseAverager
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new AveragerDisplay());
+            Application.Run(new AveragerMainForm());
         }
     }
 }

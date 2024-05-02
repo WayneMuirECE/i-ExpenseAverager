@@ -27,9 +27,9 @@ namespace i_ExpenseAverager.Forms
             {
                 newCategory = new ExpenseAverageCategory(item.ExpenseTagName);
                 newCategory.Tags.Add(item);
-                ViewXDB.categoryList.Add(newCategory);
+                ViewXDB.CategoryList.Add(newCategory);
             }
-            foreach (ExpenseAverageCategory item in ViewXDB.categoryList)
+            foreach (ExpenseAverageCategory item in ViewXDB.CategoryList)
             {
                 categoriesComboBox.Items.Add(item);
             }
@@ -174,7 +174,7 @@ namespace i_ExpenseAverager.Forms
             int selectedIndex = categoriesComboBox.SelectedIndex;
             categoriesComboBox.Items.Clear();
 
-            foreach (ExpenseAverageCategory item in ViewXDB.categoryList)
+            foreach (ExpenseAverageCategory item in ViewXDB.CategoryList)
             {
                 categoriesComboBox.Items.Add(item);
             }
@@ -231,7 +231,7 @@ namespace i_ExpenseAverager.Forms
                 newCategory.Tags.Add((ExpenseTag)item);
             }
 
-            ViewXDB.categoryList.Add(newCategory);
+            ViewXDB.CategoryList.Add(newCategory);
 
             RefreshCategories();
         }

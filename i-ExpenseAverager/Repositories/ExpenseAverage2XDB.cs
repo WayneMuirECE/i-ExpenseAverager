@@ -34,7 +34,7 @@ namespace i_ExpenseAverager.Repositories
         public ExpenseTags ExpenseTypes = new ExpenseTags("type");
         public ExpenseTags ExpenseLocations = new ExpenseTags("loc");
         public ExpenseTags ExpenseOccasions = new ExpenseTags("occ");
-        public expenseAverages2 ExpenseAverages = new expenseAverages2();
+        public ExpenseAverages2 ExpenseAverages = new ExpenseAverages2();
 
         private ExpenseTag currentexpenseAverageType;
 
