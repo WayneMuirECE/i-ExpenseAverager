@@ -10,12 +10,12 @@ namespace i_ExpenseAverager.Repositories
         public readonly int daysFor3Month = 92;
         public readonly int daysFor1Month = 31;
 
-        private ExpenseAverage2XDB _xDB;
+        private ExpenseAverageXDB _xDB;
 
         public ExpenseAverageCategory CategoryAll { get; private set; }
         public List<ExpenseAverageCategory> CategoryList { get; private set; }
 
-        public ExpenseAverageViewXDB(ExpenseAverage2XDB XDB)
+        public ExpenseAverageViewXDB(ExpenseAverageXDB XDB)
         {
             _xDB = XDB;
 
@@ -58,7 +58,7 @@ namespace i_ExpenseAverager.Repositories
             }
 
             DateTime tomorrow = DateTime.Today.AddDays(1);
-            List<ExpenseAverage2> daysexpenses;
+            List<ExpenseAverage> daysexpenses;
             ExpenseAverageDay expenseDay;
 
             while (varDate < tomorrow)

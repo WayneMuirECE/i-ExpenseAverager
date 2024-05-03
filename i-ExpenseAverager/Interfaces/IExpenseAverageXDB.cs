@@ -3,14 +3,14 @@ using i_ExpenseAverager.Repositories;
 
 namespace i_ExpenseAverager.Interfaces
 {
-    public interface IExpenseAverage2XDB
+    public interface IExpenseAverageXDB
     {
         string AccountName { get; set; }
         DateTime StartDate { get; set; }
         ExpenseTags ExpenseTypes { get; set; }
         ExpenseTags ExpenseLocations { get; set; }
         ExpenseTags ExpenseOccasions { get; set; }
-        ExpenseAverages2 ExpenseAverages { get; set; }
+        ExpenseAverages ExpenseAverages { get; set; }
 
         ExpenseTag GetExpenseAverageType(int expenseAverageTypeID);
         ExpenseTag GetExpenseAverageType(string expenseAverageType);
@@ -26,10 +26,10 @@ namespace i_ExpenseAverager.Interfaces
         void SaveExpenseOccasion(string expenseOccasionName);
 
         bool SaveExpenseAverage(string type, string location, string occasion, DateTime forDate, double amount, string note);
-        bool DeleteExpenseAverage(ExpenseAverage2 expense);
+        bool DeleteExpenseAverage(ExpenseAverage expense);
 
-        List<ExpenseAverage2> GetExpenseAverageForExpenseAverageType(int expenseAverageTypeID);
-        ExpenseAverage2 GetCurrentExpenseAverageTypeLastExpenseAverage();
+        List<ExpenseAverage> GetExpenseAverageForExpenseAverageType(int expenseAverageTypeID);
+        ExpenseAverage GetCurrentExpenseAverageTypeLastExpenseAverage();
         bool CurrentExpenseAverageTypeSelected();
         void SaveCurrentExpenseAverageType(string expenseAverageTypeName);
         ExpenseTag GetCurrentExpenseAverageType();

@@ -6,14 +6,14 @@ namespace i_ExpenseAverager.Forms
 {
     public partial class AveragerMainForm : Form
     {
-        private ExpenseAverage2XDB _xDB;
+        private ExpenseAverageXDB _xDB;
         private ExpenseAverageViewXDB _viewXDB;
 
         public AveragerMainForm()
         {
             InitializeComponent();
 
-            _xDB = new ExpenseAverage2XDB();
+            _xDB = new ExpenseAverageXDB();
             _viewXDB = new ExpenseAverageViewXDB(_xDB);
         }
 
@@ -85,7 +85,7 @@ namespace i_ExpenseAverager.Forms
                 }
 
                 string types = "";
-                foreach (ExpenseAverage2 expense in item.DaysExpenses)
+                foreach (ExpenseAverage expense in item.DaysExpenses)
                 {
                     types += _xDB.ExpenseTypes.ItemById(expense.ExpenseAverageTypeID).ExpenseTagName + ", ";
                 }
@@ -94,7 +94,7 @@ namespace i_ExpenseAverager.Forms
 
                 types = "";
 
-                foreach (ExpenseAverage2 expense in item.DaysExpenses)
+                foreach (ExpenseAverage expense in item.DaysExpenses)
                 {
                     types += _xDB.ExpenseLocations.ItemById(expense.ExpenseLocationID).ExpenseTagName + ", ";
                 }
@@ -103,7 +103,7 @@ namespace i_ExpenseAverager.Forms
 
                 types = "";
 
-                foreach (ExpenseAverage2 expense in item.DaysExpenses)
+                foreach (ExpenseAverage expense in item.DaysExpenses)
                 {
                     if (!string.IsNullOrWhiteSpace(expense.Note))
                     {

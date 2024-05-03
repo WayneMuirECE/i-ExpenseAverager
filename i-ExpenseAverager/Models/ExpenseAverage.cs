@@ -2,7 +2,7 @@
 
 namespace i_ExpenseAverager.Models
 {
-    public class ExpenseAverage2
+    public class ExpenseAverage
     {
         public int ExpenseAverageID { get; set; }
         public int ExpenseAverageTypeID { get; set; }
@@ -14,7 +14,7 @@ namespace i_ExpenseAverager.Models
 
         public static readonly string TagName = "expenseaverage";
 
-        public ExpenseAverage2(int expenseAverageID, int expenseAverageTypeID, int expenseLocationID, int expenseOccasionID, DateTime date, double expenseAverageAmount, string note)
+        public ExpenseAverage(int expenseAverageID, int expenseAverageTypeID, int expenseLocationID, int expenseOccasionID, DateTime date, double expenseAverageAmount, string note)
         {
             ExpenseAverageID = expenseAverageID;
             ExpenseAverageTypeID = expenseAverageTypeID;
@@ -25,7 +25,7 @@ namespace i_ExpenseAverager.Models
             Note = note;
         }
 
-        public ExpenseAverage2(XElement xml)
+        public ExpenseAverage(XElement xml)
         {
             ExpenseAverageID = int.Parse(xml.Attribute("id").Value);
             ExpenseAverageTypeID = int.Parse(xml.Attribute("uid").Value);

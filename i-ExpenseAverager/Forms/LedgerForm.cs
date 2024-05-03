@@ -5,10 +5,10 @@ namespace i_ExpenseAverager.Forms
 {
     public partial class LedgerForm : Form
     {
-        private ExpenseAverage2XDB _xDB;
-        private ExpenseAverage2 _selectedExpence;
+        private ExpenseAverageXDB _xDB;
+        private ExpenseAverage _selectedExpence;
 
-        public LedgerForm(ExpenseAverage2XDB XDB)
+        public LedgerForm(ExpenseAverageXDB XDB)
         {
             InitializeComponent();
             _xDB = XDB;
@@ -140,7 +140,7 @@ namespace i_ExpenseAverager.Forms
         {
             expenceAverageRecordDataGridView.Rows.Clear();
             DataGridViewRow gridRow;
-            List<ExpenseAverage2> records = _xDB.ExpenseAverages.ToListByDate();
+            List<ExpenseAverage> records = _xDB.ExpenseAverages.ToListByDate();
 
             int daysFor1Month = 31;
             int daysFor3Month = 92;
@@ -149,7 +149,7 @@ namespace i_ExpenseAverager.Forms
 
             List<DataGridViewRow> rows = new List<DataGridViewRow>();
 
-            foreach (ExpenseAverage2 item in records)
+            foreach (ExpenseAverage item in records)
             {
 
                 gridRow = (DataGridViewRow)expenceAverageRecordDataGridView.Rows[0].Clone();
@@ -241,7 +241,7 @@ namespace i_ExpenseAverager.Forms
 
         private void modifyButton_Click(object sender, EventArgs e)
         {
-            _selectedExpence = (ExpenseAverage2)expenceAverageRecordDataGridView.SelectedRows[0].Cells[0].Value;
+            _selectedExpence = (ExpenseAverage)expenceAverageRecordDataGridView.SelectedRows[0].Cells[0].Value;
 
             if (_selectedExpence == null)
             {
@@ -259,7 +259,7 @@ namespace i_ExpenseAverager.Forms
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            _selectedExpence = (ExpenseAverage2)expenceAverageRecordDataGridView.SelectedRows[0].Cells[0].Value;
+            _selectedExpence = (ExpenseAverage)expenceAverageRecordDataGridView.SelectedRows[0].Cells[0].Value;
 
             if (_selectedExpence == null)
             {

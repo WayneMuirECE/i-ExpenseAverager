@@ -4,14 +4,14 @@ namespace i_ExpenseAverager.ViewModelLibrary
 {
     public class ExpenseAverageDay
     {
-        public List<ExpenseAverage2> DaysExpenses { get; set; }
+        public List<ExpenseAverage> DaysExpenses { get; set; }
 
         public DateTime Date { get; }
 
         public ExpenseAverageDay(DateTime date)
         {
             Date = date;
-            DaysExpenses = new List<ExpenseAverage2>();
+            DaysExpenses = new List<ExpenseAverage>();
         }
 
         public double DaysTotal
@@ -30,7 +30,7 @@ namespace i_ExpenseAverager.ViewModelLibrary
 
                 double total = 0.00;
 
-                foreach (ExpenseAverage2 item in DaysExpenses)
+                foreach (ExpenseAverage item in DaysExpenses)
                 {
                     total += item.ExpenseAverageAmount;
                 }
@@ -53,7 +53,7 @@ namespace i_ExpenseAverager.ViewModelLibrary
                 return list;
             }
 
-            foreach (ExpenseAverage2 item in DaysExpenses)
+            foreach (ExpenseAverage item in DaysExpenses)
             {
                 list.Add(item.ExpenseAverageTypeID);
             }
