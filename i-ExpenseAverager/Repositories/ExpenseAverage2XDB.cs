@@ -1,9 +1,10 @@
-﻿using i_ExpenseAverager.Models;
+﻿using i_ExpenseAverager.Interfaces;
+using i_ExpenseAverager.Models;
 using System.Xml.Linq;
 
 namespace i_ExpenseAverager.Repositories
 {
-    public class ExpenseAverage2XDB
+    public class ExpenseAverage2XDB : IExpenseAverage2XDB
     {
         private string _DBPath;
         private string _DBDir;
