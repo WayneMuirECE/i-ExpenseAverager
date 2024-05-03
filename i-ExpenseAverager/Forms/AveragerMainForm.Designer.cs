@@ -29,13 +29,6 @@
         private void InitializeComponent()
         {
             expenseAverageRecordDataGridView = new DataGridView();
-            ObjectColumn = new DataGridViewTextBoxColumn();
-            DayColumn = new DataGridViewTextBoxColumn();
-            DateColumn = new DataGridViewTextBoxColumn();
-            AmountColumn = new DataGridViewTextBoxColumn();
-            ExpenseTypeColumn = new DataGridViewTextBoxColumn();
-            LocationColumn = new DataGridViewTextBoxColumn();
-            NoteColumn = new DataGridViewTextBoxColumn();
             groupBox1 = new GroupBox();
             label7 = new Label();
             totalAvgBox = new TextBox();
@@ -65,6 +58,13 @@
             addButton = new Button();
             listBox1 = new ListBox();
             label9 = new Label();
+            ObjectColumn = new DataGridViewTextBoxColumn();
+            DayColumn = new DataGridViewTextBoxColumn();
+            DateColumn = new DataGridViewTextBoxColumn();
+            AmountColumn = new DataGridViewTextBoxColumn();
+            ExpenseTypeColumn = new DataGridViewTextBoxColumn();
+            LocationColumn = new DataGridViewTextBoxColumn();
+            NoteColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)expenseAverageRecordDataGridView).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -82,57 +82,8 @@
             expenseAverageRecordDataGridView.ReadOnly = true;
             expenseAverageRecordDataGridView.RowTemplate.Height = 17;
             expenseAverageRecordDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            expenseAverageRecordDataGridView.Size = new Size(728, 507);
+            expenseAverageRecordDataGridView.Size = new Size(738, 507);
             expenseAverageRecordDataGridView.TabIndex = 27;
-            // 
-            // ObjectColumn
-            // 
-            ObjectColumn.HeaderText = "Object";
-            ObjectColumn.Name = "ObjectColumn";
-            ObjectColumn.ReadOnly = true;
-            ObjectColumn.Width = 5;
-            // 
-            // DayColumn
-            // 
-            DayColumn.HeaderText = "Day";
-            DayColumn.Name = "DayColumn";
-            DayColumn.ReadOnly = true;
-            DayColumn.Width = 80;
-            // 
-            // DateColumn
-            // 
-            DateColumn.HeaderText = "Date";
-            DateColumn.Name = "DateColumn";
-            DateColumn.ReadOnly = true;
-            DateColumn.Width = 80;
-            // 
-            // AmountColumn
-            // 
-            AmountColumn.HeaderText = "Amount";
-            AmountColumn.Name = "AmountColumn";
-            AmountColumn.ReadOnly = true;
-            AmountColumn.Width = 50;
-            // 
-            // ExpenseTypeColumn
-            // 
-            ExpenseTypeColumn.HeaderText = "expense Type";
-            ExpenseTypeColumn.Name = "ExpenseTypeColumn";
-            ExpenseTypeColumn.ReadOnly = true;
-            ExpenseTypeColumn.Width = 155;
-            // 
-            // LocationColumn
-            // 
-            LocationColumn.HeaderText = "Location";
-            LocationColumn.Name = "LocationColumn";
-            LocationColumn.ReadOnly = true;
-            LocationColumn.Width = 140;
-            // 
-            // NoteColumn
-            // 
-            NoteColumn.HeaderText = "Note";
-            NoteColumn.Name = "NoteColumn";
-            NoteColumn.ReadOnly = true;
-            NoteColumn.Width = 155;
             // 
             // groupBox1
             // 
@@ -149,7 +100,7 @@
             groupBox1.Controls.Add(monthAvgBox);
             groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(dailyAvgBox);
-            groupBox1.Location = new Point(748, 428);
+            groupBox1.Location = new Point(758, 428);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4, 3, 4, 3);
             groupBox1.Size = new Size(422, 91);
@@ -281,7 +232,7 @@
             groupBox2.Controls.Add(accountStartDateTimePicker);
             groupBox2.Controls.Add(label1);
             groupBox2.Controls.Add(saveStartDateButton);
-            groupBox2.Location = new Point(749, 12);
+            groupBox2.Location = new Point(759, 12);
             groupBox2.Margin = new Padding(4, 3, 4, 3);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(4, 3, 4, 3);
@@ -370,7 +321,7 @@
             groupBox3.Controls.Add(addButton);
             groupBox3.Controls.Add(listBox1);
             groupBox3.Controls.Add(label9);
-            groupBox3.Location = new Point(749, 133);
+            groupBox3.Location = new Point(759, 133);
             groupBox3.Margin = new Padding(4, 3, 4, 3);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new Padding(4, 3, 4, 3);
@@ -452,11 +403,60 @@
             label9.TabIndex = 29;
             label9.Text = "Expense Type";
             // 
+            // ObjectColumn
+            // 
+            ObjectColumn.HeaderText = "Object";
+            ObjectColumn.Name = "ObjectColumn";
+            ObjectColumn.ReadOnly = true;
+            ObjectColumn.Width = 5;
+            // 
+            // DayColumn
+            // 
+            DayColumn.HeaderText = "Day";
+            DayColumn.Name = "DayColumn";
+            DayColumn.ReadOnly = true;
+            DayColumn.Width = 80;
+            // 
+            // DateColumn
+            // 
+            DateColumn.HeaderText = "Date";
+            DateColumn.Name = "DateColumn";
+            DateColumn.ReadOnly = true;
+            DateColumn.Width = 80;
+            // 
+            // AmountColumn
+            // 
+            AmountColumn.HeaderText = "Amount";
+            AmountColumn.Name = "AmountColumn";
+            AmountColumn.ReadOnly = true;
+            AmountColumn.Width = 60;
+            // 
+            // ExpenseTypeColumn
+            // 
+            ExpenseTypeColumn.HeaderText = "Expense Type";
+            ExpenseTypeColumn.Name = "ExpenseTypeColumn";
+            ExpenseTypeColumn.ReadOnly = true;
+            ExpenseTypeColumn.Width = 155;
+            // 
+            // LocationColumn
+            // 
+            LocationColumn.HeaderText = "Location";
+            LocationColumn.Name = "LocationColumn";
+            LocationColumn.ReadOnly = true;
+            LocationColumn.Width = 140;
+            // 
+            // NoteColumn
+            // 
+            NoteColumn.HeaderText = "Note";
+            NoteColumn.Name = "NoteColumn";
+            NoteColumn.ReadOnly = true;
+            NoteColumn.Width = 155;
+            // 
             // AveragerMainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1182, 531);
+            ClientSize = new Size(1192, 531);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -477,13 +477,6 @@
         #endregion
 
         private DataGridView expenseAverageRecordDataGridView;
-        private DataGridViewTextBoxColumn ObjectColumn;
-        private DataGridViewTextBoxColumn DayColumn;
-        private DataGridViewTextBoxColumn DateColumn;
-        private DataGridViewTextBoxColumn AmountColumn;
-        private DataGridViewTextBoxColumn ExpenseTypeColumn;
-        private DataGridViewTextBoxColumn LocationColumn;
-        private DataGridViewTextBoxColumn NoteColumn;
         private GroupBox groupBox1;
         private Label label7;
         private TextBox totalAvgBox;
@@ -513,5 +506,12 @@
         private Button addButton;
         private ListBox listBox1;
         private Label label9;
+        private DataGridViewTextBoxColumn ObjectColumn;
+        private DataGridViewTextBoxColumn DayColumn;
+        private DataGridViewTextBoxColumn DateColumn;
+        private DataGridViewTextBoxColumn AmountColumn;
+        private DataGridViewTextBoxColumn ExpenseTypeColumn;
+        private DataGridViewTextBoxColumn LocationColumn;
+        private DataGridViewTextBoxColumn NoteColumn;
     }
 }

@@ -314,7 +314,7 @@
             Controls.Add(recordSubmitGroupBox);
             Controls.Add(expenceAverageRecordDataGridView);
             Name = "LedgerForm";
-            Text = "frmLedger";
+            Text = "Ledger";
             recordSubmitGroupBox.ResumeLayout(false);
             recordSubmitGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)expenceAverageRecordDataGridView).EndInit();

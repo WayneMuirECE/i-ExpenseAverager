@@ -6,29 +6,29 @@ namespace i_ExpenseAverager.Forms
 {
     public partial class AveragerMainForm : Form
     {
-        private ExpenseAverage2XDB _XDB;
-        private ExpenseAverageViewXDB _ViewXDB;
+        private ExpenseAverage2XDB _xDB;
+        private ExpenseAverageViewXDB _viewXDB;
 
         public AveragerMainForm()
         {
             InitializeComponent();
 
-            _XDB = new ExpenseAverage2XDB();
-            _ViewXDB = new ExpenseAverageViewXDB(_XDB);
+            _xDB = new ExpenseAverage2XDB();
+            _viewXDB = new ExpenseAverageViewXDB(_xDB);
         }
 
         private void AveragerMainForm_Load(object sender, EventArgs e)
         {
-            accountNameTextBox.Text = _XDB.AccountName;
-            accountStartDateTimePicker.Text = _XDB.StartDate.ToShortDateString();
+            accountNameTextBox.Text = _xDB.AccountName;
+            accountStartDateTimePicker.Text = _xDB.StartDate.ToShortDateString();
 
-            foreach (ExpenseAverageCategory item in _ViewXDB.CategoryList)
+            foreach (ExpenseAverageCategory item in _viewXDB.CategoryList)
             {
                 categoriesComboBox.Items.Add(item);
             }
 
             categoriesComboBox.SelectedIndex = 0;
-            RefreshRecordsDisplay(_ViewXDB.CategoryAll);
+            RefreshRecordsDisplay(_viewXDB.CategoryAll);
         }
 
         private void RefreshRecordsDisplay(ExpenseAverageCategory category)
@@ -36,7 +36,7 @@ namespace i_ExpenseAverager.Forms
             expenseAverageRecordDataGridView.Rows.Clear();
             DataGridViewRow gridRow;
 
-            ChainClass year = _ViewXDB.RefreshDisplay(category);
+            ChainClass year = _viewXDB.RefreshDisplay(category);
 
             yearAvgBox.Text = category.YearAvg;
             sixMonthAvgBox.Text = category.SixMonthAvg;
@@ -87,7 +87,7 @@ namespace i_ExpenseAverager.Forms
                 string types = "";
                 foreach (ExpenseAverage2 expense in item.DaysExpenses)
                 {
-                    types += _XDB.ExpenseTypes.ItemById(expense.ExpenseAverageTypeID).ExpenseTagName + ", ";
+                    types += _xDB.ExpenseTypes.ItemById(expense.ExpenseAverageTypeID).ExpenseTagName + ", ";
                 }
 
                 gridRow.Cells[ExpenseTypeColumn.Index].Value = types;
@@ -96,7 +96,7 @@ namespace i_ExpenseAverager.Forms
 
                 foreach (ExpenseAverage2 expense in item.DaysExpenses)
                 {
-                    types += _XDB.ExpenseLocations.ItemById(expense.ExpenseLocationID).ExpenseTagName + ", ";
+                    types += _xDB.ExpenseLocations.ItemById(expense.ExpenseLocationID).ExpenseTagName + ", ";
                 }
 
                 gridRow.Cells[LocationColumn.Index].Value = types;
@@ -113,7 +113,7 @@ namespace i_ExpenseAverager.Forms
 
                 gridRow.Cells[NoteColumn.Index].Value = types;
 
-                if (item.Date == DateTime.Today.AddDays(-(_ViewXDB.daysFor1Month - 1)))
+                if (item.Date == DateTime.Today.AddDays(-(_viewXDB.daysFor1Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
@@ -125,7 +125,7 @@ namespace i_ExpenseAverager.Forms
                         gridRow.Cells[NoteColumn.Index].Value = "1 Month";
                     }
                 }
-                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_ViewXDB.daysFor3Month - 1)))
+                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_viewXDB.daysFor3Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
@@ -137,7 +137,7 @@ namespace i_ExpenseAverager.Forms
                         gridRow.Cells[NoteColumn.Index].Value = "3 Months";
                     }
                 }
-                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_ViewXDB.daysFor6Month - 1)))
+                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_viewXDB.daysFor6Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
@@ -168,7 +168,7 @@ namespace i_ExpenseAverager.Forms
             int selectedIndex = categoriesComboBox.SelectedIndex;
             categoriesComboBox.Items.Clear();
 
-            foreach (ExpenseAverageCategory item in _ViewXDB.CategoryList)
+            foreach (ExpenseAverageCategory item in _viewXDB.CategoryList)
             {
                 categoriesComboBox.Items.Add(item);
             }
@@ -178,7 +178,7 @@ namespace i_ExpenseAverager.Forms
 
             expenseTypeListBox.Items.Clear();
 
-            foreach (ExpenseTag item in _XDB.ExpenseTypes.ToList())
+            foreach (ExpenseTag item in _xDB.ExpenseTypes.ToList())
             {
                 expenseTypeListBox.Items.Add(item);
             }
@@ -188,21 +188,21 @@ namespace i_ExpenseAverager.Forms
 
         private void expenseSettingsButton_Click(object sender, EventArgs e)
         {
-            LedgerForm form = new LedgerForm(_XDB);
+            LedgerForm form = new LedgerForm(_xDB);
             form.ShowDialog();
-            _ViewXDB.RefreshCategoriesFromDB();
-            RefreshRecordsDisplay(_ViewXDB.CategoryAll);
+            _viewXDB.RefreshCategoriesFromDB();
+            RefreshRecordsDisplay(_viewXDB.CategoryAll);
         }
 
         private void saveAccountNameButton_Click(object sender, EventArgs e)
         {
-            _XDB.AccountName = accountNameTextBox.Text;
+            _xDB.AccountName = accountNameTextBox.Text;
         }
 
         private void saveStartDateButton_Click(object sender, EventArgs e)
         {
-            _XDB.StartDate = DateTime.Parse(accountStartDateTimePicker.Text);
-            RefreshRecordsDisplay(_ViewXDB.CategoryAll);
+            _xDB.StartDate = DateTime.Parse(accountStartDateTimePicker.Text);
+            RefreshRecordsDisplay(_viewXDB.CategoryAll);
         }
 
         private void viewCategoryButton_Click(object sender, EventArgs e)
