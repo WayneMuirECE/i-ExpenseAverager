@@ -1,4 +1,5 @@
 ﻿using i_ExpenseAverager.Models;
+using i_ExpenseAverager.Repositories;
 
 namespace i_ExpenseAverager.Interfaces
 {
@@ -6,6 +7,10 @@ namespace i_ExpenseAverager.Interfaces
     {
         string AccountName { get; set; }
         DateTime StartDate { get; set; }
+        ExpenseTags ExpenseTypes { get; set; }
+        ExpenseTags ExpenseLocations { get; set; }
+        ExpenseTags ExpenseOccasions { get; set; }
+        ExpenseAverages2 ExpenseAverages { get; set; }
 
         ExpenseTag GetExpenseAverageType(int expenseAverageTypeID);
         ExpenseTag GetExpenseAverageType(string expenseAverageType);

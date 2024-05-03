@@ -6,46 +6,47 @@ namespace i_ExpenseAverager.Repositories
 {
     public class ExpenseAverage2XDB : IExpenseAverage2XDB
     {
-        private string _DBPath;
-        private string _DBDir;
-        private ExpenseTag _CurrentExpenseAverageType;
+        private string _dbPath;
+        private string _dbDir;
+        private ExpenseTag _currentExpenseAverageType;
 
-        private string _AccountName;
+        private string _accountName;
+        private DateTime _startDate;
+
+
 
         public string AccountName
         {
-            get { return _AccountName; }
+            get { return _accountName; }
             set
             {
-                _AccountName = value;
+                _accountName = value;
                 SubmitChanges();
             }
         }
 
-        private DateTime _StartDate;
+
 
         public DateTime StartDate
         {
-            get { return _StartDate; }
+            get { return _startDate; }
             set
             {
-                _StartDate = value;
+                _startDate = value;
                 SubmitChanges();
             }
         }
 
-        public ExpenseTags ExpenseTypes = new ExpenseTags("type");
-        public ExpenseTags ExpenseLocations = new ExpenseTags("loc");
-        public ExpenseTags ExpenseOccasions = new ExpenseTags("occ");
-        public ExpenseAverages2 ExpenseAverages = new ExpenseAverages2();
-
-
+        public ExpenseTags ExpenseTypes { get; set; } = new ExpenseTags("type");
+        public ExpenseTags ExpenseLocations { get; set; } = new ExpenseTags("loc");
+        public ExpenseTags ExpenseOccasions { get; set; } = new ExpenseTags("occ");
+        public ExpenseAverages2 ExpenseAverages { get; set; } = new ExpenseAverages2();
 
         public ExpenseAverage2XDB()
         {
             // defaults for name and time
-            _AccountName = "";
-            _StartDate = DateTime.Parse("1/1/" + DateTime.Now.Year);
+            _accountName = "";
+            _startDate = DateTime.Parse("1/1/" + DateTime.Now.Year);
 
             string dir = Directory.GetCurrentDirectory();
             dir = Path.Combine(dir, "AppData");
@@ -55,9 +56,9 @@ namespace i_ExpenseAverager.Repositories
                 Directory.CreateDirectory(dir);
             }
 
-            _DBDir = string.Copy(dir);
+            _dbDir = string.Copy(dir);
             string filePath = Path.Combine(dir, "expenseAverage2DB.xdb");
-            _DBPath = string.Copy(filePath);
+            _dbPath = string.Copy(filePath);
             bool exists = File.Exists(filePath);
 
             if (!File.Exists(filePath))
@@ -66,10 +67,10 @@ namespace i_ExpenseAverager.Repositories
             }
 
             // TODO: load file if it exists and load the data while checking for errors.
-            XElement doc = XElement.Load(_DBPath);
+            XElement doc = XElement.Load(_dbPath);
 
-            _AccountName = doc.Descendants("accountname").FirstOrDefault().Value;
-            _StartDate = DateTime.Parse(doc.Descendants("startdate").FirstOrDefault().Value);
+            _accountName = doc.Descendants("accountname").FirstOrDefault().Value;
+            _startDate = DateTime.Parse(doc.Descendants("startdate").FirstOrDefault().Value);
 
             ExpenseTag tag;
 
@@ -209,7 +210,7 @@ namespace i_ExpenseAverager.Repositories
         {
             bool ret = false;
             ExpenseTag expenseAverageType = null;
-            expenseAverageType = _CurrentExpenseAverageType;
+            expenseAverageType = _currentExpenseAverageType;
 
             if (expenseAverageType == null)
             {
@@ -236,13 +237,13 @@ namespace i_ExpenseAverager.Repositories
                 ExpenseTypes.Add(expenseAverageType);
             }
 
-            _CurrentExpenseAverageType = expenseAverageType;
+            _currentExpenseAverageType = expenseAverageType;
             SubmitChanges();
         }
 
         public ExpenseTag GetCurrentExpenseAverageType()
         {
-            return _CurrentExpenseAverageType;
+            return _currentExpenseAverageType;
         }
 
         public List<ExpenseTag> GetExpenseAverageTypes()
@@ -253,8 +254,8 @@ namespace i_ExpenseAverager.Repositories
         public void SubmitChanges()
         {
             var doc = new XElement("expenseaveragedb");
-            doc.Add(new XElement("accountname", _AccountName));
-            doc.Add(new XElement("startdate", _StartDate.ToShortDateString()));
+            doc.Add(new XElement("accountname", _accountName));
+            doc.Add(new XElement("startdate", _startDate.ToShortDateString()));
 
             foreach (var item in ExpenseTypes.ToList().Concat(ExpenseLocations.ToList()).Concat(ExpenseOccasions.ToList()))
             {
@@ -268,15 +269,15 @@ namespace i_ExpenseAverager.Repositories
                 doc.Add(expenseAveragesList[i].AsXML());
             }
 
-            var tmpPath = Path.Combine(_DBDir, "temp.xdb");
+            var tmpPath = Path.Combine(_dbDir, "temp.xdb");
             doc.Save(tmpPath);
 
-            if (File.Exists(_DBPath))
+            if (File.Exists(_dbPath))
             {
-                File.Delete(_DBPath);
+                File.Delete(_dbPath);
             }
 
-            File.Move(tmpPath, _DBPath);
+            File.Move(tmpPath, _dbPath);
         }
     }
 }

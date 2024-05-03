@@ -2,7 +2,7 @@
 {
     public class ChainLink
     {
-        private Queue<object> nodes;
+        private Queue<object> _nodes;
 
         public int MaxNodes { get; }
         public ChainLink LinkDown { get; }
@@ -10,24 +10,24 @@
         public ChainLink(int nodesPerLink, ChainLink linkDown)
         {
             MaxNodes = nodesPerLink;
-            nodes = new Queue<object>();
+            _nodes = new Queue<object>();
             LinkDown = linkDown;
         }
 
         public void AddNode(object nodeToAdd)
         {
-            if (nodes.Count >= MaxNodes)
+            if (_nodes.Count >= MaxNodes)
             {
-                object pass = nodes.Dequeue();
+                object pass = _nodes.Dequeue();
                 LinkDown?.AddNode(pass);
             }
 
-            nodes.Enqueue(nodeToAdd);
+            _nodes.Enqueue(nodeToAdd);
         }
 
         public IEnumerable<object> GetNodes()
         {
-            return nodes.AsEnumerable();
+            return _nodes.AsEnumerable();
         }
     }
 

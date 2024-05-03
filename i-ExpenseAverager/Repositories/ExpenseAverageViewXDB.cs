@@ -10,14 +10,14 @@ namespace i_ExpenseAverager.Repositories
         public readonly int daysFor3Month = 92;
         public readonly int daysFor1Month = 31;
 
-        private ExpenseAverage2XDB _XDB;
+        private ExpenseAverage2XDB _xDB;
 
         public ExpenseAverageCategory CategoryAll { get; private set; }
         public List<ExpenseAverageCategory> CategoryList { get; private set; }
 
         public ExpenseAverageViewXDB(ExpenseAverage2XDB XDB)
         {
-            _XDB = XDB;
+            _xDB = XDB;
 
             RefreshCategoriesFromDB();
         }
@@ -26,7 +26,7 @@ namespace i_ExpenseAverager.Repositories
         {
             CategoryAll = new ExpenseAverageCategory("All");
 
-            foreach (ExpenseTag item in _XDB.ExpenseTypes.ToList())
+            foreach (ExpenseTag item in _xDB.ExpenseTypes.ToList())
             {
                 CategoryAll.Tags.Add(item);
             }
@@ -35,7 +35,7 @@ namespace i_ExpenseAverager.Repositories
 
             ExpenseAverageCategory newCategory;
 
-            foreach (ExpenseTag item in _XDB.ExpenseTypes.ToList())
+            foreach (ExpenseTag item in _xDB.ExpenseTypes.ToList())
             {
                 newCategory = new ExpenseAverageCategory(item.ExpenseTagName);
                 newCategory.Tags.Add(item);
@@ -52,9 +52,9 @@ namespace i_ExpenseAverager.Repositories
 
             DateTime varDate = DateTime.Today.AddDays(-daysFor12Month);
 
-            if (varDate < _XDB.StartDate)
+            if (varDate < _xDB.StartDate)
             {
-                varDate = _XDB.StartDate;
+                varDate = _xDB.StartDate;
             }
 
             DateTime tomorrow = DateTime.Today.AddDays(1);
@@ -63,7 +63,7 @@ namespace i_ExpenseAverager.Repositories
 
             while (varDate < tomorrow)
             {
-                daysexpenses = _XDB.ExpenseAverages.ToListForDate(varDate, category.Tags);
+                daysexpenses = _xDB.ExpenseAverages.ToListForDate(varDate, category.Tags);
                 expenseDay = new ExpenseAverageDay(varDate);
                 expenseDay.DaysExpenses = daysexpenses;
                 year.ChainHead.AddNode(expenseDay);

@@ -7,15 +7,9 @@ namespace i_ExpenseAverager.Repositories
 	/// </summary>
 	public class ExpenseTags
     {
-        private List<ExpenseTag> list = new List<ExpenseTag>();
+        private List<ExpenseTag> _list = new List<ExpenseTag>();
 
-        private string tagType;
-
-        public string TagType
-        {
-            get { return tagType; }
-            private set { tagType = value; }
-        }
+        public string TagType { get; private set; }
 
         public ExpenseTags(string tagType)
         {
@@ -28,13 +22,13 @@ namespace i_ExpenseAverager.Repositories
 
             if (item1 == null)
             {
-                item.ExpenseTagType = this.TagType;
-                list.Add(item);
+                item.ExpenseTagType = TagType;
+                _list.Add(item);
             }
 
             if (item.ExpenseTagID == 0)
             {
-                item.ExpenseTagID = list.Count();
+                item.ExpenseTagID = _list.Count();
             }
         }
 
@@ -46,23 +40,23 @@ namespace i_ExpenseAverager.Repositories
             if (item1 == null)
             {
                 item.ExpenseTagType = TagType;
-                list.Add(item);
+                _list.Add(item);
             }
 
             if (item.ExpenseTagID == 0)
             {
-                item.ExpenseTagID = list.Count();
+                item.ExpenseTagID = _list.Count();
             }
         }
 
         public void Remove(ExpenseTag item)
         {
-            list.Remove(item);
+            _list.Remove(item);
         }
 
         public void Remove(int itemID)
         {
-            list.Remove(list.Where(o => o.ExpenseTagID.Equals(itemID)).FirstOrDefault());
+            _list.Remove(_list.Where(o => o.ExpenseTagID.Equals(itemID)).FirstOrDefault());
         }
         /// <summary>
         /// Returns the first or default item that has the given ID
@@ -71,7 +65,7 @@ namespace i_ExpenseAverager.Repositories
         /// <returns></returns>
         public ExpenseTag ItemById(int itemID)
         {
-            return list.Where(o => o.ExpenseTagID.Equals(itemID)).FirstOrDefault();
+            return _list.Where(o => o.ExpenseTagID.Equals(itemID)).FirstOrDefault();
         }
         /// <summary>
         /// Returns the first or default item that has the given name
@@ -80,27 +74,27 @@ namespace i_ExpenseAverager.Repositories
         /// <returns></returns>
         public ExpenseTag ItemByName(string itemName)
         {
-            return list.Where(o => o.ExpenseTagName.Equals(itemName)).FirstOrDefault();
+            return _list.Where(o => o.ExpenseTagName.Equals(itemName)).FirstOrDefault();
         }
 
         public IEnumerable<ExpenseTag> Where(Func<ExpenseTag, bool> predicate)
         {
-            return list.Where(predicate);
+            return _list.Where(predicate);
         }
 
         public ExpenseTag FirstOrDefault(Func<ExpenseTag, bool> predicate)
         {
-            return list.FirstOrDefault(predicate);
+            return _list.FirstOrDefault(predicate);
         }
 
         public List<ExpenseTag> ToList()
         {
-            return list;
+            return _list;
         }
 
         public List<ExpenseTag> ToListByName()
         {
-            return list.OrderBy(o => o.ExpenseTagName).ToList();
+            return _list.OrderBy(o => o.ExpenseTagName).ToList();
         }
     }
 }
