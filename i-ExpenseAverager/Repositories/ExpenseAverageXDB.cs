@@ -13,8 +13,6 @@ namespace i_ExpenseAverager.Repositories
         private string _accountName;
         private DateTime _startDate;
 
-
-
         public string AccountName
         {
             get { return _accountName; }
@@ -24,8 +22,6 @@ namespace i_ExpenseAverager.Repositories
                 SubmitChanges();
             }
         }
-
-
 
         public DateTime StartDate
         {

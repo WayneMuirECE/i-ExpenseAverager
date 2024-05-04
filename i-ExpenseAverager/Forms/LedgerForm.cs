@@ -1,14 +1,14 @@
-﻿using i_ExpenseAverager.Models;
-using i_ExpenseAverager.Repositories;
+﻿using i_ExpenseAverager.Interfaces;
+using i_ExpenseAverager.Models;
 
 namespace i_ExpenseAverager.Forms
 {
     public partial class LedgerForm : Form
     {
-        private ExpenseAverageXDB _xDB;
+        private IExpenseAverageXDB _xDB;
         private ExpenseAverage _selectedExpence;
 
-        public LedgerForm(ExpenseAverageXDB XDB)
+        public LedgerForm(IExpenseAverageXDB XDB)
         {
             InitializeComponent();
             _xDB = XDB;

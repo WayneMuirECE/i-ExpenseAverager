@@ -1,21 +1,22 @@
-﻿using i_ExpenseAverager.Models;
+﻿using i_ExpenseAverager.Interfaces;
+using i_ExpenseAverager.Models;
 using i_ExpenseAverager.ViewModelLibrary;
 
 namespace i_ExpenseAverager.Repositories
 {
-    public class ExpenseAverageViewXDB
+    public class ExpenseAverageViewRepositoryModel
     {
-        public readonly int daysFor12Month = 367;
-        public readonly int daysFor6Month = 183;
-        public readonly int daysFor3Month = 92;
-        public readonly int daysFor1Month = 31;
+        public readonly int DaysFor12Month = 367;
+        public readonly int DaysFor6Month = 183;
+        public readonly int DaysFor3Month = 92;
+        public readonly int DaysFor1Month = 31;
 
-        private ExpenseAverageXDB _xDB;
+        private IExpenseAverageXDB _xDB;
 
         public ExpenseAverageCategory CategoryAll { get; private set; }
         public List<ExpenseAverageCategory> CategoryList { get; private set; }
 
-        public ExpenseAverageViewXDB(ExpenseAverageXDB XDB)
+        public ExpenseAverageViewRepositoryModel(IExpenseAverageXDB XDB)
         {
             _xDB = XDB;
 
@@ -45,12 +46,12 @@ namespace i_ExpenseAverager.Repositories
 
         public ChainClass RefreshDisplay(ExpenseAverageCategory category)
         {
-            ChainClass year = new ChainClass(1, daysFor12Month);
-            ChainClass sixMonth = new ChainClass(1, daysFor6Month);
-            ChainClass threeMonth = new ChainClass(1, daysFor3Month);
-            ChainClass oneMonth = new ChainClass(1, daysFor1Month);
+            ChainClass year = new ChainClass(1, DaysFor12Month);
+            ChainClass sixMonth = new ChainClass(1, DaysFor6Month);
+            ChainClass threeMonth = new ChainClass(1, DaysFor3Month);
+            ChainClass oneMonth = new ChainClass(1, DaysFor1Month);
 
-            DateTime varDate = DateTime.Today.AddDays(-daysFor12Month);
+            DateTime varDate = DateTime.Today.AddDays(-DaysFor12Month);
 
             if (varDate < _xDB.StartDate)
             {

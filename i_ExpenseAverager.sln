@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "i-ExpenseAverager", "i-ExpenseAverager\i-ExpenseAverager.csproj", "{FF3A8420-0DC3-423D-BAF0-487DBA4B2043}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "i_ExpenseAverager", "i-ExpenseAverager\i_ExpenseAverager.csproj", "{FF3A8420-0DC3-423D-BAF0-487DBA4B2043}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "i_ExpenseAveragerTests", "i_ExpenseAveragerTests\i_ExpenseAveragerTests.csproj", "{98549531-2F21-4F18-A017-1117A699398C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{FF3A8420-0DC3-423D-BAF0-487DBA4B2043}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF3A8420-0DC3-423D-BAF0-487DBA4B2043}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF3A8420-0DC3-423D-BAF0-487DBA4B2043}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98549531-2F21-4F18-A017-1117A699398C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98549531-2F21-4F18-A017-1117A699398C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98549531-2F21-4F18-A017-1117A699398C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98549531-2F21-4F18-A017-1117A699398C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

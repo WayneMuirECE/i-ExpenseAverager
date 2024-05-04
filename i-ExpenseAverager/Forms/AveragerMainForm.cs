@@ -1,3 +1,4 @@
+using i_ExpenseAverager.Interfaces;
 using i_ExpenseAverager.Models;
 using i_ExpenseAverager.Repositories;
 using i_ExpenseAverager.ViewModelLibrary;
@@ -6,15 +7,15 @@ namespace i_ExpenseAverager.Forms
 {
     public partial class AveragerMainForm : Form
     {
-        private ExpenseAverageXDB _xDB;
-        private ExpenseAverageViewXDB _viewXDB;
+        private IExpenseAverageXDB _xDB;
+        private ExpenseAverageViewRepositoryModel _viewXDB;
 
-        public AveragerMainForm()
+        public AveragerMainForm(IExpenseAverageXDB xDB)
         {
             InitializeComponent();
 
-            _xDB = new ExpenseAverageXDB();
-            _viewXDB = new ExpenseAverageViewXDB(_xDB);
+            _xDB = xDB;
+            _viewXDB = new ExpenseAverageViewRepositoryModel(_xDB);
         }
 
         private void AveragerMainForm_Load(object sender, EventArgs e)
@@ -113,7 +114,7 @@ namespace i_ExpenseAverager.Forms
 
                 gridRow.Cells[NoteColumn.Index].Value = types;
 
-                if (item.Date == DateTime.Today.AddDays(-(_viewXDB.daysFor1Month - 1)))
+                if (item.Date == DateTime.Today.AddDays(-(_viewXDB.DaysFor1Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
@@ -125,7 +126,7 @@ namespace i_ExpenseAverager.Forms
                         gridRow.Cells[NoteColumn.Index].Value = "1 Month";
                     }
                 }
-                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_viewXDB.daysFor3Month - 1)))
+                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_viewXDB.DaysFor3Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
@@ -137,7 +138,7 @@ namespace i_ExpenseAverager.Forms
                         gridRow.Cells[NoteColumn.Index].Value = "3 Months";
                     }
                 }
-                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_viewXDB.daysFor6Month - 1)))
+                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_viewXDB.DaysFor6Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
