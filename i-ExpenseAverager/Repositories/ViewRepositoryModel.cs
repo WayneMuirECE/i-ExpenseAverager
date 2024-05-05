@@ -4,7 +4,7 @@ using i_ExpenseAverager.ViewModelLibrary;
 
 namespace i_ExpenseAverager.Repositories
 {
-    public class ExpenseAverageViewRepositoryModel
+    public class ViewRepositoryModel
     {
         public readonly int DaysFor12Month = 367;
         public readonly int DaysFor6Month = 183;
@@ -16,7 +16,7 @@ namespace i_ExpenseAverager.Repositories
         public ExpenseAverageCategory CategoryAll { get; private set; }
         public List<ExpenseAverageCategory> CategoryList { get; private set; }
 
-        public ExpenseAverageViewRepositoryModel(IExpenseAverageXDB XDB)
+        public ViewRepositoryModel(IExpenseAverageXDB XDB)
         {
             _xDB = XDB;
 

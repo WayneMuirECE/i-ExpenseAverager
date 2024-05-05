@@ -8,14 +8,14 @@ namespace i_ExpenseAverager.Forms
     public partial class AveragerMainForm : Form
     {
         private IExpenseAverageXDB _xDB;
-        private ExpenseAverageViewRepositoryModel _viewXDB;
+        private ViewRepositoryModel _viewXDB;
 
         public AveragerMainForm(IExpenseAverageXDB xDB)
         {
             InitializeComponent();
 
             _xDB = xDB;
-            _viewXDB = new ExpenseAverageViewRepositoryModel(_xDB);
+            _viewXDB = new ViewRepositoryModel(_xDB);
         }
 
         private void AveragerMainForm_Load(object sender, EventArgs e)
