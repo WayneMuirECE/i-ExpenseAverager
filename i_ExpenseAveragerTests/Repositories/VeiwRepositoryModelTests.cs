@@ -1,6 +1,7 @@
 using i_ExpenseAverager.Interfaces;
 using i_ExpenseAverager.Models;
 using i_ExpenseAverager.Repositories;
+using i_ExpenseAverager.ViewModelLibrary;
 using Moq;
 
 namespace i_ExpenseAveragerTests.Repositories
@@ -30,8 +31,32 @@ namespace i_ExpenseAveragerTests.Repositories
         }
 
         [TestMethod]
-        public void TestMethod1()
+        public void RefreshCategoriesFromDB_ShouldPopulateCategoryAll()
         {
+            // Arrange
+            // already done in Initialize()
+
+            // Act
+            viewRepositoryModel.RefreshCategoriesFromDB();
+
+            // Assert
+            Assert.IsNotNull(viewRepositoryModel.CategoryAll);
+        }
+
+        [TestMethod]
+        public void RefreshDisplay_ShouldCalculateAveragesCorrectly()
+        {
+            // Arrange
+            var mockXDB = new Mock<IExpenseAverageXDB>();
+            var viewRepositoryModel = new ViewRepositoryModel(mockXDB.Object);
+            var category = new ExpenseAverageCategory("TestCategory");
+            // TODO: setup the tags for the category, the start date in the XDB, and the ExpenseAverages for the category and date
+
+            // Act
+            var result = viewRepositoryModel.RefreshDisplay(category);
+
+            // Assert
+            Assert.IsNotNull(result);
         }
     }
 }
