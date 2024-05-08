@@ -18,6 +18,8 @@ This project is a work in progress and not quite to v1.0 status. Expect more dev
 
 ## Installation
 
+This is a Windows only desktop application at the moment.
+
 1. Clone the repository: `git clone https://github.com/WayneMuirECE/i-ExpenseAverager.git`
 2. Navigate to the project directory: `cd your-repo`
 
