@@ -31,6 +31,21 @@ namespace i_ExpenseAveragerTests.Repositories
         }
 
         [TestMethod]
+        public void RefreshCategoriesFromDB_ShouldContainExpenseTypesAllAndGas()
+        {
+            // Arrange
+            // already done in Initialize()
+
+            // Act
+            viewRepositoryModel.RefreshCategoriesFromDB();
+
+            // Assert
+            Assert.AreEqual(2, viewRepositoryModel.CategoryList.Count);
+            Assert.AreEqual("All", viewRepositoryModel.CategoryList[0].Name);
+            Assert.AreEqual("Gas", viewRepositoryModel.CategoryList[1].Name);
+        }
+
+        [TestMethod]
         public void RefreshCategoriesFromDB_ShouldPopulateCategoryAll()
         {
             // Arrange
