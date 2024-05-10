@@ -8,14 +8,14 @@ namespace i_ExpenseAverager.Forms
     public partial class AveragerMainForm : Form
     {
         private IExpenseAverageXDB _xDB;
-        private ViewRepositoryModel _viewXDB;
+        private ViewRepositoryModel _viewModel;
 
         public AveragerMainForm(IExpenseAverageXDB xDB)
         {
             InitializeComponent();
 
             _xDB = xDB;
-            _viewXDB = new ViewRepositoryModel(_xDB);
+            _viewModel = new ViewRepositoryModel(_xDB);
         }
 
         private void AveragerMainForm_Load(object sender, EventArgs e)
@@ -23,13 +23,13 @@ namespace i_ExpenseAverager.Forms
             accountNameTextBox.Text = _xDB.AccountName;
             accountStartDateTimePicker.Text = _xDB.StartDate.ToShortDateString();
 
-            foreach (ExpenseAverageCategory item in _viewXDB.CategoryList)
+            foreach (ExpenseAverageCategory item in _viewModel.CategoryList)
             {
                 categoriesComboBox.Items.Add(item);
             }
 
             categoriesComboBox.SelectedIndex = 0;
-            RefreshRecordsDisplay(_viewXDB.CategoryAll);
+            RefreshRecordsDisplay(_viewModel.CategoryAll);
         }
 
         private void RefreshRecordsDisplay(ExpenseAverageCategory category)
@@ -37,7 +37,7 @@ namespace i_ExpenseAverager.Forms
             expenseAverageRecordDataGridView.Rows.Clear();
             DataGridViewRow gridRow;
 
-            ChainClass year = _viewXDB.RefreshDisplay(category);
+            ChainClass year = _viewModel.RefreshDisplay(category);
 
             yearAvgBox.Text = category.YearAvg;
             sixMonthAvgBox.Text = category.SixMonthAvg;
@@ -114,7 +114,7 @@ namespace i_ExpenseAverager.Forms
 
                 gridRow.Cells[NoteColumn.Index].Value = types;
 
-                if (item.Date == DateTime.Today.AddDays(-(_viewXDB.DaysFor1Month - 1)))
+                if (item.Date == DateTime.Today.AddDays(-(_viewModel.DaysFor1Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
@@ -126,7 +126,7 @@ namespace i_ExpenseAverager.Forms
                         gridRow.Cells[NoteColumn.Index].Value = "1 Month";
                     }
                 }
-                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_viewXDB.DaysFor3Month - 1)))
+                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_viewModel.DaysFor3Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
@@ -138,7 +138,7 @@ namespace i_ExpenseAverager.Forms
                         gridRow.Cells[NoteColumn.Index].Value = "3 Months";
                     }
                 }
-                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_viewXDB.DaysFor6Month - 1)))
+                else if (item.Date == DateTime.Parse(DateTime.Now.ToShortDateString()).AddDays(-(_viewModel.DaysFor6Month - 1)))
                 {
                     gridRow.Cells[AmountColumn.Index].Style.BackColor = Color.LightGray;
                     gridRow.Cells[NoteColumn.Index].Style.BackColor = Color.LightGray;
@@ -169,7 +169,7 @@ namespace i_ExpenseAverager.Forms
             int selectedIndex = categoriesComboBox.SelectedIndex;
             categoriesComboBox.Items.Clear();
 
-            foreach (ExpenseAverageCategory item in _viewXDB.CategoryList)
+            foreach (ExpenseAverageCategory item in _viewModel.CategoryList)
             {
                 categoriesComboBox.Items.Add(item);
             }
@@ -191,8 +191,8 @@ namespace i_ExpenseAverager.Forms
         {
             LedgerForm form = new LedgerForm(_xDB);
             form.ShowDialog();
-            _viewXDB.RefreshCategoriesFromDB();
-            RefreshRecordsDisplay(_viewXDB.CategoryAll);
+            _viewModel.RefreshCategoriesFromDB();
+            RefreshRecordsDisplay(_viewModel.CategoryAll);
         }
 
         private void saveAccountNameButton_Click(object sender, EventArgs e)
@@ -203,7 +203,7 @@ namespace i_ExpenseAverager.Forms
         private void saveStartDateButton_Click(object sender, EventArgs e)
         {
             _xDB.StartDate = DateTime.Parse(accountStartDateTimePicker.Text);
-            RefreshRecordsDisplay(_viewXDB.CategoryAll);
+            RefreshRecordsDisplay(_viewModel.CategoryAll);
         }
 
         private void viewCategoryButton_Click(object sender, EventArgs e)
