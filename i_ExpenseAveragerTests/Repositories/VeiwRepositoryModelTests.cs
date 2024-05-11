@@ -63,9 +63,19 @@ namespace i_ExpenseAveragerTests.Repositories
         {
             // Arrange
             var mockXDB = new Mock<IExpenseAverageXDB>();
+            mockXDB.Setup(m => m.StartDate).Returns(new DateTime(2024, 1, 1));
             var viewRepositoryModel = new ViewRepositoryModel(mockXDB.Object);
             var category = new ExpenseAverageCategory("TestCategory");
-            // TODO: setup the tags for the category, the start date in the XDB, and the ExpenseAverages for the category and date
+            ExpenseTag consumable = new ExpenseTag("Consumable");
+            consumable.ExpenseTagID = 1;
+            consumable.ExpenseTagType = "type";
+            ExpenseTag gasoline = new ExpenseTag("Gasoline");
+            gasoline.ExpenseTagID = 2;
+            gasoline.ExpenseTagType = "type";
+            ExpenseTag medical = new ExpenseTag("Medical");
+            medical.ExpenseTagID = 3;
+            medical.ExpenseTagType = "type";
+            // TODO: the ExpenseAverages for the category and date
 
             // Act
             var result = viewRepositoryModel.RefreshDisplay(category);
