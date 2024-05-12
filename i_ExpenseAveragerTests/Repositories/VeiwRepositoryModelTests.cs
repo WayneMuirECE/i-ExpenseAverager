@@ -62,9 +62,15 @@ namespace i_ExpenseAveragerTests.Repositories
         public void RefreshDisplay_ShouldCalculateAveragesCorrectly()
         {
             // Arrange
-            var mockXDB = new Mock<IExpenseAverageXDB>();
-            mockXDB.Setup(m => m.StartDate).Returns(new DateTime(2024, 1, 1));
-            var viewRepositoryModel = new ViewRepositoryModel(mockXDB.Object);
+            _mockXDB.Setup(m => m.StartDate).Returns(new DateTime(2024, 1, 1));
+            ExpenseAverages expenses = new ExpenseAverages();
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, new DateTime(2024, 1, 1), 15.24, ""));
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, new DateTime(2024, 1, 1), 15.24, ""));
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, new DateTime(2024, 1, 1), 15.24, ""));
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, new DateTime(2024, 1, 1), 15.24, ""));
+
+            _mockXDB.Setup(m => m.ExpenseAverages).Returns(expenses);
+            var viewRepositoryModel = new ViewRepositoryModel(_mockXDB.Object);
             var category = new ExpenseAverageCategory("TestCategory");
             ExpenseTag consumable = new ExpenseTag("Consumable");
             consumable.ExpenseTagID = 1;
@@ -75,7 +81,6 @@ namespace i_ExpenseAveragerTests.Repositories
             ExpenseTag medical = new ExpenseTag("Medical");
             medical.ExpenseTagID = 3;
             medical.ExpenseTagType = "type";
-            // TODO: the ExpenseAverages for the category and date
 
             // Act
             var result = viewRepositoryModel.RefreshDisplay(category);
