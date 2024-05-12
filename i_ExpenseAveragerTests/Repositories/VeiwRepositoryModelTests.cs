@@ -62,31 +62,36 @@ namespace i_ExpenseAveragerTests.Repositories
         public void RefreshDisplay_ShouldCalculateAveragesCorrectly()
         {
             // Arrange
-            _mockXDB.Setup(m => m.StartDate).Returns(new DateTime(2024, 1, 1));
+            _mockXDB.Setup(m => m.StartDate).Returns(DateTime.Now.AddDays(-5));
             ExpenseAverages expenses = new ExpenseAverages();
-            expenses.Add(new ExpenseAverage(1, 1, 1, 1, new DateTime(2024, 1, 1), 15.24, ""));
-            expenses.Add(new ExpenseAverage(1, 1, 1, 1, new DateTime(2024, 1, 1), 15.24, ""));
-            expenses.Add(new ExpenseAverage(1, 1, 1, 1, new DateTime(2024, 1, 1), 15.24, ""));
-            expenses.Add(new ExpenseAverage(1, 1, 1, 1, new DateTime(2024, 1, 1), 15.24, ""));
-
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, DateTime.Now.AddDays(-1), 15.24, ""));
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, DateTime.Now.AddDays(-1), 15.24, ""));
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, DateTime.Now.AddDays(-1), 15.24, ""));
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, DateTime.Now.AddDays(-1), 15.24, ""));
             _mockXDB.Setup(m => m.ExpenseAverages).Returns(expenses);
+           
             var viewRepositoryModel = new ViewRepositoryModel(_mockXDB.Object);
             var category = new ExpenseAverageCategory("TestCategory");
             ExpenseTag consumable = new ExpenseTag("Consumable");
             consumable.ExpenseTagID = 1;
             consumable.ExpenseTagType = "type";
+            category.Tags.Add(consumable);
             ExpenseTag gasoline = new ExpenseTag("Gasoline");
             gasoline.ExpenseTagID = 2;
             gasoline.ExpenseTagType = "type";
+            category.Tags.Add(gasoline);
             ExpenseTag medical = new ExpenseTag("Medical");
             medical.ExpenseTagID = 3;
             medical.ExpenseTagType = "type";
+            category.Tags.Add(medical);
 
             // Act
             var result = viewRepositoryModel.RefreshDisplay(category);
 
             // Assert
             Assert.IsNotNull(result);
+            Assert.AreEqual("$10.16", category.DailyAvg);
+            Assert.AreEqual("$71.12", category.MonthAvg);
         }
     }
 }
