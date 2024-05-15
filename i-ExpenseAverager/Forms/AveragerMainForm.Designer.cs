@@ -29,6 +29,13 @@
         private void InitializeComponent()
         {
             expenseAverageRecordDataGridView = new DataGridView();
+            ObjectColumn = new DataGridViewTextBoxColumn();
+            DayColumn = new DataGridViewTextBoxColumn();
+            DateColumn = new DataGridViewTextBoxColumn();
+            AmountColumn = new DataGridViewTextBoxColumn();
+            ExpenseTypeColumn = new DataGridViewTextBoxColumn();
+            LocationColumn = new DataGridViewTextBoxColumn();
+            NoteColumn = new DataGridViewTextBoxColumn();
             groupBox1 = new GroupBox();
             label7 = new Label();
             totalAvgBox = new TextBox();
@@ -52,19 +59,9 @@
             saveStartDateButton = new Button();
             groupBox3 = new GroupBox();
             expenseTypeListBox = new ListBox();
-            clearButton = new Button();
             categoriesComboBox = new ComboBox();
             viewCategoryButton = new Button();
-            addButton = new Button();
-            listBox1 = new ListBox();
             label9 = new Label();
-            ObjectColumn = new DataGridViewTextBoxColumn();
-            DayColumn = new DataGridViewTextBoxColumn();
-            DateColumn = new DataGridViewTextBoxColumn();
-            AmountColumn = new DataGridViewTextBoxColumn();
-            ExpenseTypeColumn = new DataGridViewTextBoxColumn();
-            LocationColumn = new DataGridViewTextBoxColumn();
-            NoteColumn = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)expenseAverageRecordDataGridView).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -84,6 +81,55 @@
             expenseAverageRecordDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             expenseAverageRecordDataGridView.Size = new Size(738, 507);
             expenseAverageRecordDataGridView.TabIndex = 27;
+            // 
+            // ObjectColumn
+            // 
+            ObjectColumn.HeaderText = "Object";
+            ObjectColumn.Name = "ObjectColumn";
+            ObjectColumn.ReadOnly = true;
+            ObjectColumn.Width = 5;
+            // 
+            // DayColumn
+            // 
+            DayColumn.HeaderText = "Day";
+            DayColumn.Name = "DayColumn";
+            DayColumn.ReadOnly = true;
+            DayColumn.Width = 80;
+            // 
+            // DateColumn
+            // 
+            DateColumn.HeaderText = "Date";
+            DateColumn.Name = "DateColumn";
+            DateColumn.ReadOnly = true;
+            DateColumn.Width = 80;
+            // 
+            // AmountColumn
+            // 
+            AmountColumn.HeaderText = "Amount";
+            AmountColumn.Name = "AmountColumn";
+            AmountColumn.ReadOnly = true;
+            AmountColumn.Width = 60;
+            // 
+            // ExpenseTypeColumn
+            // 
+            ExpenseTypeColumn.HeaderText = "Expense Type";
+            ExpenseTypeColumn.Name = "ExpenseTypeColumn";
+            ExpenseTypeColumn.ReadOnly = true;
+            ExpenseTypeColumn.Width = 155;
+            // 
+            // LocationColumn
+            // 
+            LocationColumn.HeaderText = "Location";
+            LocationColumn.Name = "LocationColumn";
+            LocationColumn.ReadOnly = true;
+            LocationColumn.Width = 140;
+            // 
+            // NoteColumn
+            // 
+            NoteColumn.HeaderText = "Note";
+            NoteColumn.Name = "NoteColumn";
+            NoteColumn.ReadOnly = true;
+            NoteColumn.Width = 155;
             // 
             // groupBox1
             // 
@@ -315,11 +361,8 @@
             // 
             groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupBox3.Controls.Add(expenseTypeListBox);
-            groupBox3.Controls.Add(clearButton);
             groupBox3.Controls.Add(categoriesComboBox);
             groupBox3.Controls.Add(viewCategoryButton);
-            groupBox3.Controls.Add(addButton);
-            groupBox3.Controls.Add(listBox1);
             groupBox3.Controls.Add(label9);
             groupBox3.Location = new Point(759, 133);
             groupBox3.Margin = new Padding(4, 3, 4, 3);
@@ -341,17 +384,6 @@
             expenseTypeListBox.Size = new Size(201, 139);
             expenseTypeListBox.TabIndex = 40;
             // 
-            // clearButton
-            // 
-            clearButton.Location = new Point(327, 106);
-            clearButton.Margin = new Padding(4, 3, 4, 3);
-            clearButton.Name = "clearButton";
-            clearButton.Size = new Size(88, 27);
-            clearButton.TabIndex = 39;
-            clearButton.Text = "Clear";
-            clearButton.UseVisualStyleBackColor = true;
-            clearButton.Click += clearButton_Click;
-            // 
             // categoriesComboBox
             // 
             categoriesComboBox.FormattingEnabled = true;
@@ -372,27 +404,6 @@
             viewCategoryButton.UseVisualStyleBackColor = true;
             viewCategoryButton.Click += viewCategoryButton_Click;
             // 
-            // addButton
-            // 
-            addButton.Location = new Point(121, 106);
-            addButton.Margin = new Padding(4, 3, 4, 3);
-            addButton.Name = "addButton";
-            addButton.Size = new Size(88, 27);
-            addButton.TabIndex = 34;
-            addButton.Text = "Add ->";
-            addButton.UseVisualStyleBackColor = true;
-            addButton.Click += addButton_Click;
-            // 
-            // listBox1
-            // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(214, 140);
-            listBox1.Margin = new Padding(4, 3, 4, 3);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(201, 139);
-            listBox1.TabIndex = 30;
-            // 
             // label9
             // 
             label9.AutoSize = true;
@@ -402,55 +413,6 @@
             label9.Size = new Size(77, 15);
             label9.TabIndex = 29;
             label9.Text = "Expense Type";
-            // 
-            // ObjectColumn
-            // 
-            ObjectColumn.HeaderText = "Object";
-            ObjectColumn.Name = "ObjectColumn";
-            ObjectColumn.ReadOnly = true;
-            ObjectColumn.Width = 5;
-            // 
-            // DayColumn
-            // 
-            DayColumn.HeaderText = "Day";
-            DayColumn.Name = "DayColumn";
-            DayColumn.ReadOnly = true;
-            DayColumn.Width = 80;
-            // 
-            // DateColumn
-            // 
-            DateColumn.HeaderText = "Date";
-            DateColumn.Name = "DateColumn";
-            DateColumn.ReadOnly = true;
-            DateColumn.Width = 80;
-            // 
-            // AmountColumn
-            // 
-            AmountColumn.HeaderText = "Amount";
-            AmountColumn.Name = "AmountColumn";
-            AmountColumn.ReadOnly = true;
-            AmountColumn.Width = 60;
-            // 
-            // ExpenseTypeColumn
-            // 
-            ExpenseTypeColumn.HeaderText = "Expense Type";
-            ExpenseTypeColumn.Name = "ExpenseTypeColumn";
-            ExpenseTypeColumn.ReadOnly = true;
-            ExpenseTypeColumn.Width = 155;
-            // 
-            // LocationColumn
-            // 
-            LocationColumn.HeaderText = "Location";
-            LocationColumn.Name = "LocationColumn";
-            LocationColumn.ReadOnly = true;
-            LocationColumn.Width = 140;
-            // 
-            // NoteColumn
-            // 
-            NoteColumn.HeaderText = "Note";
-            NoteColumn.Name = "NoteColumn";
-            NoteColumn.ReadOnly = true;
-            NoteColumn.Width = 155;
             // 
             // AveragerMainForm
             // 
@@ -500,11 +462,8 @@
         private Button saveStartDateButton;
         private GroupBox groupBox3;
         private ListBox expenseTypeListBox;
-        private Button clearButton;
         private ComboBox categoriesComboBox;
         private Button viewCategoryButton;
-        private Button addButton;
-        private ListBox listBox1;
         private Label label9;
         private DataGridViewTextBoxColumn ObjectColumn;
         private DataGridViewTextBoxColumn DayColumn;

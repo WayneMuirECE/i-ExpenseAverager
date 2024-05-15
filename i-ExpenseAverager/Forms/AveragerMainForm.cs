@@ -210,25 +210,5 @@ namespace i_ExpenseAverager.Forms
         {
             RefreshRecordsDisplay((ExpenseAverageCategory)categoriesComboBox.SelectedItem);
         }
-
-        private void addButton_Click(object sender, EventArgs e)
-        {
-            ListBox.SelectedObjectCollection collection = expenseTypeListBox.SelectedItems;
-            ExpenseTag selected;
-
-            foreach (object item in collection)
-            {
-                selected = (ExpenseTag)item;
-                listBox1.Items.Add(selected);
-            }
-
-            expenseTypeListBox.Refresh();
-            listBox1.Refresh();
-        }
-
-        private void clearButton_Click(object sender, EventArgs e)
-        {
-            listBox1.Items.Clear();
-        }
     }
 }
