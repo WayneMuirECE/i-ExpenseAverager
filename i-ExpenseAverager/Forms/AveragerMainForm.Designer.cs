@@ -62,6 +62,8 @@
             categoriesComboBox = new ComboBox();
             viewCategoryButton = new Button();
             label9 = new Label();
+            locationComboBox = new ComboBox();
+            viewLocationButton = new Button();
             ((System.ComponentModel.ISupportInitialize)expenseAverageRecordDataGridView).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -360,6 +362,8 @@
             // groupBox3
             // 
             groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            groupBox3.Controls.Add(locationComboBox);
+            groupBox3.Controls.Add(viewLocationButton);
             groupBox3.Controls.Add(expenseTypeListBox);
             groupBox3.Controls.Add(categoriesComboBox);
             groupBox3.Controls.Add(viewCategoryButton);
@@ -413,6 +417,25 @@
             label9.Size = new Size(77, 15);
             label9.TabIndex = 29;
             label9.Text = "Expense Type";
+            // 
+            // locationComboBox
+            // 
+            locationComboBox.FormattingEnabled = true;
+            locationComboBox.Location = new Point(10, 55);
+            locationComboBox.Margin = new Padding(4, 3, 4, 3);
+            locationComboBox.Name = "locationComboBox";
+            locationComboBox.Size = new Size(276, 23);
+            locationComboBox.TabIndex = 42;
+            // 
+            // viewLocationButton
+            // 
+            viewLocationButton.Location = new Point(294, 53);
+            viewLocationButton.Margin = new Padding(4, 3, 4, 3);
+            viewLocationButton.Name = "viewLocationButton";
+            viewLocationButton.Size = new Size(121, 27);
+            viewLocationButton.TabIndex = 41;
+            viewLocationButton.Text = "View Location";
+            viewLocationButton.UseVisualStyleBackColor = true;
             // 
             // AveragerMainForm
             // 
@@ -472,5 +495,7 @@
         private DataGridViewTextBoxColumn ExpenseTypeColumn;
         private DataGridViewTextBoxColumn LocationColumn;
         private DataGridViewTextBoxColumn NoteColumn;
+        private ComboBox locationComboBox;
+        private Button viewLocationButton;
     }
 }
