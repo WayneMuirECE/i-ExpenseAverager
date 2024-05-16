@@ -119,6 +119,58 @@ namespace i_ExpenseAverager.Repositories
             return year;
         }
 
+        public ChainClass RefreshLocationDisplay(ExpenseAverageLocation location)
+        {
+            ChainClass year = new ChainClass(1, DaysFor12Month);
+            ChainClass sixMonth = new ChainClass(1, DaysFor6Month);
+            ChainClass threeMonth = new ChainClass(1, DaysFor3Month);
+            ChainClass oneMonth = new ChainClass(1, DaysFor1Month);
+
+            DateTime varDate = DateTime.Today.AddDays(-DaysFor12Month);
+
+            if (varDate < _xDB.StartDate)
+            {
+                varDate = _xDB.StartDate;
+            }
+
+            DateTime tomorrow = DateTime.Today.AddDays(1);
+            List<ExpenseAverage> daysexpenses;
+            ExpenseAverageDay expenseDay;
+
+            while (varDate < tomorrow)
+            {
+                daysexpenses = _xDB.ExpenseAverages.ToListForDate(varDate, location.Tags);
+                expenseDay = new ExpenseAverageDay(varDate);
+                expenseDay.DaysExpenses = daysexpenses;
+                year.ChainHead.AddNode(expenseDay);
+                varDate = varDate.AddDays(1);
+            }
+
+            double average = CalculateAverage(year, sixMonth);
+            double dailyAverage = average;
+            location.YearAvg = "$" + average.ToString("0.00");
+
+            average = CalculateAverage(sixMonth, threeMonth);
+
+            dailyAverage += average;
+            location.SixMonthAvg = "$" + average.ToString("0.00");
+
+            average = CalculateAverage(threeMonth, oneMonth);
+            dailyAverage += average;
+            location.ThreeMonthAvg = "$" + average.ToString("0.00");
+
+            average = CalculateAverage(oneMonth);
+            dailyAverage += average;
+            location.MonthAvg = "$" + average.ToString("0.00");
+
+            dailyAverage = (dailyAverage / 4);
+            location.TotalAvg = "$" + dailyAverage.ToString("0.00");
+            dailyAverage = dailyAverage / 7;
+            location.DailyAvg = "$" + dailyAverage.ToString("0.00");
+
+            return year;
+        }
+
         private double CalculateAverage(ChainClass from, ChainClass to = null)
         {
             double total = 0.0;
