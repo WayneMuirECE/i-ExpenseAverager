@@ -183,8 +183,6 @@ namespace i_ExpenseAverager.Forms
             {
                 expenseTypeListBox.Items.Add(item);
             }
-
-            listBox1.Items.Clear();
         }
 
         private void expenseSettingsButton_Click(object sender, EventArgs e)
@@ -209,6 +207,11 @@ namespace i_ExpenseAverager.Forms
         private void viewCategoryButton_Click(object sender, EventArgs e)
         {
             RefreshRecordsDisplay((ExpenseAverageCategory)categoriesComboBox.SelectedItem);
+        }
+
+        private void viewLocationButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

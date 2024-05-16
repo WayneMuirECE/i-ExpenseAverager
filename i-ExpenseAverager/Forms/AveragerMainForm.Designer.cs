@@ -436,6 +436,7 @@
             viewLocationButton.TabIndex = 41;
             viewLocationButton.Text = "View Location";
             viewLocationButton.UseVisualStyleBackColor = true;
+            viewLocationButton.Click += viewLocationButton_Click;
             // 
             // AveragerMainForm
             // 

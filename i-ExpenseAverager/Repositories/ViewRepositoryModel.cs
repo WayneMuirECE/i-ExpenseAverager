@@ -14,7 +14,9 @@ namespace i_ExpenseAverager.Repositories
         private IExpenseAverageXDB _xDB;
 
         public ExpenseAverageCategory CategoryAll { get; private set; }
+        public ExpenseAverageLocation LocationAll { get; private set; }
         public List<ExpenseAverageCategory> CategoryList { get; private set; }
+        public List<ExpenseAverageLocation> LocationList { get; private set; }
 
         public ViewRepositoryModel(IExpenseAverageXDB XDB)
         {
@@ -41,6 +43,27 @@ namespace i_ExpenseAverager.Repositories
                 newCategory = new ExpenseAverageCategory(item.ExpenseTagName);
                 newCategory.Tags.Add(item);
                 CategoryList.Add(newCategory);
+            }
+        }
+
+        public void RefreshLocationsFromDB()
+        {
+            LocationAll = new ExpenseAverageLocation("All");
+
+            foreach (ExpenseTag item in _xDB.ExpenseLocations.ToList())
+            {
+                LocationAll.Tags.Add(item);
+            }
+
+            LocationList = new List<ExpenseAverageLocation> { LocationAll };
+
+            ExpenseAverageLocation newLocation;
+
+            foreach (ExpenseTag item in _xDB.ExpenseLocations.ToList())
+            {
+                newLocation = new ExpenseAverageLocation(item.ExpenseTagName);
+                newLocation.Tags.Add(item);
+                LocationList.Add(newLocation);
             }
         }
 
