@@ -2,7 +2,7 @@
 
 namespace i_ExpenseAverager.ViewModelLibrary
 {
-    public class ExpenseAverageCategory
+    public class CalendarAveragesGroup
     {
         public string Name { get; set; }
         public List<ExpenseTag> Tags { get; } = new List<ExpenseTag>();
@@ -13,7 +13,7 @@ namespace i_ExpenseAverager.ViewModelLibrary
         public string DailyAvg { get; set; }
         public string TotalAvg { get; set; }
 
-        public ExpenseAverageCategory(string name)
+        public CalendarAveragesGroup(string name)
         {
             Name = name;
         }

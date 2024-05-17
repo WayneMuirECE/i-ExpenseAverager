@@ -23,7 +23,7 @@ namespace i_ExpenseAverager.Forms
             accountNameTextBox.Text = _xDB.AccountName;
             accountStartDateTimePicker.Text = _xDB.StartDate.ToShortDateString();
 
-            foreach (ExpenseAverageCategory item in _viewModel.CategoryList)
+            foreach (CalendarAveragesGroup item in _viewModel.CategoryList)
             {
                 categoriesComboBox.Items.Add(item);
             }
@@ -32,7 +32,7 @@ namespace i_ExpenseAverager.Forms
             RefreshRecordsDisplay(_viewModel.CategoryAll);
         }
 
-        private void RefreshRecordsDisplay(ExpenseAverageCategory category)
+        private void RefreshRecordsDisplay(CalendarAveragesGroup category)
         {
             expenseAverageRecordDataGridView.Rows.Clear();
             DataGridViewRow gridRow;
@@ -169,7 +169,7 @@ namespace i_ExpenseAverager.Forms
             int selectedIndex = categoriesComboBox.SelectedIndex;
             categoriesComboBox.Items.Clear();
 
-            foreach (ExpenseAverageCategory item in _viewModel.CategoryList)
+            foreach (CalendarAveragesGroup item in _viewModel.CategoryList)
             {
                 categoriesComboBox.Items.Add(item);
             }
@@ -206,7 +206,7 @@ namespace i_ExpenseAverager.Forms
 
         private void viewCategoryButton_Click(object sender, EventArgs e)
         {
-            RefreshRecordsDisplay((ExpenseAverageCategory)categoriesComboBox.SelectedItem);
+            RefreshRecordsDisplay((CalendarAveragesGroup)categoriesComboBox.SelectedItem);
         }
 
         private void viewLocationButton_Click(object sender, EventArgs e)

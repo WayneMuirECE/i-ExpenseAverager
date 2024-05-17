@@ -71,7 +71,7 @@ namespace i_ExpenseAveragerTests.Repositories
             _mockXDB.Setup(m => m.ExpenseAverages).Returns(expenses);
            
             var viewRepositoryModel = new ViewRepositoryModel(_mockXDB.Object);
-            var category = new ExpenseAverageCategory("TestCategory");
+            var category = new CalendarAveragesGroup("TestCategory");
             ExpenseTag consumable = new ExpenseTag("Consumable");
             consumable.ExpenseTagID = 1;
             consumable.ExpenseTagType = "type";
@@ -107,7 +107,7 @@ namespace i_ExpenseAveragerTests.Repositories
             _mockXDB.Setup(m => m.ExpenseAverages).Returns(expenses);
 
             var viewRepositoryModel = new ViewRepositoryModel(_mockXDB.Object);
-            var category = new ExpenseAverageCategory("TestCategory");
+            var category = new CalendarAveragesGroup("TestCategory");
             ExpenseTag consumable = new ExpenseTag("Consumable");
             consumable.ExpenseTagID = 1;
             consumable.ExpenseTagType = "type";
