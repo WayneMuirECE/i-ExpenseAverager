@@ -62,7 +62,7 @@
             categoriesComboBox = new ComboBox();
             viewCategoryButton = new Button();
             label9 = new Label();
-            locationComboBox = new ComboBox();
+            locationsComboBox = new ComboBox();
             viewLocationButton = new Button();
             ((System.ComponentModel.ISupportInitialize)expenseAverageRecordDataGridView).BeginInit();
             groupBox1.SuspendLayout();
@@ -362,7 +362,7 @@
             // groupBox3
             // 
             groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            groupBox3.Controls.Add(locationComboBox);
+            groupBox3.Controls.Add(locationsComboBox);
             groupBox3.Controls.Add(viewLocationButton);
             groupBox3.Controls.Add(expenseTypeListBox);
             groupBox3.Controls.Add(categoriesComboBox);
@@ -420,12 +420,12 @@
             // 
             // locationComboBox
             // 
-            locationComboBox.FormattingEnabled = true;
-            locationComboBox.Location = new Point(10, 55);
-            locationComboBox.Margin = new Padding(4, 3, 4, 3);
-            locationComboBox.Name = "locationComboBox";
-            locationComboBox.Size = new Size(276, 23);
-            locationComboBox.TabIndex = 42;
+            locationsComboBox.FormattingEnabled = true;
+            locationsComboBox.Location = new Point(10, 55);
+            locationsComboBox.Margin = new Padding(4, 3, 4, 3);
+            locationsComboBox.Name = "locationComboBox";
+            locationsComboBox.Size = new Size(276, 23);
+            locationsComboBox.TabIndex = 42;
             // 
             // viewLocationButton
             // 
@@ -496,7 +496,7 @@
         private DataGridViewTextBoxColumn ExpenseTypeColumn;
         private DataGridViewTextBoxColumn LocationColumn;
         private DataGridViewTextBoxColumn NoteColumn;
-        private ComboBox locationComboBox;
+        private ComboBox locationsComboBox;
         private Button viewLocationButton;
     }
 }

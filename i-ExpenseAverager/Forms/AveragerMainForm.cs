@@ -162,6 +162,7 @@ namespace i_ExpenseAverager.Forms
             expenseAverageRecordDataGridView.Rows.AddRange(rows.ToArray());
             expenseAverageRecordDataGridView.FirstDisplayedScrollingRowIndex = expenseAverageRecordDataGridView.RowCount - 1;
             RefreshCategories();
+            RefreshLocations();
         }
 
         private void RefreshCategories()
@@ -187,23 +188,16 @@ namespace i_ExpenseAverager.Forms
 
         private void RefreshLocations()
         {
-            int selectedIndex = locationComboBox.SelectedIndex;
-            locationComboBox.Items.Clear();
+            int selectedIndex = locationsComboBox.SelectedIndex;
+            locationsComboBox.Items.Clear();
 
-            foreach (CalendarAveragesGroup item in _viewModel.CategoryList)
+            foreach (CalendarAveragesGroup item in _viewModel.LocationList)
             {
-                categoriesComboBox.Items.Add(item);
+                locationsComboBox.Items.Add(item);
             }
 
-            categoriesComboBox.SelectedIndex = selectedIndex;
-            categoriesComboBox.Refresh();
-
-            expenseTypeListBox.Items.Clear();
-
-            foreach (ExpenseTag item in _xDB.ExpenseTypes.ToList())
-            {
-                expenseTypeListBox.Items.Add(item);
-            }
+            locationsComboBox.SelectedIndex = selectedIndex;
+            locationsComboBox.Refresh();
         }
 
         private void expenseSettingsButton_Click(object sender, EventArgs e)
@@ -233,7 +227,7 @@ namespace i_ExpenseAverager.Forms
 
         private void viewLocationButton_Click(object sender, EventArgs e)
         {
-
+            RefreshRecordsDisplay((CalendarAveragesGroup)locationsComboBox.SelectedItem);
         }
     }
 }
