@@ -23,6 +23,7 @@ namespace i_ExpenseAverager.Repositories
             _xDB = XDB;
 
             RefreshCategoriesFromDB();
+            RefreshLocationsFromDB();
         }
 
         public void RefreshCategoriesFromDB()

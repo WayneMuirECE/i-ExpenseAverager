@@ -185,11 +185,33 @@ namespace i_ExpenseAverager.Forms
             }
         }
 
+        private void RefreshLocations()
+        {
+            int selectedIndex = locationComboBox.SelectedIndex;
+            locationComboBox.Items.Clear();
+
+            foreach (CalendarAveragesGroup item in _viewModel.CategoryList)
+            {
+                categoriesComboBox.Items.Add(item);
+            }
+
+            categoriesComboBox.SelectedIndex = selectedIndex;
+            categoriesComboBox.Refresh();
+
+            expenseTypeListBox.Items.Clear();
+
+            foreach (ExpenseTag item in _xDB.ExpenseTypes.ToList())
+            {
+                expenseTypeListBox.Items.Add(item);
+            }
+        }
+
         private void expenseSettingsButton_Click(object sender, EventArgs e)
         {
             LedgerForm form = new LedgerForm(_xDB);
             form.ShowDialog();
             _viewModel.RefreshCategoriesFromDB();
+            _viewModel.RefreshLocationsFromDB();
             RefreshRecordsDisplay(_viewModel.CategoryAll);
         }
 
