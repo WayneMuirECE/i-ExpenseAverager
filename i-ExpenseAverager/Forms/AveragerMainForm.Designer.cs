@@ -58,12 +58,10 @@
             label1 = new Label();
             saveStartDateButton = new Button();
             groupBox3 = new GroupBox();
-            expenseTypeListBox = new ListBox();
-            categoriesComboBox = new ComboBox();
-            viewCategoryButton = new Button();
-            label9 = new Label();
             locationsComboBox = new ComboBox();
             viewLocationButton = new Button();
+            typesComboBox = new ComboBox();
+            viewTypeButton = new Button();
             ((System.ComponentModel.ISupportInitialize)expenseAverageRecordDataGridView).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
@@ -364,10 +362,8 @@
             groupBox3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupBox3.Controls.Add(locationsComboBox);
             groupBox3.Controls.Add(viewLocationButton);
-            groupBox3.Controls.Add(expenseTypeListBox);
-            groupBox3.Controls.Add(categoriesComboBox);
-            groupBox3.Controls.Add(viewCategoryButton);
-            groupBox3.Controls.Add(label9);
+            groupBox3.Controls.Add(typesComboBox);
+            groupBox3.Controls.Add(viewTypeButton);
             groupBox3.Location = new Point(759, 133);
             groupBox3.Margin = new Padding(4, 3, 4, 3);
             groupBox3.Name = "groupBox3";
@@ -377,53 +373,12 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Groups";
             // 
-            // expenseTypeListBox
-            // 
-            expenseTypeListBox.FormattingEnabled = true;
-            expenseTypeListBox.ItemHeight = 15;
-            expenseTypeListBox.Location = new Point(7, 140);
-            expenseTypeListBox.Margin = new Padding(4, 3, 4, 3);
-            expenseTypeListBox.Name = "expenseTypeListBox";
-            expenseTypeListBox.SelectionMode = SelectionMode.MultiSimple;
-            expenseTypeListBox.Size = new Size(201, 139);
-            expenseTypeListBox.TabIndex = 40;
-            // 
-            // categoriesComboBox
-            // 
-            categoriesComboBox.FormattingEnabled = true;
-            categoriesComboBox.Location = new Point(10, 22);
-            categoriesComboBox.Margin = new Padding(4, 3, 4, 3);
-            categoriesComboBox.Name = "categoriesComboBox";
-            categoriesComboBox.Size = new Size(276, 23);
-            categoriesComboBox.TabIndex = 37;
-            // 
-            // viewCategoryButton
-            // 
-            viewCategoryButton.Location = new Point(294, 20);
-            viewCategoryButton.Margin = new Padding(4, 3, 4, 3);
-            viewCategoryButton.Name = "viewCategoryButton";
-            viewCategoryButton.Size = new Size(121, 27);
-            viewCategoryButton.TabIndex = 36;
-            viewCategoryButton.Text = "View Category";
-            viewCategoryButton.UseVisualStyleBackColor = true;
-            viewCategoryButton.Click += viewCategoryButton_Click;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Location = new Point(8, 112);
-            label9.Margin = new Padding(4, 0, 4, 0);
-            label9.Name = "label9";
-            label9.Size = new Size(77, 15);
-            label9.TabIndex = 29;
-            label9.Text = "Expense Type";
-            // 
-            // locationComboBox
+            // locationsComboBox
             // 
             locationsComboBox.FormattingEnabled = true;
             locationsComboBox.Location = new Point(10, 55);
             locationsComboBox.Margin = new Padding(4, 3, 4, 3);
-            locationsComboBox.Name = "locationComboBox";
+            locationsComboBox.Name = "locationsComboBox";
             locationsComboBox.Size = new Size(276, 23);
             locationsComboBox.TabIndex = 42;
             // 
@@ -437,6 +392,26 @@
             viewLocationButton.Text = "View Location";
             viewLocationButton.UseVisualStyleBackColor = true;
             viewLocationButton.Click += viewLocationButton_Click;
+            // 
+            // typesComboBox
+            // 
+            typesComboBox.FormattingEnabled = true;
+            typesComboBox.Location = new Point(10, 22);
+            typesComboBox.Margin = new Padding(4, 3, 4, 3);
+            typesComboBox.Name = "typesComboBox";
+            typesComboBox.Size = new Size(276, 23);
+            typesComboBox.TabIndex = 37;
+            // 
+            // viewTypeButton
+            // 
+            viewTypeButton.Location = new Point(294, 20);
+            viewTypeButton.Margin = new Padding(4, 3, 4, 3);
+            viewTypeButton.Name = "viewTypeButton";
+            viewTypeButton.Size = new Size(121, 27);
+            viewTypeButton.TabIndex = 36;
+            viewTypeButton.Text = "View Type";
+            viewTypeButton.UseVisualStyleBackColor = true;
+            viewTypeButton.Click += viewTypeButton_Click;
             // 
             // AveragerMainForm
             // 
@@ -456,7 +431,6 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
-            groupBox3.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -485,10 +459,8 @@
         private Label label1;
         private Button saveStartDateButton;
         private GroupBox groupBox3;
-        private ListBox expenseTypeListBox;
-        private ComboBox categoriesComboBox;
-        private Button viewCategoryButton;
-        private Label label9;
+        private ComboBox typesComboBox;
+        private Button viewTypeButton;
         private DataGridViewTextBoxColumn ObjectColumn;
         private DataGridViewTextBoxColumn DayColumn;
         private DataGridViewTextBoxColumn DateColumn;

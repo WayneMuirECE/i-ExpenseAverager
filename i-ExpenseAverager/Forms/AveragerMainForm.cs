@@ -25,10 +25,10 @@ namespace i_ExpenseAverager.Forms
 
             foreach (CalendarAveragesGroup item in _viewModel.CategoryList)
             {
-                categoriesComboBox.Items.Add(item);
+                typesComboBox.Items.Add(item);
             }
 
-            categoriesComboBox.SelectedIndex = 0;
+            typesComboBox.SelectedIndex = 0;
             RefreshRecordsDisplay(_viewModel.CategoryAll);
         }
 
@@ -167,23 +167,16 @@ namespace i_ExpenseAverager.Forms
 
         private void RefreshCategories()
         {
-            int selectedIndex = categoriesComboBox.SelectedIndex;
-            categoriesComboBox.Items.Clear();
+            int selectedIndex = typesComboBox.SelectedIndex;
+            typesComboBox.Items.Clear();
 
             foreach (CalendarAveragesGroup item in _viewModel.CategoryList)
             {
-                categoriesComboBox.Items.Add(item);
+                typesComboBox.Items.Add(item);
             }
 
-            categoriesComboBox.SelectedIndex = selectedIndex;
-            categoriesComboBox.Refresh();
-
-            expenseTypeListBox.Items.Clear();
-
-            foreach (ExpenseTag item in _xDB.ExpenseTypes.ToList())
-            {
-                expenseTypeListBox.Items.Add(item);
-            }
+            typesComboBox.SelectedIndex = selectedIndex;
+            typesComboBox.Refresh();
         }
 
         private void RefreshLocations()
@@ -220,9 +213,9 @@ namespace i_ExpenseAverager.Forms
             RefreshRecordsDisplay(_viewModel.CategoryAll);
         }
 
-        private void viewCategoryButton_Click(object sender, EventArgs e)
+        private void viewTypeButton_Click(object sender, EventArgs e)
         {
-            RefreshRecordsDisplay((CalendarAveragesGroup)categoriesComboBox.SelectedItem);
+            RefreshRecordsDisplay((CalendarAveragesGroup)typesComboBox.SelectedItem);
         }
 
         private void viewLocationButton_Click(object sender, EventArgs e)
