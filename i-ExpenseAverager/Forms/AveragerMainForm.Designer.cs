@@ -62,10 +62,12 @@
             viewLocationButton = new Button();
             typesComboBox = new ComboBox();
             viewTypeButton = new Button();
+            groupBox4 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)expenseAverageRecordDataGridView).BeginInit();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
+            groupBox4.SuspendLayout();
             SuspendLayout();
             // 
             // expenseAverageRecordDataGridView
@@ -79,7 +81,7 @@
             expenseAverageRecordDataGridView.ReadOnly = true;
             expenseAverageRecordDataGridView.RowTemplate.Height = 17;
             expenseAverageRecordDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            expenseAverageRecordDataGridView.Size = new Size(738, 507);
+            expenseAverageRecordDataGridView.Size = new Size(736, 507);
             expenseAverageRecordDataGridView.TabIndex = 27;
             // 
             // ObjectColumn
@@ -135,8 +137,8 @@
             // 
             groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(totalAvgBox);
             groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(totalAvgBox);
             groupBox1.Controls.Add(yearAvgBox);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(sixMonthAvgBox);
@@ -144,12 +146,10 @@
             groupBox1.Controls.Add(threeMonthAvgBox);
             groupBox1.Controls.Add(label35);
             groupBox1.Controls.Add(monthAvgBox);
-            groupBox1.Controls.Add(label3);
-            groupBox1.Controls.Add(dailyAvgBox);
-            groupBox1.Location = new Point(758, 428);
+            groupBox1.Location = new Point(757, 233);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4, 3, 4, 3);
-            groupBox1.Size = new Size(422, 91);
+            groupBox1.Size = new Size(356, 101);
             groupBox1.TabIndex = 33;
             groupBox1.TabStop = false;
             groupBox1.Text = "Weekly Averages";
@@ -157,7 +157,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(8, 18);
+            label7.Location = new Point(25, 70);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(59, 15);
@@ -166,7 +166,7 @@
             // 
             // totalAvgBox
             // 
-            totalAvgBox.Location = new Point(7, 37);
+            totalAvgBox.Location = new Point(93, 67);
             totalAvgBox.Margin = new Padding(4, 3, 4, 3);
             totalAvgBox.Name = "totalAvgBox";
             totalAvgBox.ReadOnly = true;
@@ -176,7 +176,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(339, 18);
+            label6.Location = new Point(258, 19);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(29, 15);
@@ -185,7 +185,7 @@
             // 
             // yearAvgBox
             // 
-            yearAvgBox.Location = new Point(338, 37);
+            yearAvgBox.Location = new Point(257, 38);
             yearAvgBox.Margin = new Padding(4, 3, 4, 3);
             yearAvgBox.Name = "yearAvgBox";
             yearAvgBox.ReadOnly = true;
@@ -195,7 +195,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(256, 18);
+            label5.Location = new Point(175, 19);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
             label5.Size = new Size(61, 15);
@@ -204,7 +204,7 @@
             // 
             // sixMonthAvgBox
             // 
-            sixMonthAvgBox.Location = new Point(255, 37);
+            sixMonthAvgBox.Location = new Point(174, 38);
             sixMonthAvgBox.Margin = new Padding(4, 3, 4, 3);
             sixMonthAvgBox.Name = "sixMonthAvgBox";
             sixMonthAvgBox.ReadOnly = true;
@@ -214,7 +214,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(174, 18);
+            label4.Location = new Point(93, 19);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
             label4.Size = new Size(75, 15);
@@ -223,7 +223,7 @@
             // 
             // threeMonthAvgBox
             // 
-            threeMonthAvgBox.Location = new Point(173, 37);
+            threeMonthAvgBox.Location = new Point(92, 38);
             threeMonthAvgBox.Margin = new Padding(4, 3, 4, 3);
             threeMonthAvgBox.Name = "threeMonthAvgBox";
             threeMonthAvgBox.ReadOnly = true;
@@ -233,7 +233,7 @@
             // label35
             // 
             label35.AutoSize = true;
-            label35.Location = new Point(91, 18);
+            label35.Location = new Point(10, 19);
             label35.Margin = new Padding(4, 0, 4, 0);
             label35.Name = "label35";
             label35.Size = new Size(67, 15);
@@ -242,7 +242,7 @@
             // 
             // monthAvgBox
             // 
-            monthAvgBox.Location = new Point(90, 37);
+            monthAvgBox.Location = new Point(9, 38);
             monthAvgBox.Margin = new Padding(4, 3, 4, 3);
             monthAvgBox.Name = "monthAvgBox";
             monthAvgBox.ReadOnly = true;
@@ -252,7 +252,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(8, 65);
+            label3.Location = new Point(9, 26);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(60, 15);
@@ -261,7 +261,7 @@
             // 
             // dailyAvgBox
             // 
-            dailyAvgBox.Location = new Point(90, 61);
+            dailyAvgBox.Location = new Point(91, 22);
             dailyAvgBox.Margin = new Padding(4, 3, 4, 3);
             dailyAvgBox.Name = "dailyAvgBox";
             dailyAvgBox.ReadOnly = true;
@@ -278,11 +278,11 @@
             groupBox2.Controls.Add(accountStartDateTimePicker);
             groupBox2.Controls.Add(label1);
             groupBox2.Controls.Add(saveStartDateButton);
-            groupBox2.Location = new Point(759, 12);
+            groupBox2.Location = new Point(757, 12);
             groupBox2.Margin = new Padding(4, 3, 4, 3);
             groupBox2.Name = "groupBox2";
             groupBox2.Padding = new Padding(4, 3, 4, 3);
-            groupBox2.Size = new Size(422, 115);
+            groupBox2.Size = new Size(356, 115);
             groupBox2.TabIndex = 45;
             groupBox2.TabStop = false;
             groupBox2.Text = "Account Settings";
@@ -364,11 +364,11 @@
             groupBox3.Controls.Add(viewLocationButton);
             groupBox3.Controls.Add(typesComboBox);
             groupBox3.Controls.Add(viewTypeButton);
-            groupBox3.Location = new Point(759, 133);
+            groupBox3.Location = new Point(757, 133);
             groupBox3.Margin = new Padding(4, 3, 4, 3);
             groupBox3.Name = "groupBox3";
             groupBox3.Padding = new Padding(4, 3, 4, 3);
-            groupBox3.Size = new Size(422, 295);
+            groupBox3.Size = new Size(356, 94);
             groupBox3.TabIndex = 46;
             groupBox3.TabStop = false;
             groupBox3.Text = "Groups";
@@ -379,12 +379,12 @@
             locationsComboBox.Location = new Point(10, 55);
             locationsComboBox.Margin = new Padding(4, 3, 4, 3);
             locationsComboBox.Name = "locationsComboBox";
-            locationsComboBox.Size = new Size(276, 23);
+            locationsComboBox.Size = new Size(206, 23);
             locationsComboBox.TabIndex = 42;
             // 
             // viewLocationButton
             // 
-            viewLocationButton.Location = new Point(294, 53);
+            viewLocationButton.Location = new Point(224, 52);
             viewLocationButton.Margin = new Padding(4, 3, 4, 3);
             viewLocationButton.Name = "viewLocationButton";
             viewLocationButton.Size = new Size(121, 27);
@@ -399,12 +399,12 @@
             typesComboBox.Location = new Point(10, 22);
             typesComboBox.Margin = new Padding(4, 3, 4, 3);
             typesComboBox.Name = "typesComboBox";
-            typesComboBox.Size = new Size(276, 23);
+            typesComboBox.Size = new Size(206, 23);
             typesComboBox.TabIndex = 37;
             // 
             // viewTypeButton
             // 
-            viewTypeButton.Location = new Point(294, 20);
+            viewTypeButton.Location = new Point(224, 19);
             viewTypeButton.Margin = new Padding(4, 3, 4, 3);
             viewTypeButton.Name = "viewTypeButton";
             viewTypeButton.Size = new Size(121, 27);
@@ -413,11 +413,23 @@
             viewTypeButton.UseVisualStyleBackColor = true;
             viewTypeButton.Click += viewTypeButton_Click;
             // 
+            // groupBox4
+            // 
+            groupBox4.Controls.Add(label3);
+            groupBox4.Controls.Add(dailyAvgBox);
+            groupBox4.Location = new Point(757, 340);
+            groupBox4.Name = "groupBox4";
+            groupBox4.Size = new Size(356, 58);
+            groupBox4.TabIndex = 47;
+            groupBox4.TabStop = false;
+            groupBox4.Text = "Daily Averages";
+            // 
             // AveragerMainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1192, 531);
+            ClientSize = new Size(1126, 531);
+            Controls.Add(groupBox4);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
@@ -431,6 +443,8 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
+            groupBox4.ResumeLayout(false);
+            groupBox4.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -470,5 +484,6 @@
         private DataGridViewTextBoxColumn NoteColumn;
         private ComboBox locationsComboBox;
         private Button viewLocationButton;
+        private GroupBox groupBox4;
     }
 }
