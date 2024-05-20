@@ -68,7 +68,7 @@ namespace i_ExpenseAverager.Repositories
             }
         }
 
-        public ChainClass RefreshDisplay(CalendarAveragesGroup category)
+        public ChainClass RefreshDisplay(CalendarAveragesGroup averageGroup)
         {
             ChainClass year = new ChainClass(1, DaysFor12Month);
             ChainClass sixMonth = new ChainClass(1, DaysFor6Month);
@@ -86,9 +86,19 @@ namespace i_ExpenseAverager.Repositories
             List<ExpenseAverage> daysexpenses;
             ExpenseAverageDay expenseDay;
 
+            bool fromCategory = CategoryList.Contains(averageGroup);
+
             while (varDate < tomorrow)
             {
-                daysexpenses = _xDB.ExpenseAverages.ToListForDate(varDate, category.Tags);
+                if(fromCategory)
+                {
+                    daysexpenses = _xDB.ExpenseAverages.ToListForDateCategory(varDate, averageGroup.Tags);
+                }
+                else
+                {
+                    daysexpenses = _xDB.ExpenseAverages.ToListForDateLocation(varDate, averageGroup.Tags);
+                }
+
                 expenseDay = new ExpenseAverageDay(varDate);
                 expenseDay.DaysExpenses = daysexpenses;
                 year.ChainHead.AddNode(expenseDay);
@@ -97,25 +107,25 @@ namespace i_ExpenseAverager.Repositories
 
             double average = CalculateAverage(year, sixMonth);
             double dailyAverage = average;
-            category.YearAvg = "$" + average.ToString("0.00");
+            averageGroup.YearAvg = "$" + average.ToString("0.00");
 
             average = CalculateAverage(sixMonth, threeMonth);
 
             dailyAverage += average;
-            category.SixMonthAvg = "$" + average.ToString("0.00");
+            averageGroup.SixMonthAvg = "$" + average.ToString("0.00");
 
             average = CalculateAverage(threeMonth, oneMonth);
             dailyAverage += average;
-            category.ThreeMonthAvg = "$" + average.ToString("0.00");
+            averageGroup.ThreeMonthAvg = "$" + average.ToString("0.00");
 
             average = CalculateAverage(oneMonth);
             dailyAverage += average;
-            category.MonthAvg = "$" + average.ToString("0.00");
+            averageGroup.MonthAvg = "$" + average.ToString("0.00");
 
             dailyAverage = (dailyAverage / 4);
-            category.TotalAvg = "$" + dailyAverage.ToString("0.00");
+            averageGroup.TotalAvg = "$" + dailyAverage.ToString("0.00");
             dailyAverage = dailyAverage / 7;
-            category.DailyAvg = "$" + dailyAverage.ToString("0.00");
+            averageGroup.DailyAvg = "$" + dailyAverage.ToString("0.00");
 
             return year;
         }

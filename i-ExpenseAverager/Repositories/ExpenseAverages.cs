@@ -22,7 +22,7 @@ namespace i_ExpenseAverager.Repositories
 
         public List<ExpenseAverage> ToListForDate(DateTime date) => _list.Where(o => o.Date.Date == date.Date).ToList();
 
-        public List<ExpenseAverage> ToListForDate(DateTime date, List<ExpenseTag> tagList) =>
+        public List<ExpenseAverage> ToListForDateCategory(DateTime date, List<ExpenseTag> tagList) =>
             _list.Where(o => o.Date.Date == date.Date && tagList.Select(t => t.ExpenseTagID).Contains(o.ExpenseAverageTypeID)).Distinct().ToList();
 
         public List<ExpenseAverage> ToListForDateLocation(DateTime date, List<ExpenseTag> tagList) =>

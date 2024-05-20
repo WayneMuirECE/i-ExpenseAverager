@@ -32,19 +32,19 @@ namespace i_ExpenseAverager.Forms
             RefreshRecordsDisplay(_viewModel.CategoryAll);
         }
 
-        private void RefreshRecordsDisplay(CalendarAveragesGroup category)
+        private void RefreshRecordsDisplay(CalendarAveragesGroup averageGroup)
         {
             expenseAverageRecordDataGridView.Rows.Clear();
             DataGridViewRow gridRow;
 
-            ChainClass year = _viewModel.RefreshDisplay(category);
+            ChainClass year = _viewModel.RefreshDisplay(averageGroup);
 
-            yearAvgBox.Text = category.YearAvg;
-            sixMonthAvgBox.Text = category.SixMonthAvg;
-            threeMonthAvgBox.Text = category.ThreeMonthAvg;
-            monthAvgBox.Text = category.MonthAvg;
-            dailyAvgBox.Text = category.DailyAvg;
-            totalAvgBox.Text = category.TotalAvg;
+            yearAvgBox.Text = averageGroup.YearAvg;
+            sixMonthAvgBox.Text = averageGroup.SixMonthAvg;
+            threeMonthAvgBox.Text = averageGroup.ThreeMonthAvg;
+            monthAvgBox.Text = averageGroup.MonthAvg;
+            dailyAvgBox.Text = averageGroup.DailyAvg;
+            totalAvgBox.Text = averageGroup.TotalAvg;
 
             List<DataGridViewRow> rows = new List<DataGridViewRow>();
 
