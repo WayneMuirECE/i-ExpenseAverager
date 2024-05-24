@@ -7,7 +7,7 @@ using Moq;
 namespace i_ExpenseAveragerTests.Repositories
 {
     [TestClass]
-    public class VeiwRepositoryModelTests
+    public class ViewRepositoryModelTests
     {
         private Mock<IExpenseAverageXDB> _mockXDB;
         private ViewRepositoryModel viewRepositoryModel;
