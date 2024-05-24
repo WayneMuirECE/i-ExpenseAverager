@@ -72,18 +72,9 @@ namespace i_ExpenseAveragerTests.Repositories
            
             var viewRepositoryModel = new ViewRepositoryModel(_mockXDB.Object);
             var category = new CalendarAveragesGroup("TestCategory");
-            ExpenseTag consumable = new ExpenseTag("Consumable");
-            consumable.ExpenseTagID = 1;
-            consumable.ExpenseTagType = "type";
-            category.Tags.Add(consumable);
-            ExpenseTag gasoline = new ExpenseTag("Gasoline");
-            gasoline.ExpenseTagID = 2;
-            gasoline.ExpenseTagType = "type";
-            category.Tags.Add(gasoline);
-            ExpenseTag medical = new ExpenseTag("Medical");
-            medical.ExpenseTagID = 3;
-            medical.ExpenseTagType = "type";
-            category.Tags.Add(medical);
+            category.Tags.Add(new ExpenseTag("Consumable", 1, "type"));
+            category.Tags.Add(new ExpenseTag("Gasoline", 2, "type"));
+            category.Tags.Add(new ExpenseTag("Medical", 3, "type"));
 
             // Act
             var result = viewRepositoryModel.RefreshDisplay(category);
@@ -108,18 +99,9 @@ namespace i_ExpenseAveragerTests.Repositories
 
             var viewRepositoryModel = new ViewRepositoryModel(_mockXDB.Object);
             var category = new CalendarAveragesGroup("TestCategory");
-            ExpenseTag consumable = new ExpenseTag("Consumable");
-            consumable.ExpenseTagID = 1;
-            consumable.ExpenseTagType = "type";
-            category.Tags.Add(consumable);
-            ExpenseTag gasoline = new ExpenseTag("Gasoline");
-            gasoline.ExpenseTagID = 2;
-            gasoline.ExpenseTagType = "type";
-            category.Tags.Add(gasoline);
-            ExpenseTag medical = new ExpenseTag("Medical");
-            medical.ExpenseTagID = 3;
-            medical.ExpenseTagType = "type";
-            category.Tags.Add(medical);
+            category.Tags.Add(new ExpenseTag("Consumable", 1, "type"));
+            category.Tags.Add(new ExpenseTag("Gasoline", 2, "type"));
+            category.Tags.Add(new ExpenseTag("Medical", 3, "type"));
 
             // Act
             var result = viewRepositoryModel.RefreshDisplay(category);

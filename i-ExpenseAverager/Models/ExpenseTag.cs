@@ -15,6 +15,13 @@ namespace i_ExpenseAverager.Models
             ExpenseTagName = !string.IsNullOrWhiteSpace(expenseTagName) ? expenseTagName : throw new ArgumentNullException(nameof(expenseTagName));
         }
 
+        public ExpenseTag(string expenseTagName, int expenseTagID, string expenseTagType)
+        {
+            ExpenseTagName = !string.IsNullOrWhiteSpace(expenseTagName) ? expenseTagName : throw new ArgumentNullException(nameof(expenseTagName));
+            ExpenseTagID = expenseTagID > 0 ? expenseTagID : throw new ArgumentOutOfRangeException(nameof(expenseTagID));
+            ExpenseTagType = !string.IsNullOrWhiteSpace(expenseTagType) ? expenseTagType : throw new ArgumentNullException(nameof(expenseTagType));
+        }
+
         public ExpenseTag(XElement xml)
         {
             ExpenseTagType = xml.Attribute("type").Value;
