@@ -111,5 +111,32 @@ namespace i_ExpenseAveragerTests.Repositories
             Assert.AreEqual("$7.62", category.DailyAvg);
             Assert.AreEqual("$53.34", category.MonthAvg);
         }
+
+        [TestMethod]
+        public void RefreshDisplay_ShouldCalculateAveragesCorrectlyOverOneWeekWithDifferentDays()
+        {
+            // Arrange
+            _mockXDB.Setup(m => m.StartDate).Returns(DateTime.Now.AddDays(-7));
+            ExpenseAverages expenses = new ExpenseAverages();
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, DateTime.Now.AddDays(-1), 15.24, ""));
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, DateTime.Now.AddDays(-2), 15.24, ""));
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, DateTime.Now.AddDays(-3), 15.24, ""));
+            expenses.Add(new ExpenseAverage(1, 1, 1, 1, DateTime.Now.AddDays(-4), 15.24, ""));
+            _mockXDB.Setup(m => m.ExpenseAverages).Returns(expenses);
+
+            var viewRepositoryModel = new ViewRepositoryModel(_mockXDB.Object);
+            var category = new CalendarAveragesGroup("TestCategory");
+            category.Tags.Add(new ExpenseTag("Consumable", 1, "type"));
+            category.Tags.Add(new ExpenseTag("Gasoline", 2, "type"));
+            category.Tags.Add(new ExpenseTag("Medical", 3, "type"));
+
+            // Act
+            var result = viewRepositoryModel.RefreshDisplay(category);
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual("$7.62", category.DailyAvg);
+            Assert.AreEqual("$53.34", category.MonthAvg);
+        }
     }
 }
