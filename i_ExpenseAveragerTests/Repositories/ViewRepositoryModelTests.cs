@@ -17,10 +17,18 @@ namespace i_ExpenseAveragerTests.Repositories
         {
             InitializeMocks();
 
-            ExpenseTags expenseTags = new ExpenseTags("type");
-            expenseTags.Add(new ExpenseTag("Gas"));
+            ExpenseTags expenseTypes = new ExpenseTags("type");
+            expenseTypes.Add(new ExpenseTag("Gas"));
 
-            _mockXDB.Setup(m => m.ExpenseTypes).Returns(expenseTags);
+            _mockXDB.Setup(m => m.ExpenseTypes).Returns(expenseTypes);
+
+            ExpenseTags expenseLocations = new ExpenseTags("loc");
+            expenseLocations.Add(new ExpenseTag("Costco"));
+            _mockXDB.Setup(m => m.ExpenseLocations).Returns(expenseLocations);
+
+            ExpenseTags expenseOccasions = new ExpenseTags("occ");
+            expenseOccasions.Add(new ExpenseTag("None"));
+            _mockXDB.Setup(m => m.ExpenseOccasions).Returns(expenseOccasions);
 
             viewRepositoryModel = new ViewRepositoryModel(_mockXDB.Object);
         }
