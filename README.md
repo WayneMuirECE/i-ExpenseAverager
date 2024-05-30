@@ -9,7 +9,7 @@ Q: Why calculate the average on the week instead of the month?
 
 A: There are always 52 weeks in a year. The number of days per week never changes. The number of days per month always changes. Quite a few jobs pay on the bi-weekly or weekly basis. Knowing your average is the road to knowing your direction.
 
-The app also includes the weekly average for the last month, last three months, last six months, last year, and average over all the time periods ((month, three month, six month, year) / year). This is so you can see if there is a change in recent expenditures.
+The app also includes the weekly average for the last month, last three months, last six months, last year, and average over all the time periods ((month, three month, six month) / year). This is so you can see if there is a change in recent expenditures.
 
 This project is a work in progress and not quite to v1.0 status. Expect more development to come.
 
