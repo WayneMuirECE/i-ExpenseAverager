@@ -11,7 +11,7 @@ A: There are always 52 weeks in a year. The number of days per week never change
 
 The app also includes the weekly average for the last month, last three months, last six months, last year, and average over all the time periods ((month, three month, six month) / year). This is so you can see if there is a change in recent expenditures.
 
-This project is a work in progress and not quite to v1.0 status. Expect more development to come.
+This project is a work in progress and not all features are complete. Expect more development to come.
 
 ## Table of Contents
 
