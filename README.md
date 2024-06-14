@@ -28,7 +28,7 @@ This is a Windows only desktop application at the moment.
 
 ## Usage
 
-TODO
+TODO -
 
 ## License
 
