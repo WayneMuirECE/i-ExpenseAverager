@@ -16,13 +16,13 @@ namespace i_ExpenseAverager.Interfaces
         /// Get type by ID
         /// </summary>
         /// <param name="expenseAverageTypeID">ID to search for</param>
-        /// <returns>Expence Tag is found</returns>
+        /// <returns>Expense Tag is found</returns>
         ExpenseTag GetExpenseAverageType(int expenseAverageTypeID);
         /// <summary>
         /// Get type by name
         /// </summary>
         /// <param name="expenseAverageType">The name to search for</param>
-        /// <returns>Expence Tag is found</returns>
+        /// <returns>Expense Tag is found</returns>
         ExpenseTag GetExpenseAverageType(string expenseAverageType);
 
         /// <summary>

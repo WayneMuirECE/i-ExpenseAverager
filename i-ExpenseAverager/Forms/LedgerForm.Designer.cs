@@ -36,9 +36,9 @@
             label15 = new Label();
             label2 = new Label();
             label8 = new Label();
-            recordSubmitExpenceTypeComboBox = new ComboBox();
+            recordSubmitExpenseTypeComboBox = new ComboBox();
             addButton = new Button();
-            recordSubmitExpenceLocationComboBox = new ComboBox();
+            recordSubmitExpenseLocationComboBox = new ComboBox();
             label7 = new Label();
             recordSubmitNoteBox = new TextBox();
             label1 = new Label();
@@ -50,7 +50,7 @@
             DayColumn = new DataGridViewTextBoxColumn();
             DateColumn = new DataGridViewTextBoxColumn();
             AmountColumn = new DataGridViewTextBoxColumn();
-            ExpenceTypeColumn = new DataGridViewTextBoxColumn();
+            ExpenseTypeColumn = new DataGridViewTextBoxColumn();
             LocationColumn = new DataGridViewTextBoxColumn();
             OccasionColumn = new DataGridViewTextBoxColumn();
             NoteColumn = new DataGridViewTextBoxColumn();
@@ -67,9 +67,9 @@
             recordSubmitGroupBox.Controls.Add(label15);
             recordSubmitGroupBox.Controls.Add(label2);
             recordSubmitGroupBox.Controls.Add(label8);
-            recordSubmitGroupBox.Controls.Add(recordSubmitExpenceTypeComboBox);
+            recordSubmitGroupBox.Controls.Add(recordSubmitExpenseTypeComboBox);
             recordSubmitGroupBox.Controls.Add(addButton);
-            recordSubmitGroupBox.Controls.Add(recordSubmitExpenceLocationComboBox);
+            recordSubmitGroupBox.Controls.Add(recordSubmitExpenseLocationComboBox);
             recordSubmitGroupBox.Controls.Add(label7);
             recordSubmitGroupBox.Controls.Add(recordSubmitNoteBox);
             recordSubmitGroupBox.Controls.Add(label1);
@@ -82,7 +82,7 @@
             recordSubmitGroupBox.Size = new Size(959, 87);
             recordSubmitGroupBox.TabIndex = 35;
             recordSubmitGroupBox.TabStop = false;
-            recordSubmitGroupBox.Text = "Record Expence";
+            recordSubmitGroupBox.Text = "Record Expense";
             // 
             // deleteButton
             // 
@@ -154,14 +154,14 @@
             label8.TabIndex = 32;
             label8.Text = "Location";
             // 
-            // recordSubmitExpenceTypeComboBox
+            // recordSubmitExpenseTypeComboBox
             // 
-            recordSubmitExpenceTypeComboBox.FormattingEnabled = true;
-            recordSubmitExpenceTypeComboBox.Location = new Point(317, 22);
-            recordSubmitExpenceTypeComboBox.Margin = new Padding(4, 3, 4, 3);
-            recordSubmitExpenceTypeComboBox.Name = "recordSubmitExpenceTypeComboBox";
-            recordSubmitExpenceTypeComboBox.Size = new Size(168, 23);
-            recordSubmitExpenceTypeComboBox.TabIndex = 29;
+            recordSubmitExpenseTypeComboBox.FormattingEnabled = true;
+            recordSubmitExpenseTypeComboBox.Location = new Point(317, 22);
+            recordSubmitExpenseTypeComboBox.Margin = new Padding(4, 3, 4, 3);
+            recordSubmitExpenseTypeComboBox.Name = "recordSubmitExpenseTypeComboBox";
+            recordSubmitExpenseTypeComboBox.Size = new Size(168, 23);
+            recordSubmitExpenseTypeComboBox.TabIndex = 29;
             // 
             // addButton
             // 
@@ -174,14 +174,14 @@
             addButton.UseVisualStyleBackColor = true;
             addButton.Click += addButton_Click;
             // 
-            // recordSubmitExpenceLocationComboBox
+            // recordSubmitExpenseLocationComboBox
             // 
-            recordSubmitExpenceLocationComboBox.FormattingEnabled = true;
-            recordSubmitExpenceLocationComboBox.Location = new Point(317, 53);
-            recordSubmitExpenceLocationComboBox.Margin = new Padding(4, 3, 4, 3);
-            recordSubmitExpenceLocationComboBox.Name = "recordSubmitExpenceLocationComboBox";
-            recordSubmitExpenceLocationComboBox.Size = new Size(168, 23);
-            recordSubmitExpenceLocationComboBox.TabIndex = 31;
+            recordSubmitExpenseLocationComboBox.FormattingEnabled = true;
+            recordSubmitExpenseLocationComboBox.Location = new Point(317, 53);
+            recordSubmitExpenseLocationComboBox.Margin = new Padding(4, 3, 4, 3);
+            recordSubmitExpenseLocationComboBox.Name = "recordSubmitExpenseLocationComboBox";
+            recordSubmitExpenseLocationComboBox.Size = new Size(168, 23);
+            recordSubmitExpenseLocationComboBox.TabIndex = 31;
             // 
             // label7
             // 
@@ -209,7 +209,7 @@
             label1.Name = "label1";
             label1.Size = new Size(78, 15);
             label1.TabIndex = 28;
-            label1.Text = "Expence Type";
+            label1.Text = "Expense Type";
             // 
             // label14
             // 
@@ -233,7 +233,7 @@
             // 
             expenceAverageRecordDataGridView.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
             expenceAverageRecordDataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            expenceAverageRecordDataGridView.Columns.AddRange(new DataGridViewColumn[] { ObjectColumn, RecordNumberColumn, DayColumn, DateColumn, AmountColumn, ExpenceTypeColumn, LocationColumn, OccasionColumn, NoteColumn });
+            expenceAverageRecordDataGridView.Columns.AddRange(new DataGridViewColumn[] { ObjectColumn, RecordNumberColumn, DayColumn, DateColumn, AmountColumn, ExpenseTypeColumn, LocationColumn, OccasionColumn, NoteColumn });
             expenceAverageRecordDataGridView.Location = new Point(13, 105);
             expenceAverageRecordDataGridView.Margin = new Padding(4, 3, 4, 3);
             expenceAverageRecordDataGridView.Name = "expenceAverageRecordDataGridView";
@@ -278,12 +278,12 @@
             AmountColumn.ReadOnly = true;
             AmountColumn.Width = 60;
             // 
-            // ExpenceTypeColumn
+            // ExpenseTypeColumn
             // 
-            ExpenceTypeColumn.HeaderText = "Expence Type";
-            ExpenceTypeColumn.Name = "ExpenceTypeColumn";
-            ExpenceTypeColumn.ReadOnly = true;
-            ExpenceTypeColumn.Width = 140;
+            ExpenseTypeColumn.HeaderText = "Expense Type";
+            ExpenseTypeColumn.Name = "ExpenseTypeColumn";
+            ExpenseTypeColumn.ReadOnly = true;
+            ExpenseTypeColumn.Width = 140;
             // 
             // LocationColumn
             // 
@@ -331,9 +331,9 @@
         private Label label15;
         private Label label2;
         private Label label8;
-        private ComboBox recordSubmitExpenceTypeComboBox;
+        private ComboBox recordSubmitExpenseTypeComboBox;
         private Button addButton;
-        private ComboBox recordSubmitExpenceLocationComboBox;
+        private ComboBox recordSubmitExpenseLocationComboBox;
         private Label label7;
         private TextBox recordSubmitNoteBox;
         private Label label1;
@@ -345,7 +345,7 @@
         private DataGridViewTextBoxColumn DayColumn;
         private DataGridViewTextBoxColumn DateColumn;
         private DataGridViewTextBoxColumn AmountColumn;
-        private DataGridViewTextBoxColumn ExpenceTypeColumn;
+        private DataGridViewTextBoxColumn ExpenseTypeColumn;
         private DataGridViewTextBoxColumn LocationColumn;
         private DataGridViewTextBoxColumn OccasionColumn;
         private DataGridViewTextBoxColumn NoteColumn;

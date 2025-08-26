@@ -6,7 +6,7 @@ namespace i_ExpenseAverager.Forms
     public partial class LedgerForm : Form
     {
         private IExpenseAverageXDB _xDB;
-        private ExpenseAverage _selectedExpence;
+        private ExpenseAverage _selectedExpense;
 
         public LedgerForm(IExpenseAverageXDB XDB)
         {
@@ -14,7 +14,7 @@ namespace i_ExpenseAverager.Forms
             _xDB = XDB;
             recordSubmitDateTimePicker.MinDate = _xDB.StartDate;
             recordSubmitDateTimePicker.MaxDate = DateTime.Today;
-            _selectedExpence = null;
+            _selectedExpense = null;
             RefreshRecordSubmitDisplay();
             RefreshRecordsDisplay();
         }
@@ -29,22 +29,22 @@ namespace i_ExpenseAverager.Forms
         {
             string type;
 
-            if (string.IsNullOrWhiteSpace(recordSubmitExpenceTypeComboBox.Text))
+            if (string.IsNullOrWhiteSpace(recordSubmitExpenseTypeComboBox.Text))
             {
                 MessageBox.Show("The expence type must be a type. i.e. 'Fuel'");
                 return;
             }
 
-            type = recordSubmitExpenceTypeComboBox.Text;
+            type = recordSubmitExpenseTypeComboBox.Text;
             string location;
 
-            if (string.IsNullOrWhiteSpace(recordSubmitExpenceLocationComboBox.Text))
+            if (string.IsNullOrWhiteSpace(recordSubmitExpenseLocationComboBox.Text))
             {
                 MessageBox.Show("The expence location must be a retail name. i.e. 'Foodmart'");
                 return;
             }
 
-            location = recordSubmitExpenceLocationComboBox.Text;
+            location = recordSubmitExpenseLocationComboBox.Text;
             string occasion;
 
             if (string.IsNullOrWhiteSpace(recordSubmitOccasionComboBox.Text))
@@ -88,19 +88,19 @@ namespace i_ExpenseAverager.Forms
             _xDB.SaveExpenseLocation(location);
             _xDB.SaveExpenseOccasion(occasion);
 
-            if (_selectedExpence == null)
+            if (_selectedExpense == null)
             {
                 _xDB.SaveExpenseAverage(type, location, occasion, date, amount, note);
             }
             else
             {
-                _selectedExpence.ExpenseAverageTypeID = _xDB.GetExpenseAverageType(type).ExpenseTagID;
-                _selectedExpence.ExpenseLocationID = _xDB.GetExpenseLocation(location).ExpenseTagID;
-                _selectedExpence.ExpenseOccasionID = _xDB.GetExpenseOccasion(occasion).ExpenseTagID;
-                _selectedExpence.ExpenseAverageAmount = amount;
-                _selectedExpence.Date = date;
-                _selectedExpence.Note = note;
-                _selectedExpence = null;
+                _selectedExpense.ExpenseAverageTypeID = _xDB.GetExpenseAverageType(type).ExpenseTagID;
+                _selectedExpense.ExpenseLocationID = _xDB.GetExpenseLocation(location).ExpenseTagID;
+                _selectedExpense.ExpenseOccasionID = _xDB.GetExpenseOccasion(occasion).ExpenseTagID;
+                _selectedExpense.ExpenseAverageAmount = amount;
+                _selectedExpense.Date = date;
+                _selectedExpense.Note = note;
+                _selectedExpense = null;
                 addButton.Text = "Add";
             }
 
@@ -117,16 +117,16 @@ namespace i_ExpenseAverager.Forms
             recordSubmitNoteBox.Text = "";
             this.addButton.Text = "Add";
 
-            recordSubmitExpenceTypeComboBox.Items.Clear();
+            recordSubmitExpenseTypeComboBox.Items.Clear();
             foreach (ExpenseTag item in _xDB.ExpenseTypes.ToList())
             {
-                recordSubmitExpenceTypeComboBox.Items.Add(item.ExpenseTagName);
+                recordSubmitExpenseTypeComboBox.Items.Add(item.ExpenseTagName);
             }
 
-            recordSubmitExpenceLocationComboBox.Items.Clear();
+            recordSubmitExpenseLocationComboBox.Items.Clear();
             foreach (ExpenseTag item in _xDB.ExpenseLocations.ToList())
             {
-                recordSubmitExpenceLocationComboBox.Items.Add(item.ExpenseTagName);
+                recordSubmitExpenseLocationComboBox.Items.Add(item.ExpenseTagName);
             }
 
             recordSubmitOccasionComboBox.Items.Clear();
@@ -164,7 +164,7 @@ namespace i_ExpenseAverager.Forms
                 {
                     gridRow.Cells[AmountColumn.Index].Value = "$" + item.ExpenseAverageAmount;
                 }
-                gridRow.Cells[ExpenceTypeColumn.Index].Value = _xDB.GetExpenseAverageType(item.ExpenseAverageTypeID).ExpenseTagName;
+                gridRow.Cells[ExpenseTypeColumn.Index].Value = _xDB.GetExpenseAverageType(item.ExpenseAverageTypeID).ExpenseTagName;
                 gridRow.Cells[LocationColumn.Index].Value = _xDB.GetExpenseLocation(item.ExpenseLocationID).ExpenseTagName;
                 gridRow.Cells[OccasionColumn.Index].Value = _xDB.GetExpenseOccasion(item.ExpenseOccasionID).ExpenseTagName;
 
@@ -241,33 +241,33 @@ namespace i_ExpenseAverager.Forms
 
         private void modifyButton_Click(object sender, EventArgs e)
         {
-            _selectedExpence = (ExpenseAverage)expenceAverageRecordDataGridView.SelectedRows[0].Cells[0].Value;
+            _selectedExpense = (ExpenseAverage)expenceAverageRecordDataGridView.SelectedRows[0].Cells[0].Value;
 
-            if (_selectedExpence == null)
+            if (_selectedExpense == null)
             {
                 return;
             }
 
-            recordSubmitAmountBox.Text = _selectedExpence.ExpenseAverageAmount.ToString("0.00");
-            recordSubmitExpenceTypeComboBox.Text = _xDB.GetExpenseAverageType(_selectedExpence.ExpenseAverageTypeID).ExpenseTagName;
-            recordSubmitExpenceLocationComboBox.Text = _xDB.GetExpenseLocation(_selectedExpence.ExpenseLocationID).ExpenseTagName;
-            recordSubmitOccasionComboBox.Text = _xDB.GetExpenseOccasion(_selectedExpence.ExpenseOccasionID).ExpenseTagName;
-            recordSubmitDateTimePicker.Text = _selectedExpence.Date.ToShortDateString();
-            recordSubmitNoteBox.Text = _selectedExpence.Note;
+            recordSubmitAmountBox.Text = _selectedExpense.ExpenseAverageAmount.ToString("0.00");
+            recordSubmitExpenseTypeComboBox.Text = _xDB.GetExpenseAverageType(_selectedExpense.ExpenseAverageTypeID).ExpenseTagName;
+            recordSubmitExpenseLocationComboBox.Text = _xDB.GetExpenseLocation(_selectedExpense.ExpenseLocationID).ExpenseTagName;
+            recordSubmitOccasionComboBox.Text = _xDB.GetExpenseOccasion(_selectedExpense.ExpenseOccasionID).ExpenseTagName;
+            recordSubmitDateTimePicker.Text = _selectedExpense.Date.ToShortDateString();
+            recordSubmitNoteBox.Text = _selectedExpense.Note;
             addButton.Text = "Change";
         }
 
         private void deleteButton_Click(object sender, EventArgs e)
         {
-            _selectedExpence = (ExpenseAverage)expenceAverageRecordDataGridView.SelectedRows[0].Cells[0].Value;
+            _selectedExpense = (ExpenseAverage)expenceAverageRecordDataGridView.SelectedRows[0].Cells[0].Value;
 
-            if (_selectedExpence == null)
+            if (_selectedExpense == null)
             {
                 return;
             }
 
-            _xDB.DeleteExpenseAverage(_selectedExpence);
-            _selectedExpence = null;
+            _xDB.DeleteExpenseAverage(_selectedExpense);
+            _selectedExpense = null;
             RefreshRecordSubmitDisplay();
             RefreshRecordsDisplay();
         }
